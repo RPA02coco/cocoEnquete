@@ -6,6 +6,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import TextField from '@mui/material/TextField';
 import DatePicker from '@mui/lab/DatePicker';
 import DateTimePicker from '@mui/lab/DateTimePicker';
+import './BasicInformation.css';
 
 const BasicInformation = () => {
   
@@ -24,17 +25,17 @@ const BasicInformation = () => {
       <tbody>
         <tr>
           <th className ="fullNameLabel">世帯主様お名前</th>
-          <td className="kanji"><input type="text" name="name" /></td>
+          <td colSpan="3" className="kanji"><input type="text" name="name" /></td>
         </tr>
-        <tr>
+        <tr>          
           <th className='furiganaLabel'>フリガナ</th>
-          <td className="furigana"><input type="text" name="furigana" /></td>
+          <td colSpan="3" className="furigana"><input type="text" name="furigana" /></td>
         </tr>
         <tr>
           <th className='dateEnteredLabel'>ご記入日</th>
           <td className='dateEnteredYearHead'>
             <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
-                <DateTimePicker
+                <DateTimePicker className='inputdates'
                   label="年月日 時間"
                   value={dateEntered}
                   mask="____年__月__日 __:__"
@@ -45,12 +46,10 @@ const BasicInformation = () => {
                 />
                 </LocalizationProvider>
           </td>
-        </tr>
-        <tr>
           <th className='birthdayLabel'>生年月日</th>
           <td className='birthday'>
             <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
-              <DatePicker
+              <DatePicker className='inputdates'
                 label="年月日"
                 value={birthday}
                 mask="____年__月__日"
@@ -64,27 +63,27 @@ const BasicInformation = () => {
         </tr>
         <tr>
           <th className='postCodeLabel'>郵便番号</th>
-          <td className='postCode'><input type="text" name="postCode" /></td>
+          <td colSpan="3" className='postCode'><input type="text" name="postCode" /></td>
         </tr>
         <tr>
           <th className='addressLabel'>住所</th>
-          <td className='address'><input type="text" name="address" /></td>
+          <td colSpan="3" className='address'><input type="text" name="address" /></td>
         </tr>
         <tr>
           <th className='telLabel'>TEL</th>
-          <td className='tel'><input type="text" name="tel" /></td>
+          <td colSpan="3" className='tel'><input type="text" name="tel" /></td>
         </tr>
         <tr>
           <th className='MailLabel'>MAIL</th>
-          <td className='Mail'><input type="text" name="mail" /></td>
+          <td colSpan="3" className='Mail'><input type="text" name="mail" /></td>
         </tr>
         <tr>
           <th className='workPlaceLabel'>ご勤務先</th>
-          <td className='workPlace'><input type="text" name="workPlace" /></td>
+          <td colSpan="3" className='workPlace'><input type="text" name="workPlace" /></td>
         </tr>
         <tr>
           <th className='holidayLabel'>ご休日</th>
-          <td className='holiday'><input type="text" name="holiday" /></td>
+          <td colSpan="3" className='holiday'><input type="text" name="holiday" /></td>
         </tr>
       </tbody>
     </table>
