@@ -46,6 +46,8 @@ const BasicInformation = () => {
                 />
                 </LocalizationProvider>
           </td>
+        </tr>
+        <tr>
           <th className='birthdayLabel'>生年月日</th>
           <td className='birthday'>
             <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
