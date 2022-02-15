@@ -3,3 +3,8 @@
   width: 300px;  
   vertical-align: top;
 }
+
+.workitem{
+  display: inline-block;
+  width: 300px;
+}

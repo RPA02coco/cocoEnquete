@@ -20,16 +20,23 @@ const Enquete1st = () => {
     event.preventDefault();
     setPageNum(pageNum - 1); 
   }
+
+  const submitButtonClick = (event) => {
+    event.preventDefault();
+    console.log('submi!!!');
+  }
   
   return(
-    <>
+    <form onSubmit={submitButtonClick}>
       <div className='Enquete1st'>
         {backVisible && <BackButton onClick={backButtonClick}/>}
         {pageNum === 1 && <BasicInformation />}
         {pageNum === 2 && <Works />}
         {nextVisible && <NextButton onClick={nextButtonClick} />}
+        {!nextVisible && <button type='submit'>完了</button>}
       </div>
-    </>
+    </form>
+
   )
 };
 

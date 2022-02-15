@@ -18,7 +18,7 @@ table td, table th {
   align-items: center;
 }
 
-input {  
+.infotable input {  
   width: 95%;
   height: 30px;
   font-size: 20px;
