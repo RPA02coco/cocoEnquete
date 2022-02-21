@@ -12,8 +12,8 @@ import replaced from '../helpers/replaced';
 
 const BasicInformation = () => {
   const [form, setForm] = useState({
-    fullname: { label: '名前', value: '', valueError: false, errorText: '文字列が長すぎます' },
-    furigana: { label: 'フリガナ', value: '', valueError: false, errorText: '文字列が長すぎます' },
+    fullname: { label: '名前', value: '', valueError: false, errorText: '入力エラー' },
+    furigana: { label: 'フリガナ', value: '', valueError: false, errorText: '入力エラー' },
     dateEntered: { label: '記入日', value: '', valueError: false, errorText: '入力エラー' },
     birthday: { label: '誕生日', value: '', valueError: false, errorText: '入力エラー' },
     postCode: { label: '郵便番号', value: '', valueError: false, errorText: '8文字以下の数字で入力してください。入力例:442-0888' },
@@ -24,13 +24,35 @@ const BasicInformation = () => {
     holiday: { label: 'ご休日', value: '', valueError: false, errorText: '入力エラー' },
   });
 
+  const nullJudge = (rawName, rawValue) => {
+    let returnValue;
+    // console.log(rawName, rawValue);
+    if (rawValue === null) {
+      // console.log('null');
+      returnValue = form[rawName].value;
+    } else {
+      // console.log('入力テスト rawvalue :',rawValue);
+      const ms = Date.parse(returnValue)
+      console.log('入力テスト ms :', ms, 'returnvalue', returnValue);
+      if(!isNaN(ms)) { // 日付直接入力の際のエラー対策
+        // console.log('入力テスト format :', format(rawValue, 'yyyy-MM-dd HH:mm'));
+        returnValue = rawValue.target ? replaced(rawValue.target.value) : format(rawValue, 'yyyy-MM-dd HH:mm')
+      } else {
+        returnValue = '';
+      }
+    }
+    // console.log('returnvalue', returnValue);
+    return returnValue;
+  }
+
   const changeHandler = (name) => (value) => {
     // setDateEntered(newValue);
     setForm((prev) => {
+      // console.log('value :', value);
       return {
         ...prev, [name]: {
           ...prev[name],
-          value: value.target ? replaced(value.target.value) : format(value, 'yyyy-MM-dd HH:mm'),
+          value: nullJudge(name, value),
           valueError: errorJudgement(name, value),
         }
       }
@@ -38,6 +60,7 @@ const BasicInformation = () => {
   }
 
   console.log(form);
+
   return (
     <div className='flex flex-col'>
       <div><TextField
@@ -79,6 +102,7 @@ const BasicInformation = () => {
       <div><TextField
         label="郵便番号"
         variant="outlined"
+        type={'tel'}
         name="postCode"
         error={form.postCode.valueError}
         helperText={form.postCode.valueError && form.postCode.errorText}
@@ -93,6 +117,7 @@ const BasicInformation = () => {
       <div><TextField
         label="TEL"
         variant="outlined"
+        type={"tel"}
         name="tel"
         error={form.tel.valueError}
         helperText={form.tel.valueError && form.tel.errorText}
@@ -100,6 +125,7 @@ const BasicInformation = () => {
       <div><TextField
         label="MAIL"
         variant="outlined"
+        type={"email"}
         name="mail"
         error={form.mail.valueError}
         helperText={form.mail.valueError && form.mail.errorText}

@@ -4,7 +4,7 @@ const replaced = (rawValue) => {
     rawValue.replace(/[０-９．]/g, (s) => {
       return String.fromCharCode(s.charCodeAt(0) - 65248);
     })
-      .replace(/[ー]/g, '-')
+      .replace(/[-－﹣−‐⁃‑‒–—﹘―⎯⏤ーｰ─━]/g, '-')
   )
 }
 
