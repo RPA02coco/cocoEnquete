@@ -26,22 +26,34 @@ const BasicInformation = () => {
 
   const nullJudge = (rawName, rawValue) => {
     let returnValue;
-    // console.log(rawName, rawValue);
     if (rawValue === null) {
-      // console.log('null');
       returnValue = form[rawName].value;
     } else {
-      // console.log('入力テスト rawvalue :',rawValue);
-      const ms = Date.parse(returnValue)
-      console.log('入力テスト ms :', ms, 'returnvalue', returnValue);
-      if(!isNaN(ms)) { // 日付直接入力の際のエラー対策
-        // console.log('入力テスト format :', format(rawValue, 'yyyy-MM-dd HH:mm'));
-        returnValue = rawValue.target ? replaced(rawValue.target.value) : format(rawValue, 'yyyy-MM-dd HH:mm')
+      if (rawValue.target) {
+        returnValue = replaced(rawValue.target.value);
       } else {
-        returnValue = '';
+        if (!isNaN(Date.parse(rawValue))) {
+          returnValue = format(rawValue, 'yyyy-MM-dd HH:mm');
+        } else {
+          returnValue = '';
+        }
       }
+/*
+      if (rawName === ['dateEntered', 'birthday']) {
+        const ms = Date.parse(returnValue)
+        if(!isNaN(ms)) { // 日付直接入力の際のエラー対策
+          // console.log('入力テスト format :', format(rawValue, 'yyyy-MM-dd HH:mm'));
+          returnValue = rawValue.target ? replaced(rawValue.target.value) : format(rawValue, 'yyyy-MM-dd HH:mm')
+        } else {
+          returnValue = '';
+        }
+      } else {
+        // console.log('入力テスト rawvalue :',rawValue);
+        // console.log('入力テスト ms :', ms);
+        returnValue = rawValue.target ? replaced(rawValue.target.value):rawValue;
+      }  */
     }
-    // console.log('returnvalue', returnValue);
+    console.log('returnvalue', returnValue);
     return returnValue;
   }
 
