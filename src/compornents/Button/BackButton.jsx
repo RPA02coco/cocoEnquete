@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import {Button} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import './NextButton.css';
 
 const BackButton = ({onClick}) => {
   return (
-    <Button className='backButton'
+    <Button className='pr-4'
       onClick={onClick}
       variant="contained"
       startIcon={<ArrowBackIcon />}
