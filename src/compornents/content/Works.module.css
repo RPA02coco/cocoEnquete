@@ -1,10 +1,11 @@
-.works{
-  display: inline-block;
-  width: 300px;  
+.workHeader{
+  margin: auto;
   vertical-align: top;
+  text-align: center;
 }
 
 .workitem{
   display: inline-block;
-  width: 300px;
+  text-align: left;
+  width: 210px;
 }

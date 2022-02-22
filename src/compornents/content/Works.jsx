@@ -32,7 +32,7 @@ const Works = () => {
       }*/
 
   return(
-    <div>
+    <div className={styles.workHeader}>
       <p> ◆世帯主様について教えてください</p><br />
       <p>    ご職業:</p><br />
 
