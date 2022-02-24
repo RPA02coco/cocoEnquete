@@ -17,7 +17,7 @@ const errorJudgement = (name, value) => {
 
   switch (name) {
     case 'postCode':
-      let regexPC = /^[0-9]{3}-[0-9]{4}|[0-9]{3,7}$/;
+      let regexPC = /^([0-9]{3}-[0-9]{4}|[0-9]{3,7})$/;
       if (!regexPC.test(chkValue)) {
         console.log('ちがうよ!postCode', chkValue);
         isError = true;

@@ -1,54 +1,21 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { ja } from 'date-fns/locale';
-import format from 'date-fns/format';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import TextField from '@mui/material/TextField';
 import DatePicker from '@mui/lab/DatePicker';
 // import DateTimePicker from '@mui/lab/DateTimePicker';
 import errorJudgement from '../helpers/errorJudgment';
-import replaced from '../helpers/replaced';
+import nullJudge from '../helpers/nullJudgement';
 
-const BasicInformation = () => {
-  const [form, setForm] = useState({
-    fullname: { label: '名前', value: '', valueError: false, errorText: '入力エラー' },
-    furigana: { label: 'フリガナ', value: '', valueError: false, errorText: '入力エラー' },
-    dateEntered: { label: '記入日', value: new Date(), valueError: false, errorText: '入力エラー' },
-    birthday: { label: '誕生日', value: '', valueError: false, errorText: '入力エラー' },
-    postCode: { label: '郵便番号', value: '', valueError: false, errorText: '数字で入力してください。入力例:442-0888' },
-    address: { label: '住所', value: '', valueError: false, errorText: '入力エラー' },
-    address2: { label: '住所(建物名)', value: '', valueError: false, errorText: '入力エラー' },
-    tel: { label: 'TEL', value: '', valueError: false, errorText: '数字で入力してください。入力例:090-1111-2222' },
-    mail: { label: 'MAIL', value: '', valueError: false, errorText: '英数字で入力してください。入力例:sample@mail.jp' },
-    workPlace: { label: 'ご勤務先', value: '', valueError: false, errorText: '入力エラー' },
-    holiday: { label: 'ご休日', value: '', valueError: false, errorText: '入力エラー' },
-  });
-
-  const nullJudge = (rawName, rawValue) => {
-    let returnValue;
-    if (rawValue === null) {
-      returnValue = form[rawName].value;
-    } else {
-      if (rawValue.target) {
-        returnValue = replaced(rawValue.target.value);
-      } else {
-        if (!isNaN(Date.parse(rawValue))) {
-          returnValue = format(rawValue, 'yyyy-MM-dd HH:mm');
-        } else {
-          returnValue = '';
-        }
-      }
-    }
-    return returnValue;
-  }
+const BasicInformation = ({form, setForm}) => {
 
   const changeHandler = (name) => (value) => {
     setForm((prev) => {
       return {
         ...prev, [name]: {
           ...prev[name],
-          value: nullJudge(name, value),
+          value: nullJudge(form, name, value),
           valueError: errorJudgement(name, value),
         }
       }
@@ -62,6 +29,8 @@ const BasicInformation = () => {
       <div className='flex justify-center p-2'>
         <TextField className='w-full'
           label="世帯主様お名前"
+          defaultValue={form.fullname.value===undefined? "":form.fullname.value}
+          required={true}
           variant="outlined"
           size="small"
           name="fullname"
@@ -71,6 +40,8 @@ const BasicInformation = () => {
       <div className='flex justify-center p-2'>
         <TextField className='w-full'
           label="フリガナ"
+          defaultValue={form.furigana.value===undefined? "":form.furigana.value}
+          required={true}
           variant="outlined"
           size="small"
           name="furigana"
@@ -95,7 +66,7 @@ const BasicInformation = () => {
           <DatePicker className='inputdates'
             label="生年月日"
             size="small"
-            value={form.birthday.value}
+            defaultValue={form.birthday.value===undefined? "":form.birthday.value}
             mask="____年__月__日"
             inputFormat="yyyy年MM月dd日"
             views={['year', 'month', 'day']}
@@ -106,6 +77,7 @@ const BasicInformation = () => {
       <div className='p-2 w-1/2'>
         <TextField
           label="郵便番号"
+          defaultValue={form.postCode.value===undefined? "":form.postCode.value}
           variant="outlined"
           size="small"
           type={'tel'}
@@ -116,6 +88,7 @@ const BasicInformation = () => {
       <div className='flex justify-center p-2'>
         <TextField className='w-full'
           label="住所"
+          defaultValue={form.address.value===undefined? "":form.address.value}
           variant="outlined"
           size="small"
           name="address"
@@ -125,6 +98,7 @@ const BasicInformation = () => {
       <div className='flex justify-center p-2'>
         <TextField className='w-full'
           label="住所(建物名)"
+          defaultValue={form.address2.value===undefined? "":form.address2.value}
           variant="outlined"
           size="small"
           name="address2"
@@ -135,6 +109,7 @@ const BasicInformation = () => {
         <div className='flex justify-center p-2'>
           <TextField className='w-full'
             label="TEL"
+            defaultValue={form.tel.value===undefined? "":form.tel.value}
             variant="outlined"
             size="small"
             type={"tel"}
@@ -145,6 +120,7 @@ const BasicInformation = () => {
         <div className='flex justify-center p-2'>
           <TextField className='w-full'
             label="MAIL"
+            defaultValue={form.mail.value===undefined? "":form.mail.value}
             variant="outlined"
             size="small"
             type={"email"}
@@ -157,6 +133,7 @@ const BasicInformation = () => {
         <div className='flex justify-center p-2'>
           <TextField className='w-full'
             label="ご勤務先"
+            defaultValue={form.workPlace.value===undefined? "":form.workPlace.value}
             variant="outlined"
             size="small"
             name="workPlace"
@@ -166,6 +143,7 @@ const BasicInformation = () => {
         <div className='flex justify-center p-2'>
           <TextField className='w-full'
             label="ご休日"
+            defaultValue={form.holiday.value===undefined? "":form.holiday.value}
             variant="outlined"
             size="small"
             name="holiday"
@@ -178,7 +156,8 @@ const BasicInformation = () => {
 }
 
 BasicInformation.propTypes = {
-  event: PropTypes.object,
+  form: PropTypes.object,
+  setForm: PropTypes.func,
 };
 
 export default BasicInformation;
