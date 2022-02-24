@@ -21,8 +21,7 @@ const BasicInformation = ({form, setForm}) => {
       }
     })
   }
-
-  console.log(form);
+  // console.log(form);
 
   return (
     <div className='flex flex-col flex justify-center'>

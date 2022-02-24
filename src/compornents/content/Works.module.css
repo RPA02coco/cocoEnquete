@@ -1,11 +1,27 @@
 .workHeader{
-  margin: auto;
-  vertical-align: top;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 50px;
+}
+
+.flexrow {
+  flex-direction: row;
+}
+
+.itemTitle {
+  /* display: block; : pタグのデフォルト設定*/
+  text-align: left;
+  background-color: yellowgreen;
+}
+
+.subTitle {
+  /* display: block; : pタグのデフォルト設定*/
+  padding-left: 20px;
+  text-align: left;
 }
 
 .workitem{
-  display: inline-block;
   text-align: left;
   width: 210px;
 }

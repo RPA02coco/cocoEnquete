@@ -19,6 +19,22 @@ const Enquete1st = () => {
     mail: { label: 'MAIL', value: '', valueError: false, errorText: '英数字で入力してください。入力例:sample@mail.jp' },
     workPlace: { label: 'ご勤務先', value: '', valueError: false, errorText: '入力エラー' },
     holiday: { label: 'ご休日', value: '', valueError: false, errorText: '入力エラー' },
+    works: { label: 'ご職業', value: '', valueError: false, errorText: '入力エラー'},
+    annualIncome: { label: 'ご年収', value: '', valueError: false, errorText: '入力エラー'},
+    visitPurpose: { label: 'ご来場の目的', value: '', valueError: false, errorText: '入力エラー'},
+    importantPoint: { label: '重要視するもの', value: '', valueError: false, errorText: '入力エラー'},
+    currentHome: { label: '現在のお住まい', value: '', valueError: false, errorText: '入力エラー'},
+    moveInNum: { label: '入居予定人数', value: '', valueError: false, errorText: '入力エラー'},
+    moveInForm: { label: '入居形態', value: '', valueError: false, errorText: '入力エラー'},
+    moveInSeason: { label: '入居希望時期', value: '', valueError: false, errorText: '入力エラー'},
+    budget: { label: '建物予算', value: '', valueError: false, errorText: '入力エラー'},
+    ownResources: { label: '自己資金', value: '', valueError: false, errorText: '入力エラー'},
+    landExistence: { label: '土地の有無', value: '', valueError: false, errorText: '入力エラー'},
+    siteBrowsing: { label: 'サイトの閲覧', value: '', valueError: false, errorText: '入力エラー'},
+    documentRequest: { label: '資料請求', value: '', valueError: false, errorText: '入力エラー'},
+    infomationSource: { label: '参照情報源', value: '', valueError: false, errorText: '入力エラー'},
+    firstOpportunity: { label: '最初のきっかけ', value: '', valueError: false, errorText: '入力エラー'},
+    bestOpportunity: { label: '一番のきっかけ', value: '', valueError: false, errorText: '入力エラー'},
   });
   const [pageNum, setPageNum] = useState(1);
   const nextVisible = !(pageNum === 6);
@@ -43,7 +59,7 @@ const Enquete1st = () => {
       <div className='flex flex-col items-center'>
         {pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
         {pageNum === 2 && <Works form={form} setForm={setForm} />}
-        <div className='flex flex-row items-center'>
+        <div className='flex flex-row items-center mx-4'>
           {backVisible && <BackButton onClick={backButtonClick} />}
           {nextVisible && <NextButton onClick={nextButtonClick} />}
         </div>
