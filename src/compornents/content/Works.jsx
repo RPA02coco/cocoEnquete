@@ -1,61 +1,45 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Works.module.css'
-import errorJudgement from '../helpers/errorJudgment';
 import CheckBox from '../CheckBox/CheckBox';
-import joinCheckItems from '../helpers/joinCheckItems';
 
 const Works = ({ form, setForm }) => {
-  const [checkedItems, setCheckedItems] = useState({})
+  // const [checkedItemsWorks, setCheckedItemsWorks] = useState([]);
+  // const [checkedItemsNenshu, setCheckedItemsNenshu] = useState([]);
   const workLists = [
     '会社員', '会社役員', '契約社員', '公務員・団体職員', '経営者', '商工自営',
     '医師', '弁護士', '会計士・税理士', '弁理士', 'アルバイト・パート', '主婦・主夫',
     '学生', '無職', 'その他'
   ];
-  
+  let chkWorkList = [];
+
   const annualIncomeLists = [
     '～300万円', '～400万円', '～500万円', '～600万円', '～700万円', '～800万円',
     '～900万円', '～1,000万円', '～1,100万円', '～1,200万円', '～1,300万円', '～1,400万円',
     '～1,500万円', '～2,000万円', '～2,001万円', '収入無し'
   ];
+  let chkAnnualIncomeLists = [];
 
-  const changeHandler = (name) => (value) => {
-    setForm((prev) => {
+  const changeHandler = (e) => {
+    const name = e.target.name;
+
+    setForm ((prev) => {
+      console.log('e.target.value', e.target.value)
+      console.log('chkWorkList', chkWorkList);
+      //e.target.valueをはいれつかするしょりをここに入れる
+      // バグあり要修正
+      chkWorkList = chkWorkList.includes(e.target.value) ? chkWorkList.filter(item => item !== e.target.value) : chkWorkList.concat(e.target.value);
+            
+      //returnの中の、valueに設定している値を、↑で設定した配列に変更する
+      console.log(chkWorkList);
+
       return {
-        ...prev, [name]: {
-          ...prev[name],
-          value: joinCheckItems(form, name, value),
-          valueError: errorJudgement(name, value),
-        }
+        ...prev, 
+        [name]: {...prev[name],value: chkWorkList}
       }
     })
-    setCheckedItems({
-      ...checkedItems,
-      [name.target.id]: name.target.checked
-    })
-    console.log('checkedItems:', checkedItems)
+   
   };
-  /*
-const changeHandler = (e) => {
-    setCheckedItems({
-      ...checkedItems,
-      [e.target.id]: e.target.checked
-    })
-    console.log('checkedItems:', checkedItems)
-  }
-
-const changeHandler = (name) => (value) => {
-console.log('changeHandler value at works:', value)
-setForm((prev) => {
-  return {
-    ...prev, [name]: {
-      ...prev[name],
-      value: nullJudge(form, name, value),
-      valueError: errorJudgement(name, value),
-    }
-  }
-})
-} */
 
   console.log(form);
 
@@ -71,8 +55,9 @@ setForm((prev) => {
               <CheckBox
                 id={`id_${index}`}
                 value={item}
-                checked={checkedItems[item.id]}
-                onChange={changeHandler('works')}
+                name={'works'}
+                checked={chkWorkList[index-1]}
+                onChange={changeHandler}
               />
               <label htmlFor={`id_${index}`}>
                 {item}
@@ -81,7 +66,7 @@ setForm((prev) => {
           )
         })}
       </div>
-      <br/>
+      <br />
       <p className={styles.subTitle}>ご年収:</p>
       <div className={styles.workHeader}>
         {annualIncomeLists.map((item, index) => {
@@ -91,8 +76,9 @@ setForm((prev) => {
               <CheckBox
                 id={`id_${index}`}
                 value={item}
-                checked={checkedItems[item.id]}
-                onChange={changeHandler('nenshu')}
+                name={'annualIncome'}
+                checked={chkAnnualIncomeLists[index-1]}
+                onChange={changeHandler}
               />
               <label htmlFor={`id_${index}`}>
                 {item}

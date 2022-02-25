@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
       <input
         id={id}
         type="checkbox"
-        name={value}
+        name={name}
         checked={checked}
         onChange={onChange}
         value={value}
@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
     value: PropTypes.string,
     checked: PropTypes.bool,
     onChange: PropTypes.func,
-    name: PropTypes.array
+    name:PropTypes.string,
 };
 
 export default CheckBox;

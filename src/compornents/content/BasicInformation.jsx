@@ -21,7 +21,7 @@ const BasicInformation = ({form, setForm}) => {
       }
     })
   }
-  // console.log(form);
+  console.log(form);
 
   return (
     <div className='flex flex-col flex justify-center'>
@@ -64,8 +64,7 @@ const BasicInformation = ({form, setForm}) => {
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
           <DatePicker className='inputdates'
             label="生年月日"
-            size="small"
-            defaultValue={form.birthday.value===undefined? "":form.birthday.value}
+            defaultValue={form.birthday.value===undefined? '': form.birthday.value}
             mask="____年__月__日"
             inputFormat="yyyy年MM月dd日"
             views={['year', 'month', 'day']}

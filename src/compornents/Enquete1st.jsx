@@ -59,7 +59,7 @@ const Enquete1st = () => {
       <div className='flex flex-col items-center'>
         {pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
         {pageNum === 2 && <Works form={form} setForm={setForm} />}
-        <div className='flex flex-row items-center mx-4'>
+        <div className='flex flex-row items-center flex space-x-4 mt-6'>
           {backVisible && <BackButton onClick={backButtonClick} />}
           {nextVisible && <NextButton onClick={nextButtonClick} />}
         </div>
