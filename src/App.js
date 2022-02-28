@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import {Container} from '@mui/material';
 import Enquete1st from './compornents/Enquete1st';
 
 const App = () => {
@@ -13,6 +13,6 @@ const App = () => {
       </div>
     </Container>
   );
-}
+};
 
 export default App;

@@ -15,7 +15,7 @@ const NextButton = ({onClick}) => {
 };
 
 NextButton.propTypes = {
-  event: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 export default NextButton;
