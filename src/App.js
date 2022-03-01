@@ -1,5 +1,6 @@
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, CardMedia } from '@mui/material';
 import Enquete1st from './compornents/Enquete1st';
+import logo from './compornents/img/cocoIcon.png';
 
 const App = () => {
   return (
@@ -10,13 +11,16 @@ const App = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={12} md>
-          <img src={`${process.env.PUBLIC_URL}/cocoIcon.png`} alt="Logo" />
+        <Grid item xs md>
+          <CardMedia
+            component='img'
+            src={logo}
+          />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <center><font size={5}>～お客様アンケート～</font></center>
-        </Grid>        
-        <Grid item md></Grid>
+        <Grid item xs={8} md={6}>
+          <center><font size={4}>～お客様アンケート～</font></center>
+        </Grid>
+        <Grid item xs md></Grid>
         <Grid item xs={12} md={12}>
           <Enquete1st />
         </Grid>
