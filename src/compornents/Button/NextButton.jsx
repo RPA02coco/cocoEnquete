@@ -4,9 +4,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const NextButton = ({onClick}) => {
   return (
-    <Button className='pl-4'
+    <Button
       onClick={onClick}
-      variant="contained"
+      variant="outlined"
       startIcon={<ArrowForwardIcon />}
     >
       次へ

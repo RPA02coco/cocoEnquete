@@ -4,9 +4,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const BackButton = ({onClick}) => {
   return (
-    <Button className='pr-4'
+    <Button
       onClick={onClick}
-      variant="contained"
+      variant="outlined"
       startIcon={<ArrowBackIcon />}
     >
       戻る

@@ -1,16 +1,26 @@
-import {Container} from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import Enquete1st from './compornents/Enquete1st';
 
 const App = () => {
   return (
-    <Container className="container mx-auto px-6">
-      <div className='flex flex-col flex justify-center'>
-        <div className='flex flex-row space-x-4 flex justify-center p-2'>
+    <Container>
+      <Grid
+        container spacing={2}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={12} md>
           <img src={`${process.env.PUBLIC_URL}/cocoIcon.png`} alt="Logo" />
-          <h1 className='text-2xl underline'>～お客様アンケート～</h1>
-        </div>
-        <Enquete1st />
-      </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <center><font size={5}>～お客様アンケート～</font></center>
+        </Grid>        
+        <Grid item md></Grid>
+        <Grid item xs={12} md={12}>
+          <Enquete1st />
+        </Grid>
+      </Grid>
     </Container>
   );
 };

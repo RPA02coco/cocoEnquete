@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 // import {useEffect, useState} from 'react';
 import styles from './Works.module.css';
-import CheckBox from '../CheckBox/CheckBox';
+import { Grid, Box, Checkbox } from '@mui/material';
 
 const Works = ({ form, setForm }) => {
   // const [checkedItemsWorks, setCheckedItemsWorks] = useState([]);
@@ -17,78 +17,134 @@ const Works = ({ form, setForm }) => {
     '～1,500万円', '～2,000万円', '～2,001万円', '収入無し',
   ];
 
+  const visitPurposeLists = [
+    '家づくりの進め方について知りたい',
+    '予算の組み方について知りたい',
+    '土地探しについて知りたい',
+    '当社の家づくりについて知りたい',
+    '当社で具体的に家づくりを検討したい',
+    '現在の住まいのことで相談したい',
+    'まずはモデルハウスなどを見たい',
+    'その他'
+  ];
+
   const changeHandler = (e) => {
     const name = e.target.name;
-    // let arrayName = chkWorkList;
-    // if (name === 'annualIncome') {
-    //   arrayName = chkAnnualIncomeLists;
-    // }
 
     setForm((prev) => {
-      let chkWorkList = prev[name].value;
-      console.log('e.target.value', e.target.value);
-      console.log('chkWorkList', chkWorkList, chkWorkList.includes(e.target.value));
-      // e.target.valueを配列化する処理をここに入れる
-      // バグあり要修正
-      if (chkWorkList.includes(e.target.value)) {
-        chkWorkList = chkWorkList.filter((item) => item !== (e.target.value));
-      } else {
-        chkWorkList = chkWorkList.concat(e.target.value);
+      if (name === 'visitPurpose') {
+        let chkList = prev[name].value;
+        if (chkList.includes(e.target.value)) {
+          chkList = chkList.filter((item) => item !== (e.target.value));
+        } else {
+          chkList = chkList.concat(e.target.value);
+        }
+        return {
+          ...prev,
+          [name]: { ...prev[name], value: chkList },
+        };
       }
-      console.log('setForm内', chkWorkList);
-
-      return {
-        ...prev,
-        [name]: { ...prev[name], value: chkWorkList },
-      };
     });
   };
-
   console.log(form);
 
   return (
-    <div>
-      <p className={styles.itemTitle}> ◆世帯主様について教えてください</p>
-      <p className={styles.subTitle}>ご職業:</p>
-      <div className={styles.workHeader}>
-        {workLists.map((item, index) => {
-          return (
-            <div className={styles.workitem} key={`key_works${item}`}>
-              <CheckBox
-                id={`id_works${index}`}
-                value={item}
-                name={'works'}
-                checked={form.works.value.includes(item)}
-                onChange={changeHandler}
-              />
-              <label htmlFor={`id_works${index}`}>
-                {item}
-              </label>
-            </div>
-          );
-        })}
-      </div>
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={12}>
+        <Box component="main"
+          sx={{
+            flexGrow: 1
+            , width: { sm: `calc(100% - 12px)` }
+            , backgroundColor: '#9acd32'
+          }}
+        >
+          ◆世帯主様について教えてください
+        </Box>
+      </Grid>
+      <Grid item xs={12} md={12}>
+        <Box component="main"
+          sx={{
+            flexGrow: 1
+            , width: { sm: `calc(100% - 12px)` }
+            , backgroundColor: '#cacaca'
+          }}
+        >
+          ご職業:
+        </Box>
+      </Grid>
+      {workLists.map((item, index) => {
+        return (
+          <Grid item xs={12} md={4} key={`key_works${item}`}>
+            <CheckBox
+              id={`id_works${index}`}
+              value={item}
+              name={'works'}
+              checked={form.works.value.includes(item)}
+              onChange={changeHandler}
+            />
+            <label htmlFor={`id_works${index}`}>
+              {item}
+            </label>
+          </Grid>
+        );
+      })}
       <br />
-      <p className={styles.subTitle}>ご年収:</p>
-      <div className={styles.workHeader}>
-        {annualIncomeLists.map((item, index) => {
-          return (
-            <div className={styles.workitem} key={`key_annualIncome${item}`}>
-              <CheckBox
-                id={`id_annualIncome${index}`}
-                value={item}
-                name={'annualIncome'}
-                checked={form.annualIncome.value.includes(item)}
-                onChange={changeHandler}
-              />
-              <label htmlFor={`id_annualIncome${index}`}>
-                {item}
-              </label>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+      <Grid item xs={12} md={12}>
+        <Box component="main"
+          sx={{
+            flexGrow: 1
+            , width: { sm: `calc(100% - 12px)` }
+            , backgroundColor: '#cacaca'
+          }}
+        >
+          ご年収:
+        </Box>
+      </Grid>
+      {annualIncomeLists.map((item, index) => {
+        return (
+          <Grid item xs={12} md={4} key={`key_annualIncome${item}`}>
+            <CheckBox
+              id={`id_annualIncome${index}`}
+              value={item}
+              name={'annualIncome'}
+              checked={form.annualIncome.value.min.value}
+              onChange={changeHandler}
+            />
+            <label htmlFor={`id_annualIncome${index}`}>
+              {item}
+            </label>
+          </Grid>
+        );
+      })}
+      <br />
+      <Grid item xs={12} md={12}>
+        <Box component="main"
+          sx={{
+            flexGrow: 1
+            , width: { sm: `calc(100% - 12px)` }
+            , backgroundColor: '#9acd32'
+          }}
+        >
+          本日、当社にご来場いただいた目的は何ですか？※複数回答可
+        </Box>
+      </Grid>
+      {visitPurposeLists.map((item, index) => {
+        return (
+          <Grid item xs={12} md={6} key={`key_visitPurpose${item}`}>
+            <CheckBox
+              id={`id_visitPurpose${index}`}
+              value={item}
+              name={'visitPurpose'}
+              checked={form.visitPurpose.value.includes(item)}
+              onChange={changeHandler}
+            />
+            <label htmlFor={`id_visitPurpose${index}`}>
+              {item}
+            </label>
+          </Grid>
+        );
+      })}
+    </Grid>
   );
 };
 
