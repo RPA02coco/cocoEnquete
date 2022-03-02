@@ -43,3 +43,7 @@ export const importantPointLists = [
   '耐震・免震・制震', '間取り・プラン', 'スタッフ対応', '自社施工', '省エネ・ZEH',
   'アフターフォロー', 'その他'
 ];
+
+export const currentHomeLists = [
+  '賃貸', '社宅・官舎', '持ち家', '同居', 'その他'
+];

@@ -21,7 +21,7 @@ const ImportantPoint = ({ form, setForm }) => {
   return (
     <Grid container>
       <Grid item xs={12} md={12}>
-        <MajorItems Sentence='本日、当社にご来場いただいた目的は何ですか？※複数回答可' />
+        <MajorItems Sentence='◆家づくりで重要視するものはどれですか？※複数回答可' />
       </Grid>
       {importantPointLists.map((item, index) => {
         return (

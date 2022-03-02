@@ -5,6 +5,8 @@ import format from 'date-fns/format';
 import BasicInformation from './content/BasicInformation';
 import Works from './content/Works';
 import ImportantPoint from './content/ImportantPoint';
+import BuildingAHouse from './content/BuildingAHouse';
+import InformationGathering from './content/InformationGathering';
 import BackButton from './Button/BackButton';
 import NextButton from './Button/NextButton';
 import SubmitButton from './Button/SubmitButton';
@@ -70,6 +72,8 @@ const Enquete1st = () => {
           {pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
           {pageNum === 2 && <Works form={form} setForm={setForm} />}
           {pageNum === 3 && <ImportantPoint form={form} setForm={setForm} />}
+          {pageNum === 4 && <BuildingAHouse form={form} setForm={setForm} />}
+          {pageNum === 5 && <InformationGathering form={form} setForm={setForm} />}
         </Grid>
         <Grid item xs={4}>
           {backVisible && <BackButton onClick={backButtonClick} />}

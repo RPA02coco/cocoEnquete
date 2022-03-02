@@ -3,6 +3,8 @@ import { Grid, Checkbox, FormControlLabel, Autocomplete, TextField } from '@mui/
 import { workLists, annualIncomeLists, visitPurposeLists } from '../constantDefinition/constantDefinition';
 import { setCheckcboxValue, setPulldownValue, setPulldownObj } from '../helpers/setValues';
 import MajorItems from '../Box/MajorItems';
+import Pulldown from '../Input/Pulldown';
+import CheckBox from '../Input/CheckBox';
 
 const Works = ({ form, setForm }) => {
   const changeHandler = (e) => {
@@ -33,33 +35,18 @@ const Works = ({ form, setForm }) => {
           <MajorItems Sentence='◆世帯主様について教えてください' />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Autocomplete
-            disablePortal
-            size='small'
-            id="works"
-            onChange={changeHandler}
-            options={workLists}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="ご職業" name="works" />}
-          />
+          <Pulldown tgtName='works' tgtArray={workLists} tgtLabel='ご職業' onChange={changeHandler} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Autocomplete
-            disablePortal
-            size='small'
-            id="annualIncome"
-            onChange={changeHandler}
-            options={annualIncomeLists}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="ご年収" name="annualIncome" />}
-          />
+          <Pulldown tgtName='annualIncome' tgtArray={annualIncomeLists} tgtLabel='ご年収' onChange={changeHandler} />
         </Grid>
         <Grid item xs={12} md={12}>
-          <MajorItems Sentence='本日、当社にご来場いただいた目的は何ですか？※複数回答可' />
+          <MajorItems Sentence='◆本日、当社にご来場いただいた目的は何ですか？※複数回答可' />
         </Grid>
       </Grid>
       <Grid container>
-        {visitPurposeLists.map((item, index) => {
+        <CheckBox tgtName='visitPurpose' tgtArray={visitPurposeLists} onChange={changeHandler} />
+        {/*visitPurposeLists.map((item, index) => {
           return (
             <Grid item xs={12} md={6} key={`key_visitPurpose${item}`}>
               <FormControlLabel control={
@@ -83,7 +70,7 @@ const Works = ({ form, setForm }) => {
                   onChange={changeHandler} />}
             </Grid>
           );
-        })}
+        })*/}
       </Grid>
     </>
   );
