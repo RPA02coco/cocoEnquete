@@ -13,7 +13,7 @@ ReactDOM.render(
       justifyContent="center"
       alignItems="center"
     >
-      <Grid item xs={12} md={8}>
+      <Grid item xs={12} md={9}>
         <App />
       </Grid>
     </Grid>

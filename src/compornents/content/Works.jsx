@@ -9,19 +9,22 @@ const Works = ({ form, setForm }) => {
     console.log('setform-name', e);
     setForm((prev) => {
       if (e.target.name) {  // チェックボックス用
+        console.log('checkpoint-1', e.target.name);
         return setCheckcboxValue(e, prev);
       } else if (e.target.id) { // プルダウン用
-        if (e.target.id === "") {
-          return prev;
-        } else {
-          return e.target.id.includes('works') ? setPulldownValue(e, prev) : setPulldownObj(e, prev);
-        }
+        console.log('checkpoint-2');
+        return e.target.id.includes('works') ? setPulldownValue(e, prev, 'works') : setPulldownValue(e, prev, 'annualIncome');
       } else {  // null,undefined対策
         return prev;
       }
     });
   };
   console.log(form);
+
+  {/*
+  defaultValue={form.works.value === undefined ? '選択してください' : form.works.value}
+  value={form.works.value}
+  */}
 
   return (
     <>
@@ -34,7 +37,6 @@ const Works = ({ form, setForm }) => {
             disablePortal
             size='small'
             id="works"
-            value={form.works.value}
             onChange={changeHandler}
             options={workLists}
             sx={{ width: 300 }}
@@ -46,7 +48,6 @@ const Works = ({ form, setForm }) => {
             disablePortal
             size='small'
             id="annualIncome"
-            value={form.annualIncome.value}
             onChange={changeHandler}
             options={annualIncomeLists}
             sx={{ width: 300 }}
@@ -70,6 +71,16 @@ const Works = ({ form, setForm }) => {
                   onChange={changeHandler}
                 />}
                 label={item} />
+              {form.visitPurpose.value.includes('その他') && item === 'その他' &&
+                <TextField fullWidth
+                  label="その他詳細"
+                  defaultValue={form.visitPurpose.value.indexOf('その他') === -1 ? '' : form.visitPurpose.value[form.visitPurpose.value.indexOf('その他')]}
+                  variant="outlined"
+                  size="small"
+                  name="visitPurposeOther"
+                  error={form.visitPurpose.valueError}
+                  helperText={form.visitPurpose.valueError && form.visitPurpose.errorText}
+                  onChange={changeHandler} />}
             </Grid>
           );
         })}

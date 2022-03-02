@@ -1,7 +1,6 @@
 import { annualIncomeLists, AIobjLists } from '../constantDefinition/constantDefinition';
 
 export const setCheckcboxValue = (e, prev) => {
-  console.log('chk1');
   const name = e.target.name;
   if (prev[name].value.includes(e.target.value)) {
     prev[name].value = prev[name].value.filter((item) => item !== (e.target.value));
@@ -15,8 +14,7 @@ export const setCheckcboxValue = (e, prev) => {
   };
 }
 
-export const setPulldownValue = (e, prev) => {
-  const name = 'works';
+export const setPulldownValue = (e, prev, name) => {
   prev[name].value = e.target.innerText;
   return {
     ...prev,

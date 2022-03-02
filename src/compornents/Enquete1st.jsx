@@ -4,6 +4,7 @@ import { useState } from 'react';
 import format from 'date-fns/format';
 import BasicInformation from './content/BasicInformation';
 import Works from './content/Works';
+import ImportantPoint from './content/ImportantPoint';
 import BackButton from './Button/BackButton';
 import NextButton from './Button/NextButton';
 import SubmitButton from './Button/SubmitButton';
@@ -23,9 +24,9 @@ const Enquete1st = () => {
     workPlace: { label: 'ご勤務先', value: '', valueError: false, errorText: '入力エラー' },
     holiday: { label: 'ご休日', value: '', valueError: false, errorText: '入力エラー' },
     works: { label: 'ご職業', value: '', valueError: false, errorText: '入力エラー' },
-    annualIncome: { label: 'ご年収', value: { min: 0, max: 0 }, valueError: false, errorText: '入力エラー' },
+    annualIncome: { label: 'ご年収', value: '', valueError: false, errorText: '入力エラー' },
     visitPurpose: { label: 'ご来場の目的', value: [], valueError: false, errorText: '入力エラー' },
-    importantPoint: { label: '重要視するもの', value: '', valueError: false, errorText: '入力エラー' },
+    importantPoint: { label: '重要視するもの', value: [], valueError: false, errorText: '入力エラー' },
     currentHome: { label: '現在のお住まい', value: '', valueError: false, errorText: '入力エラー' },
     moveInNum: { label: '入居予定人数', value: '', valueError: false, errorText: '入力エラー' },
     moveInForm: { label: '入居形態', value: '', valueError: false, errorText: '入力エラー' },
@@ -68,6 +69,7 @@ const Enquete1st = () => {
         <Grid item xs={12} md={12}>
           {pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
           {pageNum === 2 && <Works form={form} setForm={setForm} />}
+          {pageNum === 3 && <ImportantPoint form={form} setForm={setForm} />}
         </Grid>
         <Grid item xs={4}>
           {backVisible && <BackButton onClick={backButtonClick} />}
