@@ -40,3 +40,7 @@ export const setRadio = (e, prev) => {
     [name]: { ...prev[name], value: prev[name].value},
   }
 }
+
+export const setTextBoxValue = (e, prev) => {
+  return setRadio(e, prev);
+}

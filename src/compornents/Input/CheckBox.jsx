@@ -6,7 +6,6 @@ const CheckBox = ({ tgtName, tgtArray, onChange, form }) => {
     <>
       {
         tgtArray.map((item, index) => {
-          console.log('CheckBox内 item : ', item);
           return (
             <Grid item xs={12} md={6} key={`key_${tgtName}${item}`}>
               <FormControlLabel control={

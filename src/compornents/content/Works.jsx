@@ -1,22 +1,19 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import { workLists, incomeLists, visitPurposeLists } from '../../constantDefinition/constantDefinition';
-import { setCheckcboxValue, setPulldownValue, setPulldownObj } from '../../helpers/setValues';
+import { setCheckcboxValue, setPulldownValue, setPulldownObj, setTextBoxValue } from '../../helpers/setValues';
 import MajorItems from '../Box/MajorItems';
 import Pulldown from '../Input/Pulldown';
 import CheckBox from '../Input/CheckBox';
 import TextBox from '../Input/TextBox';
 
 const Works = ({ form, setForm }) => {
-  
+
   const changeHandler = (e) => {
-    console.log('setform-name', e);
     setForm((prev) => {
       if (e.target.name) {  // チェックボックス用
-        console.log('checkpoint-1', e.target.name);
-        return setCheckcboxValue(e, prev);
+        return e.target.name === 'vstPrpsOthers' ? setTextBoxValue(e, prev) : setCheckcboxValue(e, prev);
       } else if (e.target.id) { // プルダウン用
-        console.log('checkpoint-2');
         return e.target.id.includes('works') ? setPulldownValue(e, prev, 'works') : setPulldownValue(e, prev, 'annualIncome');
       } else {  // null,undefined対策
         return prev;
@@ -42,12 +39,10 @@ const Works = ({ form, setForm }) => {
         </Grid>
       </Grid>
       <Grid container>
+        <CheckBox tgtName='visitPurpose' tgtArray={visitPurposeLists} onChange={changeHandler} form={form} />
         <Grid item xs={12} md={12}>
-          <CheckBox tgtName='visitPurpose' tgtArray={visitPurposeLists} onChange={changeHandler} form={form} />
-        </Grid>
-        <Grid item xs={12} md={12}>
-          {form['visitPurpose'].value.includes('その他') &&
-            <TextBox tgtName='vstPrpsOthers' tgtLabel='その他詳細' form={form} onchange={changeHandler} required={false} />}
+          {form.visitPurpose.value.includes('その他') &&
+            <TextBox tgtName='vstPrpsOthers' tgtLabel='その他詳細' form={form} onChange={changeHandler} required={false} />}
         </Grid>
       </Grid>
     </>

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
 
 const TextBox = ({ tgtName, tgtLabel, form, onChange, required }) => {
-  console.log('textbox');
   return (
     <TextField fullWidth
       label={tgtLabel}
