@@ -4,8 +4,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
 import { ja } from 'date-fns/locale';
 import { Grid, TextField } from '@mui/material';
-import errorJudgement from '../helpers/errorJudgment';
-import nullJudge from '../helpers/nullJudgement';
+import errorJudgement from '../../helpers/errorJudgment';
+import nullJudge from '../../helpers/nullJudgement';
+import TextBox from '../Input/TextBox';
 
 const BasicInformation = ({ form, setForm }) => {
   const changeHandler = (name) => (value) => {
@@ -24,27 +25,11 @@ const BasicInformation = ({ form, setForm }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <TextField fullWidth 
-          label="世帯主様お名前"
-          defaultValue={form.fullname.value === undefined ? '' : form.fullname.value}
-          required={true}
-          variant="outlined"
-          size="small"
-          name="fullname"
-          error={form.fullname.valueError}
-          helperText={form.fullname.valueError && form.fullname.errorText}
-          onChange={changeHandler('fullname')} /></Grid>
+        <TextBox tgtName='fullname' tgtLabel='世帯主様お名前' form={form} onChange={changeHandler('fullname')} required={true} />
+      </Grid>
       <Grid item xs={12} md={6}>
-        <TextField fullWidth
-          label="フリガナ"
-          defaultValue={form.furigana.value === undefined ? '' : form.furigana.value}
-          required={true}
-          variant="outlined"
-          size="small"
-          name="furigana"
-          error={form.furigana.valueError}
-          helperText={form.furigana.valueError && form.furigana.errorText}
-          onChange={changeHandler('furigana')} /></Grid>
+        <TextBox tgtName='furigana' tgtLabel='フリガナ' form={form} onChange={changeHandler('furigana')} required={true} />
+      </Grid>
       <Grid item xs={12} md={12}>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
           <DatePicker className='inputdates'
@@ -57,81 +42,29 @@ const BasicInformation = ({ form, setForm }) => {
             onChange={changeHandler('birthday')}
             renderInput={(params) => <TextField {...params} />}
           />
-        </LocalizationProvider></Grid>
+        </LocalizationProvider>
+      </Grid>
+      <Grid item xs={8} md={6}>
+        <TextBox tgtName='postCode' tgtLabel='郵便番号' form={form} onChange={changeHandler('postCode')} required={true} />
+      </Grid>
       <Grid item xs={12} md={12}>
-        <TextField
-          label="郵便番号"
-          defaultValue={form.postCode.value === undefined ? '' : form.postCode.value}
-          variant="outlined"
-          size="small"
-          type={'tel'}
-          name="postCode"
-          error={form.postCode.valueError}
-          helperText={form.postCode.valueError && form.postCode.errorText}
-          onChange={changeHandler('postCode')} /></Grid>
+        <TextBox tgtName='address' tgtLabel='住所' form={form} onChange={changeHandler('address')} required={true} />
+      </Grid>
       <Grid item xs={12} md={12}>
-        <TextField fullWidth
-          label="住所"
-          defaultValue={form.address.value === undefined ? '' : form.address.value}
-          variant="outlined"
-          size="small"
-          name="address"
-          error={form.address.valueError}
-          helperText={form.address.valueError && form.address.errorText}
-          onChange={changeHandler('address')} /></Grid>
-      <Grid item xs={12} md={12}>
-        <TextField fullWidth
-          label="住所(建物名)"
-          defaultValue={form.address2.value === undefined ? '' : form.address2.value}
-          variant="outlined"
-          size="small"
-          name="address2"
-          error={form.address2.valueError}
-          helperText={form.address2.valueError && form.address2.errorText}
-          onChange={changeHandler('address2')} /></Grid>
+        <TextBox tgtName='address2' tgtLabel='住所(建物名)' form={form} onChange={changeHandler('address2')} required={false} />
+      </Grid>
       <Grid item xs={12} md={6}>
-        <TextField fullWidth
-          label="TEL"
-          defaultValue={form.tel.value === undefined ? '' : form.tel.value}
-          variant="outlined"
-          size="small"
-          type={'tel'}
-          name="tel"
-          error={form.tel.valueError}
-          helperText={form.tel.valueError && form.tel.errorText}
-          onChange={changeHandler('tel')} /></Grid>
+        <TextBox tgtName='tel' tgtLabel='TEL' form={form} onChange={changeHandler('tel')} required={true} />
+      </Grid>
       <Grid item xs={12} md={6}>
-        <TextField fullWidth
-          label="MAIL"
-          defaultValue={form.mail.value === undefined ? '' : form.mail.value}
-          variant="outlined"
-          size="small"
-          type={'email'}
-          name="mail"
-          error={form.mail.valueError}
-          helperText={form.mail.valueError && form.mail.errorText}
-          onChange={changeHandler('mail')} /></Grid>
+        <TextBox tgtName='mail' tgtLabel='MAIL' form={form} onChange={changeHandler('mail')} required={true} />
+      </Grid>
       <Grid item xs={12} md={8}>
-        <TextField fullWidth
-          label="ご勤務先"
-          // eslint-disable-next-line max-len
-          defaultValue={form.workPlace.value === undefined ? '' : form.workPlace.value}
-          variant="outlined"
-          size="small"
-          name="workPlace"
-          error={form.workPlace.valueError}
-          helperText={form.workPlace.valueError && form.workPlace.errorText}
-          onChange={changeHandler('workPlace')} /></Grid>
+        <TextBox tgtName='workPlace' tgtLabel='ご勤務先' form={form} onChange={changeHandler('workPlace')} required={false} />
+      </Grid>
       <Grid item xs={12} md={4}>
-        <TextField fullWidth
-          label="ご休日"
-          defaultValue={form.holiday.value === undefined ? '' : form.holiday.value}
-          variant="outlined"
-          size="small"
-          name="holiday"
-          error={form.holiday.valueError}
-          helperText={form.holiday.valueError && form.holiday.errorText}
-          onChange={changeHandler('holiday')} /></Grid>
+        <TextBox tgtName='holiday' tgtLabel='ご休日' form={form} onChange={changeHandler('holiday')} required={false} />
+      </Grid>
     </Grid>
   );
 };

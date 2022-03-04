@@ -1,6 +1,6 @@
 import { Container, Grid, CardMedia } from '@mui/material';
 import Enquete1st from './compornents/Enquete1st';
-import logo from './compornents/img/cocoIcon.png';
+import logo from './img/cocoIcon.png';
 
 const App = () => {
   return (

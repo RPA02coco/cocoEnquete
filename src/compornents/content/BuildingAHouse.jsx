@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Grid, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
-import { currentHomeLists } from '../constantDefinition/constantDefinition';
-import { setRadio } from '../helpers/setValues';
+import { currentHomeLists } from '../../constantDefinition/constantDefinition';
+import { setRadio } from '../../helpers/setValues';
 
 const BuildingAHouse = ({ form, setForm }) => {
   const changeHandler = (e) => {
@@ -47,6 +47,7 @@ const BuildingAHouse = ({ form, setForm }) => {
           );
         })}
       </RadioGroup>
+      
     </Grid >
   )
 }

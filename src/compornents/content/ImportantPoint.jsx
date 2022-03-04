@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Grid, FormControlLabel, Checkbox } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
-import { importantPointLists } from '../constantDefinition/constantDefinition';
-import { setCheckcboxValue } from '../helpers/setValues';
+import { importantPointLists } from '../../constantDefinition/constantDefinition';
+import { setCheckcboxValue } from '../../helpers/setValues';
 
 const ImportantPoint = ({ form, setForm }) => {
 

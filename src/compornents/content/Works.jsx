@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import { Grid, Checkbox, FormControlLabel, Autocomplete, TextField } from '@mui/material';
-import { workLists, annualIncomeLists, visitPurposeLists } from '../constantDefinition/constantDefinition';
-import { setCheckcboxValue, setPulldownValue, setPulldownObj } from '../helpers/setValues';
+import { Grid } from '@mui/material';
+import { workLists, incomeLists, visitPurposeLists } from '../../constantDefinition/constantDefinition';
+import { setCheckcboxValue, setPulldownValue, setPulldownObj } from '../../helpers/setValues';
 import MajorItems from '../Box/MajorItems';
 import Pulldown from '../Input/Pulldown';
 import CheckBox from '../Input/CheckBox';
+import TextBox from '../Input/TextBox';
 
 const Works = ({ form, setForm }) => {
+  
   const changeHandler = (e) => {
     console.log('setform-name', e);
     setForm((prev) => {
@@ -23,11 +25,6 @@ const Works = ({ form, setForm }) => {
   };
   console.log(form);
 
-  {/*
-  defaultValue={form.works.value === undefined ? '選択してください' : form.works.value}
-  value={form.works.value}
-  */}
-
   return (
     <>
       <Grid container spacing={2}>
@@ -38,39 +35,20 @@ const Works = ({ form, setForm }) => {
           <Pulldown tgtName='works' tgtArray={workLists} tgtLabel='ご職業' onChange={changeHandler} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Pulldown tgtName='annualIncome' tgtArray={annualIncomeLists} tgtLabel='ご年収' onChange={changeHandler} />
+          <Pulldown tgtName='annualIncome' tgtArray={Object.keys(incomeLists)} tgtLabel='ご年収' onChange={changeHandler} />
         </Grid>
         <Grid item xs={12} md={12}>
           <MajorItems Sentence='◆本日、当社にご来場いただいた目的は何ですか？※複数回答可' />
         </Grid>
       </Grid>
       <Grid container>
-        <CheckBox tgtName='visitPurpose' tgtArray={visitPurposeLists} onChange={changeHandler} />
-        {/*visitPurposeLists.map((item, index) => {
-          return (
-            <Grid item xs={12} md={6} key={`key_visitPurpose${item}`}>
-              <FormControlLabel control={
-                <Checkbox
-                  id={`id_visitPurpose${index}`}
-                  value={item}
-                  name={'visitPurpose'}
-                  checked={form.visitPurpose.value.includes(item)}
-                  onChange={changeHandler}
-                />}
-                label={item} />
-              {form.visitPurpose.value.includes('その他') && item === 'その他' &&
-                <TextField fullWidth
-                  label="その他詳細"
-                  defaultValue={form.visitPurpose.value.indexOf('その他') === -1 ? '' : form.visitPurpose.value[form.visitPurpose.value.indexOf('その他')]}
-                  variant="outlined"
-                  size="small"
-                  name="visitPurposeOther"
-                  error={form.visitPurpose.valueError}
-                  helperText={form.visitPurpose.valueError && form.visitPurpose.errorText}
-                  onChange={changeHandler} />}
-            </Grid>
-          );
-        })*/}
+        <Grid item xs={12} md={12}>
+          <CheckBox tgtName='visitPurpose' tgtArray={visitPurposeLists} onChange={changeHandler} form={form} />
+        </Grid>
+        <Grid item xs={12} md={12}>
+          {form['visitPurpose'].value.includes('その他') &&
+            <TextBox tgtName='vstPrpsOthers' tgtLabel='その他詳細' form={form} onchange={changeHandler} required={false} />}
+        </Grid>
       </Grid>
     </>
   );
