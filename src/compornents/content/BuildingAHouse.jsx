@@ -1,53 +1,44 @@
 import PropTypes from 'prop-types';
-import { Grid, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { Grid } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
-import { currentHomeLists } from '../../constantDefinition/constantDefinition';
-import { setRadio } from '../../helpers/setValues';
+import { currentHomeLists, moveInFormLists, moveInNumLists, moveInSeasonLists } from '../../constantDefinition/constantDefinition';
+import { setPulldownValue, setRadio, setTextBoxValue } from '../../helpers/setValues';
+import RadioButton from '../Input/RadioButton';
+import { TBwithUnit, TextBox } from '../Input/TextBox';
+import { Pulldown } from '../Input/Pulldown';
 
 const BuildingAHouse = ({ form, setForm }) => {
   const changeHandler = (e) => {
-    console.log(e);
     setForm((prev) => {
       if (e.target.name) {
-        if (e.target.name === 'currentHome') {
-          return setRadio(e, prev);
-        }
+        return setTextBoxValue(e, prev);  // Radiobutton, textboxに対応
+      } else if (e.target.id) {
+        return e.target.id.includes('moveInNum') ? setPulldownValue(e, prev, 'moveInNum') : prev;
+      } else {
+        return prev;
       }
     });
   };
   console.log(form);
 
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={12} md={12}>
-        <MajorItems Sentence='◆家づくりのご計画について教えてください' />
+        <MajorItems Sentence='家づくりのご計画について教えてください' />
       </Grid>
       <Grid item xs={12} md={12}>
-        <FormLabel id="currentHome-radio-buttons-group-label">現在のお住まい</FormLabel>
+        <RadioButton tgtName='currentHome' tgtArray={currentHomeLists} form={form} tgtLabel='現在のお住まい' onChange={changeHandler} />
       </Grid>
-      <RadioGroup
-        aria-labelledby="currentHome-radio-buttons-group-label"
-        defaultValue="female"
-        row='true'
-        name="currentHome-radio-buttons-group"
-      >
-        {currentHomeLists.map((item, index) => {
-          return (
-            <Grid item xs={6} md={4} key={`key_currentHomeLists${item}`}>
-              <FormControlLabel value={item} labelPlacement='end' control={
-                <Radio
-                  id={`id_currentHome${index}`}
-                  checked={form.currentHome.value.includes(item)}
-                  onChange={changeHandler}
-                  value={item}
-                  name="currentHome"
-                />}
-                label={item} />
-            </Grid>
-          );
-        })}
-      </RadioGroup>
-      
+      <Grid item xs={12} md={12}>
+        {form.currentHome.value.includes('賃貸') &&
+          <TBwithUnit tgtName='RentPrice' tgtLabel='賃貸 家賃の月額' form={form} onChange={changeHandler} required={false} unit='万円/月' />}
+      </Grid>
+      <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='入居予定人数' onChange={changeHandler} form={form} />
+      <Grid item xs={12} md={12}>
+        <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='入居形態' onChange={changeHandler} />
+        {form.moveInForm.value.includes('その他') &&
+          <TextBox tgtName='mvInFormOthers' tgtLabel='その他 詳細' form={form} onChange={changeHandler} required={false} />}
+      </Grid>
     </Grid >
   )
 }

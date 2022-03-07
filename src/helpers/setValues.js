@@ -20,11 +20,8 @@ export const setPulldownValue = (e, prev, name) => {
   }
 }
 
-export const setPulldownObj = (e, prev, tgtObj) => {
-  const name = 'annualIncome';
-  const elementPosition = tgtObj.indexOf(e.target.innerText);
-  prev[name].value = tgtObj[elementPosition];
-  console.log('tgtObj : ', tgtObj);
+export const setPulldownObj = (e, prev, tgtArray, name) => {
+  prev[name].value = tgtArray[e.target.innerText];
   console.log('annualIncome value : ', prev[name].value);
   return {
     ...prev,
