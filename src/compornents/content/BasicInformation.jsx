@@ -6,7 +6,7 @@ import { ja } from 'date-fns/locale';
 import { Grid, TextField } from '@mui/material';
 import errorJudgement from '../../helpers/errorJudgment';
 import nullJudge from '../../helpers/nullJudgement';
-import TextBox from '../Input/TextBox';
+import { TextBox } from '../Input/TextBox';
 
 const BasicInformation = ({ form, setForm }) => {
   const changeHandler = (name) => (value) => {

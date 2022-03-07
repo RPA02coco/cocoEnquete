@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
 import { importantPointLists } from '../../constantDefinition/constantDefinition';
 import { setCheckcboxValue, setTextBoxValue } from '../../helpers/setValues';
-import TextBox from '../Input/TextBox';
+import { TextBox } from '../Input/TextBox';
 import CheckBox from '../Input/CheckBox';
 
 const ImportantPoint = ({ form, setForm }) => {
@@ -23,7 +23,7 @@ const ImportantPoint = ({ form, setForm }) => {
   return (
     <Grid container>
       <Grid item xs={12} md={12}>
-        <MajorItems Sentence='◆家づくりで重要視するものはどれですか？※複数回答可' />
+        <MajorItems Sentence='家づくりで重要視するものはどれですか？※複数回答可' />
       </Grid>
       <CheckBox tgtName='importantPoint' tgtArray={importantPointLists} onChange={changeHandler} form={form} />
       <Grid item xs={12} md={12}>
