@@ -5,6 +5,7 @@ import BasicInformation from './content/BasicInformation';
 import Works from './content/Works';
 import ImportantPoint from './content/ImportantPoint';
 import BuildingAHouse from './content/BuildingAHouse';
+import BuildingAHouse2 from './content/BuildingAHouse2';
 import InformationGathering from './content/InformationGathering';
 import BackButton from './Button/BackButton';
 import NextButton from './Button/NextButton';
@@ -15,7 +16,7 @@ import { formInit } from '../constantDefinition/formInit';
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
   const [pageNum, setPageNum] = useState(1);
-  const nextVisible = !(pageNum === 6);
+  const nextVisible = !(pageNum === 7);
   const backVisible = !(pageNum === 1);
 
   const nextButtonClick = (event) => {
@@ -45,7 +46,8 @@ const Enquete1st = () => {
           {pageNum === 2 && <Works form={form} setForm={setForm} />}
           {pageNum === 3 && <ImportantPoint form={form} setForm={setForm} />}
           {pageNum === 4 && <BuildingAHouse form={form} setForm={setForm} />}
-          {pageNum === 5 && <InformationGathering form={form} setForm={setForm} />}
+          {pageNum === 5 && <BuildingAHouse2 form={form} setForm={setForm} />}
+          {pageNum === 6 && <InformationGathering form={form} setForm={setForm} />}
         </Grid>
         <Grid item xs={4}>
           {backVisible && <BackButton onClick={backButtonClick} />}

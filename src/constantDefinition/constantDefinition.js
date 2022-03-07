@@ -89,7 +89,7 @@ export const documentRequestLists = [
   'はい', 'いいえ'
 ]
 
-export const infomationSourceLists = [
+export const informationSourceLists = [
   '1.当社ホームページ',
   '2.Facebook',
   '3.Instagram',

@@ -31,7 +31,7 @@ export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
   if (form[tgtName].value && form[tgtName].value !== '') {
     setDefValue = Object.keys(tgtObj).filter((item) => tgtObj[item] === form[tgtName].value);
   }
-  console.log('setValue : ', setDefValue);
+  // console.log('setValue : ', setDefValue);
   return (
     <Grid item xs={12} md={12}>
       <Autocomplete

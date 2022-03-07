@@ -22,24 +22,30 @@ const BuildingAHouse = ({ form, setForm }) => {
   console.log(form);
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={12}>
-        <MajorItems Sentence='家づくりのご計画について教えてください' />
+    <>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={12}>
+          <MajorItems Sentence='家づくりのご計画について教えてください' />
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={12}>
-        <RadioButton tgtName='currentHome' tgtArray={currentHomeLists} form={form} tgtLabel='現在のお住まい' onChange={changeHandler} />
+      <Grid container>
+        <Grid item xs={12} md={12}>
+          <RadioButton tgtName='currentHome' tgtArray={currentHomeLists} form={form} tgtLabel='現在のお住まい' onChange={changeHandler} />
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={12}>
-        {form.currentHome.value.includes('賃貸') &&
-          <TBwithUnit tgtName='RentPrice' tgtLabel='賃貸 家賃の月額' form={form} onChange={changeHandler} required={false} unit='万円/月' />}
-      </Grid>
-      <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='入居予定人数' onChange={changeHandler} form={form} />
-      <Grid item xs={12} md={12}>
-        <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='入居形態' onChange={changeHandler} />
-        {form.moveInForm.value.includes('その他') &&
-          <TextBox tgtName='mvInFormOthers' tgtLabel='その他 詳細' form={form} onChange={changeHandler} required={false} />}
-      </Grid>
-    </Grid >
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={12}>
+          {form.currentHome.value.includes('賃貸') &&
+            <TBwithUnit tgtName='RentPrice' tgtLabel='賃貸 家賃の月額' form={form} onChange={changeHandler} required={false} unit='万円/月' />}
+        </Grid>
+        <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='入居予定人数' onChange={changeHandler} form={form} />
+        <Grid item xs={12} md={12}>
+          <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='入居形態' onChange={changeHandler} />
+          {form.moveInForm.value.includes('その他') &&
+            <TextBox tgtName='mvInFormOthers' tgtLabel='その他 詳細' form={form} onChange={changeHandler} required={false} />}
+        </Grid>
+      </Grid >
+    </>
   )
 }
 

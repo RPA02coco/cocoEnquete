@@ -31,7 +31,7 @@ export const formInit ={
   locationOfLand: { label: '土地の所在', value: '' },  
   siteBrowsing: { label: 'サイトの閲覧', value: '' },
   documentRequest: { label: '資料請求', value: '' },
-  infomationSource: { label: '参照情報源', value: '' },
+  informationSource: { label: '参照情報源', value: '' },
   yumePersonInCharge: { label: '担当者', value: ''},
   introducer: { label: '紹介者', value: ''},
   firstOpportunity: { label: '最初のきっかけ', value: '' },
