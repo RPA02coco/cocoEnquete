@@ -7,28 +7,34 @@ import { TextBox } from '../Input/TextBox';
 import CheckBox from '../Input/CheckBox';
 
 const ImportantPoint = ({ form, setForm }) => {
-
-  const changeHandler = (e) => {
+  const textChange = (e) => {
     setForm((prev) => {
-      if (e.target.name) {
-        return e.target.name === 'impPointOthers' ? handleChangeText(e, prev) : handleChangeCheckbox(e, prev);
-      } else {
-        return prev;
+      return {
+        ...prev,
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e, prev) },
       }
-    });
-  };
+    })
+  }
+
+  const checkboxChange = (e) => {
+    setForm((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeCheckbox(e, prev)}
+      }
+    })
+  }
   console.log(form);
-  console.log('form.importantPoint.value : ', form.importantPoint.value);
 
   return (
     <Grid container>
       <Grid item xs={12} md={12}>
         <MajorItems Sentence='家づくりで重要視するものはどれですか？※複数回答可' />
       </Grid>
-      <CheckBox tgtName='importantPoint' tgtArray={importantPointLists} onChange={changeHandler} form={form} />
+      <CheckBox tgtName='importantPoint' tgtArray={importantPointLists} onChange={checkboxChange} form={form} />
       <Grid item xs={12} md={12}>
         {form.importantPoint.value.includes('その他') &&
-          <TextBox tgtName='impPointOthers' tgtLabel='その他詳細' form={form} onChange={changeHandler} required={false} />}
+          <TextBox tgtName='impPointOthers' tgtLabel='その他詳細' form={form} onChange={textChange} required={false} />}
       </Grid>
     </Grid>
   )
