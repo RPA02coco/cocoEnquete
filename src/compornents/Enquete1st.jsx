@@ -12,6 +12,7 @@ import NextButton from './Button/NextButton';
 import SubmitButton from './Button/SubmitButton';
 import { Grid } from '@mui/material';
 import { formInit } from '../constantDefinition/formInit';
+import InformationGathering2 from './content/informationGathering2';
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
@@ -21,7 +22,7 @@ const Enquete1st = () => {
 
   const nextButtonClick = (event) => {
     event.preventDefault();
-    setPageNum(pageNum + 1);
+    setPageNum((prev) => prev >= 7 ? 7 : pageNum + 1);
   };
   const backButtonClick = (event) => {
     event.preventDefault();
@@ -48,6 +49,7 @@ const Enquete1st = () => {
           {pageNum === 4 && <BuildingAHouse form={form} setForm={setForm} />}
           {pageNum === 5 && <BuildingAHouse2 form={form} setForm={setForm} />}
           {pageNum === 6 && <InformationGathering form={form} setForm={setForm} />}
+          {pageNum === 7 && <InformationGathering2 form={form} setForm={setForm} />}
         </Grid>
         <Grid item xs={4}>
           {backVisible && <BackButton onClick={backButtonClick} />}

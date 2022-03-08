@@ -1,10 +1,24 @@
 import PropTypes from 'prop-types';
-import { Autocomplete, TextField, Grid } from '@mui/material';
+import { Select, TextField, Grid, FormControl, InputLabel, MenuItem, Autocomplete } from '@mui/material';
 
 export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
-  console.log('form[tgtName].value', form[tgtName].value);
+  // console.log('form[tgtName].value', form[tgtName].value);
   return (
     <Grid item xs={12} md={12}>
+      {/* <FormControl fullWidth>
+        <InputLabel id={`${tgtName}-label`}>{tgtLabel}</InputLabel>
+        <Select
+          labelId={`${tgtName}-label`}
+          id={tgtName}
+          value={form[tgtName]?.value ?? ""}
+          label={tgtLabel}
+          onChange={onChange}
+        >
+          {tgtArray.map((item) => {
+            return <MenuItem value={item} key={`key_${tgtArray}${item}`}>{item}</MenuItem>
+          })}
+        </Select>
+      </FormControl> */}
       <Autocomplete
         disablePortal
         size='small'
@@ -29,7 +43,7 @@ Pulldown.propTypes = {
 };
 
 export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
-  console.log('setValue : ', Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value));
+  // console.log('pulldwnobjの値 : ', Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value));
   return (
     <Grid item xs={12} md={12}>
       <Autocomplete
