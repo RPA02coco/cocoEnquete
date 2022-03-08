@@ -1,15 +1,12 @@
 export const handleChangeCheckbox = (e, prev) => {
   const name = e.target.name;
+  let returnValue;
   if (prev[name].value.includes(e.target.value)) {
-    prev[name].value = prev[name].value.filter((item) => item !== (e.target.value));
+    returnValue = prev[name].value.filter((item) => item !== (e.target.value));
   } else {
-    prev[name].value = prev[name].value.concat(e.target.value);
+    returnValue = prev[name].value.concat(e.target.value);
   }
-
-  return {
-    ...prev,
-    [name]: { ...prev[name], value: prev[name].value },
-  };
+  return returnValue;
 }
 
 export const handleChangePulldwnStr = (e, prev, name) => {
@@ -22,7 +19,6 @@ export const handleChangePulldwnStr = (e, prev, name) => {
 
 export const handleChangePulldwnObj = (e, prev, tgtArray, name) => {
   prev[name].value = tgtArray[e.target.innerText];
-  console.log('annualIncome value : ', prev[name].value);
   return {
     ...prev,
     [name]: { ...prev[name], value: prev[name].value },
@@ -30,12 +26,7 @@ export const handleChangePulldwnObj = (e, prev, tgtArray, name) => {
 }
 
 export const handleChangeRadio = (e, prev) => {
-  const name = e.target.name;
-  prev[name].value = e.target.value;
-  return {
-    ...prev,
-    [name]: { ...prev[name], value: prev[name].value},
-  }
+  return e.target.value;
 }
 
 export const handleChangeText = (e, prev) => {
