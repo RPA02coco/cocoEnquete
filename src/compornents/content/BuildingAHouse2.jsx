@@ -5,7 +5,7 @@ import {
   budgetLists, landExistenceLists, moveInSeasonLists, ownResourcesLists,
   documentRequestLists, siteBrowsingLists
 } from '../../constantDefinition/constantDefinition';
-import { setPulldownObj, setTextBoxValue } from '../../helpers/setValues';
+import { handleChangePulldwnObj, handleChangeText } from '../../helpers/setValues';
 import RadioButton from '../Input/RadioButton';
 import { TBwithUnit, TextBox } from '../Input/TextBox';
 import { PulldownObj } from '../Input/Pulldown';
@@ -14,9 +14,9 @@ const BuildingAHouse2 = ({ form, setForm }) => {
   const changeHandler = (e) => {
     setForm((prev) => {
       if (e.target.name) {
-        return setTextBoxValue(e, prev);  // Radiobutton, textboxに対応
+        return handleChangeText(e, prev);  // Radiobutton, textboxに対応
       } else if (e.target.id) {
-        return e.target.id.includes('budget') ? setPulldownObj(e, prev, budgetLists, 'budget') : setPulldownObj(e, prev, ownResourcesLists, 'ownResources');
+        return e.target.id.includes('budget') ? handleChangePulldwnObj(e, prev, budgetLists, 'budget') : handleChangePulldwnObj(e, prev, ownResourcesLists, 'ownResources');
       } else {
         return prev;
       }

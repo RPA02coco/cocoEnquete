@@ -1,4 +1,4 @@
-export const setCheckcboxValue = (e, prev) => {
+export const handleChangeCheckbox = (e, prev) => {
   const name = e.target.name;
   if (prev[name].value.includes(e.target.value)) {
     prev[name].value = prev[name].value.filter((item) => item !== (e.target.value));
@@ -12,7 +12,7 @@ export const setCheckcboxValue = (e, prev) => {
   };
 }
 
-export const setPulldownValue = (e, prev, name) => {
+export const handleChangePulldwnStr = (e, prev, name) => {
   prev[name].value = e.target.innerText;
   return {
     ...prev,
@@ -20,7 +20,7 @@ export const setPulldownValue = (e, prev, name) => {
   }
 }
 
-export const setPulldownObj = (e, prev, tgtArray, name) => {
+export const handleChangePulldwnObj = (e, prev, tgtArray, name) => {
   prev[name].value = tgtArray[e.target.innerText];
   console.log('annualIncome value : ', prev[name].value);
   return {
@@ -29,7 +29,7 @@ export const setPulldownObj = (e, prev, tgtArray, name) => {
   }
 }
 
-export const setRadio = (e, prev) => {
+export const handleChangeRadio = (e, prev) => {
   const name = e.target.name;
   prev[name].value = e.target.value;
   return {
@@ -38,6 +38,6 @@ export const setRadio = (e, prev) => {
   }
 }
 
-export const setTextBoxValue = (e, prev) => {
-  return setRadio(e, prev);
+export const handleChangeText = (e, prev) => {
+  return handleChangeRadio(e, prev);
 }

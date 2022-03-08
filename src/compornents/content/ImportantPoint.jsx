@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
 import { importantPointLists } from '../../constantDefinition/constantDefinition';
-import { setCheckcboxValue, setTextBoxValue } from '../../helpers/setValues';
+import { handleChangeCheckbox, handleChangeText } from '../../helpers/setValues';
 import { TextBox } from '../Input/TextBox';
 import CheckBox from '../Input/CheckBox';
 
@@ -11,7 +11,7 @@ const ImportantPoint = ({ form, setForm }) => {
   const changeHandler = (e) => {
     setForm((prev) => {
       if (e.target.name) {
-        return e.target.name === 'impPointOthers' ? setTextBoxValue(e, prev) : setCheckcboxValue(e, prev);
+        return e.target.name === 'impPointOthers' ? handleChangeText(e, prev) : handleChangeCheckbox(e, prev);
       } else {
         return prev;
       }

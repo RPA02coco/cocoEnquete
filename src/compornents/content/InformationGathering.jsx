@@ -6,15 +6,15 @@ import CheckBox from '../Input/CheckBox';
 import SubItems from '../Box/SubItems';
 import { Pulldown } from '../Input/Pulldown';
 import { TextBox, TBwithUnit } from '../Input/TextBox';
-import { setTextBoxValue } from '../../helpers/setValues';
+import { handleChangeText, handleChangePulldwnObj } from '../../helpers/setValues';
 
 const InformationGathering = ({ form, setForm }) => {
   const changeHandler = (e) => {
     setForm((prev) => {
       if (e.target.name) {
-        return setTextBoxValue(e, prev);  // Radiobutton, textboxに対応
+        return handleChangeText(e, prev);  // Radiobutton, textboxに対応
       } else if (e.target.id) {
-        return e.target.id.includes('budget') ? setPulldownObj(e, prev, budgetLists, 'budget') : setPulldownObj(e, prev, ownResourcesLists, 'ownResources');
+        return e.target.id.includes('budget') ? handleChangePulldwnObj(e, prev, budgetLists, 'budget') : handleChangePulldwnObj(e, prev, ownResourcesLists, 'ownResources');
       } else {
         return prev;
       }

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import { workLists, incomeLists, visitPurposeLists } from '../../constantDefinition/constantDefinition';
-import { setCheckcboxValue, setPulldownValue, setPulldownObj, setTextBoxValue } from '../../helpers/setValues';
+import { handleChangeCheckbox, handleChangePulldwnStr, handleChangePulldwnObj, handleChangeText } from '../../helpers/setValues';
 import MajorItems from '../Box/MajorItems';
 import { Pulldown, PulldownObj } from '../Input/Pulldown';
 import CheckBox from '../Input/CheckBox';
@@ -9,12 +9,13 @@ import { TextBox } from '../Input/TextBox';
 
 const Works = ({ form, setForm }) => {
 
-  const changeHandler = (e) => {
+  const changeHandler = (e, currentValue) => {
+    console.log('e', e, currentValue);
     setForm((prev) => {
       if (e.target.name) {  // チェックボックス用
-        return e.target.name === 'vstPrpsOthers' ? setTextBoxValue(e, prev) : setCheckcboxValue(e, prev);
+        return e.target.name === 'vstPrpsOthers' ? handleChangeText(e, prev) : handleChangeCheckbox(e, prev);
       } else if (e.target.id) { // プルダウン用
-        return e.target.id.includes('works') ? setPulldownValue(e, prev, 'works') : setPulldownObj(e, prev, incomeLists, 'annualIncome');
+        return e.target.id.includes('works') ? handleChangePulldwnStr(e, prev, 'works') : handleChangePulldwnObj(e, prev, incomeLists, 'annualIncome');
       } else {  // null,undefined対策
         return prev;
       }

@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import { Autocomplete, TextField, Grid } from '@mui/material';
 
 export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
+  console.log('form[tgtName].value', form[tgtName].value);
   return (
     <Grid item xs={12} md={12}>
       <Autocomplete
         disablePortal
         size='small'
         defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
+        value={form[tgtName]?.value ?? ""}
         id={tgtName}
         onChange={onChange}
         options={tgtArray}
@@ -27,17 +29,13 @@ Pulldown.propTypes = {
 };
 
 export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
-  let setDefValue = [''];
-  if (form[tgtName].value && form[tgtName].value !== '') {
-    setDefValue = Object.keys(tgtObj).filter((item) => tgtObj[item] === form[tgtName].value);
-  }
-  // console.log('setValue : ', setDefValue);
+  console.log('setValue : ', Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value));
   return (
     <Grid item xs={12} md={12}>
       <Autocomplete
         disablePortal
         size='small'
-        value={setDefValue[0]}
+        value={Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value)}
         id={tgtName}
         onChange={onChange}
         options={Object.keys(tgtObj)}

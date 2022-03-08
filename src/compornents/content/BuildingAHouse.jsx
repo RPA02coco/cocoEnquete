@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
-import { currentHomeLists, moveInFormLists, moveInNumLists, moveInSeasonLists } from '../../constantDefinition/constantDefinition';
-import { setPulldownValue, setRadio, setTextBoxValue } from '../../helpers/setValues';
+import { currentHomeLists, moveInFormLists, moveInNumLists } from '../../constantDefinition/constantDefinition';
+import { handleChangePulldwnStr, handleChangeText } from '../../helpers/setValues';
 import RadioButton from '../Input/RadioButton';
 import { TBwithUnit, TextBox } from '../Input/TextBox';
 import { Pulldown } from '../Input/Pulldown';
@@ -11,9 +11,9 @@ const BuildingAHouse = ({ form, setForm }) => {
   const changeHandler = (e) => {
     setForm((prev) => {
       if (e.target.name) {
-        return setTextBoxValue(e, prev);  // Radiobutton, textboxに対応
+        return handleChangeText(e, prev);  // Radiobutton, textboxに対応
       } else if (e.target.id) {
-        return e.target.id.includes('moveInNum') ? setPulldownValue(e, prev, 'moveInNum') : prev;
+        return e.target.id.includes('moveInNum') ? handleChangePulldwnStr(e, prev, 'moveInNum') : prev;
       } else {
         return prev;
       }
