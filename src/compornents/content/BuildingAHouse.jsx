@@ -12,16 +12,16 @@ const BuildingAHouse = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e, prev) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e) },
       }
     })
   }
 
-  const PulldownChange = (e, currentValue) => {
+  const PulldownChange = (e) => {
     setForm((prev) => {
       return {
         ...prev,
-        ['moveInNum']: { ...prev['moveInNum'], value: currentValue },
+        ['moveInNum']: { ...prev['moveInNum'], value: handleChangePulldwnStr(e) },
       }
     })
   }
@@ -44,7 +44,9 @@ const BuildingAHouse = ({ form, setForm }) => {
           {form.currentHome.value.includes('賃貸') &&
             <TBwithUnit tgtName='rentPrice' tgtLabel='賃貸 家賃の月額' form={form} onChange={TextRadioChange} required={false} unit='万円/月' />}
         </Grid>
-        <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='入居予定人数' onChange={PulldownChange} form={form} />
+        <Grid item xs={12} md={6}>
+          <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='入居予定人数' onChange={PulldownChange} form={form} />
+        </Grid>
         <Grid item xs={12} md={12}>
           <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='入居形態' onChange={TextRadioChange} />
           {form.moveInForm.value.includes('その他') &&

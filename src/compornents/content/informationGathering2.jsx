@@ -3,14 +3,15 @@ import { Grid } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
 import { informationSourceLists } from '../../constantDefinition/constantDefinition';
 import { Pulldown } from '../Input/Pulldown';
+import { handleChangePulldwnStr } from '../../helpers/setValues';
 
 const InformationGathering2 = ({ form, setForm }) => {
-  const pulldownChange = (e, currentValue) => {
+  const pulldownChange = (e) => {
     const name = e.target.id.includes('firstOpportunity') ? 'firstOpportunity' : 'bestOpportunity';
     setForm((prev) => {
       return {
         ...prev,
-        [name]: { ...prev[name], value: currentValue },
+        [name]: { ...prev[name], value: handleChangePulldwnStr(e) },
       }
     })
   }

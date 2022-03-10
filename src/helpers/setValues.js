@@ -9,26 +9,28 @@ export const handleChangeCheckbox = (e, prev) => {
   return returnValue;
 }
 
-export const handleChangePulldwnStr = (e, prev, name) => {
-  prev[name].value = e.target.innerText;
+export const handleChangePulldwnStr = (e) => {
+  return e.target.value;
+  /* prev[name].value = e.target.innerText;
   return {
     ...prev,
     [name]: { ...prev[name], value: prev[name].value },
-  }
+  } */
 }
 
-export const handleChangePulldwnObj = (e, prev, tgtArray, name) => {
-  prev[name].value = tgtArray[e.target.innerText];
+export const handleChangePulldwnObj = (e, tgtArray) => {
+  return tgtArray[e.target.value]
+  /* prev[name].value = tgtArray[e.target.innerText];
   return {
     ...prev,
     [name]: { ...prev[name], value: prev[name].value },
-  }
+  } */
 }
 
-export const handleChangeRadio = (e, prev) => {
+export const handleChangeRadio = (e) => {
   return e.target.value;
 }
 
-export const handleChangeText = (e, prev) => {
-  return handleChangeRadio(e, prev);
+export const handleChangeText = (e) => {
+  return handleChangeRadio(e);
 }

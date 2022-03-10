@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { Select, TextField, Grid, FormControl, InputLabel, MenuItem, Autocomplete } from '@mui/material';
+import { Select, Grid, FormControl, InputLabel, MenuItem, Autocomplete, TextField } from '@mui/material';
 
 export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
-  // console.log('form[tgtName].value', form[tgtName].value);
   return (
     <Grid item xs={12} md={12}>
-      {/* <FormControl fullWidth>
+      <FormControl fullWidth>
         <InputLabel id={`${tgtName}-label`}>{tgtLabel}</InputLabel>
         <Select
           labelId={`${tgtName}-label`}
@@ -15,11 +14,11 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
           onChange={onChange}
         >
           {tgtArray.map((item) => {
-            return <MenuItem value={item} key={`key_${tgtArray}${item}`}>{item}</MenuItem>
+            return <MenuItem value={item} key={`key_${tgtName}${item}`}>{item}</MenuItem>
           })}
         </Select>
-      </FormControl> */}
-      <Autocomplete
+      </FormControl>
+      {/* <Autocomplete
         disablePortal
         size='small'
         defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
@@ -29,7 +28,7 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
         options={tgtArray}
         sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label={tgtLabel} name={tgtName} />}
-      />
+      /> */}
     </Grid>
   )
 }
@@ -46,7 +45,21 @@ export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
   // console.log('pulldwnobjの値 : ', Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value));
   return (
     <Grid item xs={12} md={12}>
-      <Autocomplete
+      <FormControl fullWidth>
+        <InputLabel id={`${tgtName}-label`}>{tgtLabel}</InputLabel>
+        <Select
+          labelId={`${tgtName}-label`}
+          id={tgtName}
+          value={form[tgtName].value ? '' : Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value)}
+          label={tgtLabel}
+          onChange={onChange}
+        >
+          {Object.keys(tgtObj).map((item) => {
+            return <MenuItem value={item} key={`key_${tgtName}${item}`}>{item}</MenuItem>
+          })}
+        </Select>
+      </FormControl>
+      {/* <Autocomplete
         disablePortal
         size='small'
         value={Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value)}
@@ -55,7 +68,7 @@ export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
         options={Object.keys(tgtObj)}
         sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label={tgtLabel} name={tgtName} />}
-      />
+      /> */}
     </Grid>
   )
 }

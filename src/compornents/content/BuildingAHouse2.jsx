@@ -15,12 +15,12 @@ const BuildingAHouse2 = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e, prev) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e) },
       }
     })
   }
   
-  const pulldownObjChange = (e, currentValue) => {
+  const pulldownObjChange = (e) => {
     let name = 'ownResources';
     let tgtArray = ownResourcesLists;
     if (e.target.id.includes('budget')) {
@@ -30,7 +30,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        [name]: { ...prev[name], value: tgtArray[currentValue] },
+        [name]: { ...prev[name], value: handleChangePulldwnObj(e, incomeLists) },
       }
     })
   }
@@ -48,10 +48,10 @@ const BuildingAHouse2 = ({ form, setForm }) => {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={6}>
           <PulldownObj tgtName='budget' tgtObj={budgetLists} form={form} tgtLabel='建物予算' onChange={pulldownObjChange} />
         </Grid>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={6}>
           <PulldownObj tgtName='ownResources' tgtObj={ownResourcesLists} form={form} tgtLabel='自己資金' onChange={pulldownObjChange} />
         </Grid>
       </Grid>
@@ -61,10 +61,10 @@ const BuildingAHouse2 = ({ form, setForm }) => {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={4}>
           <TBwithUnit tgtName='areaOfLand' tgtLabel={`${landLabel}面積`} form={form} onChange={textRadioChange} required={false} unit='坪' />
         </Grid>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={8}>
           <TextBox tgtName='locationOfLand' tgtLabel={`${landLabel}所在地`} form={form} onChange={textRadioChange} required={false} />
         </Grid>
         <Grid item xs={12} md={12}>

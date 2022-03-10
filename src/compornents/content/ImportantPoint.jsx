@@ -11,7 +11,7 @@ const ImportantPoint = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e, prev) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e) },
       }
     })
   }

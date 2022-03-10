@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import { workLists, incomeLists, visitPurposeLists } from '../../constantDefinition/constantDefinition';
-import { handleChangeCheckbox, handleChangeText } from '../../helpers/setValues';
+import { handleChangeCheckbox, handleChangePulldwnObj, handleChangePulldwnStr, handleChangeText } from '../../helpers/setValues';
 import MajorItems from '../Box/MajorItems';
 import { Pulldown, PulldownObj } from '../Input/Pulldown';
 import CheckBox from '../Input/CheckBox';
@@ -12,7 +12,7 @@ const Works = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e, prev) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e) },
       }
     })
   }
@@ -26,20 +26,20 @@ const Works = ({ form, setForm }) => {
     })
   }
 
-  const pulldownChange = (e, currentValue) => {
+  const pulldownChange = (e) => {
     setForm((prev) => {
       return {
         ...prev,
-        ['works']: { ...prev['works'], value: currentValue },
+        ['works']: { ...prev['works'], value: handleChangePulldwnStr(e) },
       }
     })
   }
 
-  const pulldownObjChange = (e, currentValue) => {
+  const pulldownObjChange = (e) => {
     setForm((prev) => {
       return {
         ...prev,
-        ['annualIncome']: { ...prev['annualIncome'], value: incomeLists[currentValue] },
+        ['annualIncome']: { ...prev['annualIncome'], value: handleChangePulldwnObj(e, incomeLists) },
       }
     })
   }
