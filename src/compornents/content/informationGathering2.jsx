@@ -7,11 +7,10 @@ import { handleChangePulldwnStr } from '../../helpers/setValues';
 
 const InformationGathering2 = ({ form, setForm }) => {
   const pulldownChange = (e) => {
-    const name = e.target.id.includes('firstOpportunity') ? 'firstOpportunity' : 'bestOpportunity';
     setForm((prev) => {
       return {
         ...prev,
-        [name]: { ...prev[name], value: handleChangePulldwnStr(e) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangePulldwnStr(e) },
       }
     })
   }

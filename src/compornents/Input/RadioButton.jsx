@@ -25,7 +25,6 @@ const RadioButton = ({ tgtName, tgtArray, form, tgtLabel, onChange }) => {
                     id={`id_${tgtName}${index}`}
                     checked={form[tgtName].value.includes(item)}
                     onChange={onChange}
-                    size='small'
                     value={item}
                     name={tgtName}
                   />}

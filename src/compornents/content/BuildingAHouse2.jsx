@@ -5,7 +5,7 @@ import {
   budgetLists, landExistenceLists, moveInSeasonLists, ownResourcesLists,
   documentRequestLists, siteBrowsingLists
 } from '../../constantDefinition/constantDefinition';
-import { handleChangeText } from '../../helpers/setValues';
+import { handleChangeText, handleChangePulldwnObj } from '../../helpers/setValues';
 import RadioButton from '../Input/RadioButton';
 import { TBwithUnit, TextBox } from '../Input/TextBox';
 import { PulldownObj } from '../Input/Pulldown';
@@ -21,16 +21,11 @@ const BuildingAHouse2 = ({ form, setForm }) => {
   }
   
   const pulldownObjChange = (e) => {
-    let name = 'ownResources';
-    let tgtArray = ownResourcesLists;
-    if (e.target.id.includes('budget')) {
-      name = 'budget';
-      tgtArray = budgetLists;
-    }
+    const tgtArray = e.target.name === 'budget' ? budgetLists : ownResourcesLists;
     setForm((prev) => {
       return {
         ...prev,
-        [name]: { ...prev[name], value: handleChangePulldwnObj(e, incomeLists) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangePulldwnObj(e, tgtArray) },
       }
     })
   }

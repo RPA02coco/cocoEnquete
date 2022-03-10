@@ -21,7 +21,7 @@ const BuildingAHouse = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        ['moveInNum']: { ...prev['moveInNum'], value: handleChangePulldwnStr(e) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangePulldwnStr(e) },
       }
     })
   }

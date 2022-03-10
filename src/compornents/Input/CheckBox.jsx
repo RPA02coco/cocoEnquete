@@ -12,7 +12,6 @@ const CheckBox = ({ tgtName, tgtArray, onChange, form }) => {
                 <Checkbox
                   id={`id_${tgtName}${index}`}
                   value={item}
-                  size='small'
                   name={tgtName}
                   checked={form[tgtName].value.includes(item)}
                   onChange={onChange}

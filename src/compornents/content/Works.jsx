@@ -30,7 +30,7 @@ const Works = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        ['works']: { ...prev['works'], value: handleChangePulldwnStr(e) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangePulldwnStr(e) },
       }
     })
   }
@@ -39,7 +39,7 @@ const Works = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        ['annualIncome']: { ...prev['annualIncome'], value: handleChangePulldwnObj(e, incomeLists) },
+        [e.target.name]: { ...prev[e.target.name], value: handleChangePulldwnObj(e, incomeLists) },
       }
     })
   }

@@ -8,7 +8,6 @@ export const TextBox = ({ tgtName, tgtLabel, form, onChange, required }) => {
       defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
       required={required}
       variant="outlined"
-      size="small"
       name={tgtName}
       error={form[tgtName].valueError}
       helperText={form[tgtName].valueError && form[tgtName].errorText}
@@ -31,7 +30,6 @@ export const TBwithUnit = ({ tgtName, tgtLabel, form, onChange, required, unit }
       defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
       required={required}
       variant="outlined"
-      size="small"
       name={tgtName}
       error={form[tgtName].valueError}
       helperText={form[tgtName].valueError && form[tgtName].errorText}

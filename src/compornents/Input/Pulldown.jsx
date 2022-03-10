@@ -10,6 +10,7 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
           labelId={`${tgtName}-label`}
           id={tgtName}
           value={form[tgtName]?.value ?? ""}
+          name={tgtName}
           label={tgtLabel}
           onChange={onChange}
         >
@@ -18,17 +19,6 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
           })}
         </Select>
       </FormControl>
-      {/* <Autocomplete
-        disablePortal
-        size='small'
-        defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
-        value={form[tgtName]?.value ?? ""}
-        id={tgtName}
-        onChange={onChange}
-        options={tgtArray}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label={tgtLabel} name={tgtName} />}
-      /> */}
     </Grid>
   )
 }
@@ -42,7 +32,6 @@ Pulldown.propTypes = {
 };
 
 export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
-  // console.log('pulldwnobjの値 : ', Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value));
   return (
     <Grid item xs={12} md={12}>
       <FormControl fullWidth>
@@ -50,7 +39,8 @@ export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
         <Select
           labelId={`${tgtName}-label`}
           id={tgtName}
-          value={form[tgtName].value ? '' : Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value)}
+          value={form[tgtName].value.min === '' ? '' : Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value)}
+          name={tgtName}
           label={tgtLabel}
           onChange={onChange}
         >
@@ -59,16 +49,6 @@ export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
           })}
         </Select>
       </FormControl>
-      {/* <Autocomplete
-        disablePortal
-        size='small'
-        value={Object.keys(tgtObj).find((item) => tgtObj[item] === form[tgtName].value)}
-        id={tgtName}
-        onChange={onChange}
-        options={Object.keys(tgtObj)}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label={tgtLabel} name={tgtName} />}
-      /> */}
     </Grid>
   )
 }
