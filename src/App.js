@@ -1,8 +1,17 @@
 import { Container, Grid, CardMedia } from '@mui/material';
 import Enquete1st from './compornents/Enquete1st';
 import logo from './img/cocoIcon.png';
+import axios from 'axios';
 
 const App = () => {
+axios.post('http://localhost:3001/cocoEnquete', {
+  firstName: 'Fred',
+  lastName: 'Fjkdhjksl',
+})
+.then(res => {
+  console.log(res);
+})
+
   return (
     <Container>
       <Grid

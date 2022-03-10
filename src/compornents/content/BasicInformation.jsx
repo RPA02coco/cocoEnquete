@@ -8,14 +8,25 @@ import errorJudgement from '../../helpers/errorJudgment';
 import nullJudge from '../../helpers/nullJudgement';
 import { TextBox } from '../Input/TextBox';
 
-const BasicInformation = ({ form, setForm }) => {
+const BasicInformation = ({ form, setForm, setPageCond }) => {
   const changeHandler = (name) => (value) => {
+    let errFlg = false;
     setForm((prev) => {
+      errFlg = errorJudgement(name, value);
       return {
         ...prev, [name]: {
           ...prev[name],
           value: nullJudge(form, name, value),
-          valueError: errorJudgement(name, value),
+          valueError: errFlg,
+        },
+      };
+    });
+
+    setPageCond((prev) => {
+      return {
+        ...prev, [disableFlg]: {
+          ...prev[disableFlg],
+          value: errFlg
         },
       };
     });
@@ -72,6 +83,7 @@ const BasicInformation = ({ form, setForm }) => {
 BasicInformation.propTypes = {
   form: PropTypes.object,
   setForm: PropTypes.func,
+  setPageCond: PropTypes.func,
 };
 
 export default BasicInformation;
