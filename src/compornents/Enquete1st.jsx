@@ -13,27 +13,28 @@ import SubmitButton from './Button/SubmitButton';
 import { Grid } from '@mui/material';
 import { formInit } from '../constantDefinition/formInit';
 import InformationGathering2 from './content/informationGathering2';
-import ErrorMessage from './Box/ErrorMessage';
+import axios from 'axios';
+import convertToJSON from '../helpers/convertToJSON';
+import CompletionMessage from './content/CompletionMessage';
 
 const disableChk = (form, chkNum) => {
-  return Object.values(form).some(({pageNum, valueError}) => pageNum === chkNum && valueError);
+  return Object.values(form).some(({ pageNum, valueError }) => pageNum === chkNum && valueError);
 };
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
   const [pageCond, setPageCond] = useState({ pageNum: 1, disableFlg: false, });
-  const nextVisible = !(pageCond.pageNum === 7);
-  const backVisible = !(pageCond.pageNum === 1);
+  const nextVisible = !(pageCond.pageNum >= 7);
+  const backVisible = !(pageCond.pageNum === 1 || pageCond.pageNum > 7);
+  const submitVisible = (pageCond.pageNum === 7);
   const disableflg = disableChk(form, pageCond.pageNum);
 
   const nextButtonClick = (event) => {
-    event.preventDefault();
     setPageCond((prev) => {
-      return { ...prev, pageNum: (prev.pageNum >= 7) ? 7 : prev.pageNum + 1 }
+      return { ...prev, pageNum: prev.pageNum + 1 }
     });
   };
   const backButtonClick = (event) => {
-    event.preventDefault();
     setPageCond((prev) => {
       return { ...prev, pageNum: prev.pageNum - 1 }
     });
@@ -43,7 +44,25 @@ const Enquete1st = () => {
     event.preventDefault();
     console.log('submit!!!');
     console.log(form);
+
+    // フォームをJSONに変換する
+    const jsonForm = convertToJSON(form);
+    console.log('JSON形式のform', jsonForm);
+
+    //サーバへの送信処理
+    axios.post('http://localhost:3001/cocoEnquete', {
+      // JSON形式に変換したフォームデータ
+      jsonForm
+    })
+      .then(res => {
+        console.log('axios', res);
+      })
+
+    setPageCond((prev) => {
+      return { ...prev, pageNum: prev.pageNum + 1 }
+    });
   };
+
 
   return (
     <form onSubmit={submitButtonClick}>
@@ -61,13 +80,14 @@ const Enquete1st = () => {
           {pageCond.pageNum === 5 && <BuildingAHouse2 form={form} setForm={setForm} />}
           {pageCond.pageNum === 6 && <InformationGathering form={form} setForm={setForm} />}
           {pageCond.pageNum === 7 && <InformationGathering2 form={form} setForm={setForm} />}
+          {pageCond.pageNum > 7 && <CompletionMessage />}
         </Grid>
         <Grid item xs={4}>
           {backVisible && <BackButton onClick={backButtonClick} disableflg={disableflg} />}
         </Grid>
         <Grid item xs={4}>
           {nextVisible && <NextButton onClick={nextButtonClick} disableflg={disableflg} />}
-          {!nextVisible && <SubmitButton onClick={nextButtonClick} />}
+          {submitVisible && <SubmitButton />}
         </Grid>
       </Grid>
     </form >

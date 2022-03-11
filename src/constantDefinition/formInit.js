@@ -1,9 +1,10 @@
 import format from 'date-fns/format';
+import { utcToZonedTime } from 'date-fns-tz'
 
 export const formInit = {
   fullname: { label: '名前', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   furigana: { label: 'フリガナ', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
-  dateEntered: { label: '記入日', value: format(new Date(), 'yyyy-MM-dd HH:mm') },
+  dateEntered: { label: '記入日', value: format(new Date(), "yyyy-MM-dd'T'HH:mm:00+9:00") },
   birthday: { label: '誕生日', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   postCode: { label: '郵便番号', value: '', pageNum: 1, valueError: true, errorText: '数字で入力してください。入力例:442-0888' },
   address: { label: '住所', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },

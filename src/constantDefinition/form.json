@@ -1,0 +1,116 @@
+{
+  "fullname": {
+    "value": ""
+  },
+  "furigana": {
+    "value": ""
+  },
+  "dateEntered": {
+    "value": ""
+  },
+  "birthday": {
+    "value": ""
+  },
+  "postCode": {
+    "value": ""
+  },
+  "address": {
+    "value": ""
+  },
+  "address2": {
+    "value": ""
+  },
+  "tel": {
+    "value": ""
+  },
+  "mail": {
+    "value": ""
+  },
+  "workPlace": {
+    "value": ""
+  },
+  "holiday": {
+    "value": ""
+  },
+  "works": {
+    "value": ""
+  },
+  "annualIncomeMin": {
+    "value": ""
+  },
+  "annualIncomeMax": {
+    "value": ""
+  },
+  "visitPurpose": {
+    "value": ""
+  },
+  "vstPrpsOthers": {
+    "value": ""
+  },
+  "importantPoint": {
+    "value": ""
+  },
+  "impPointOthers": {
+    "value": ""
+  },
+  "currentHome": {
+    "value": ""
+  },
+  "rentPrice": {
+    "value": ""
+  },
+  "moveInNum": {
+    "value": ""
+  },
+  "moveInForm": {
+    "value": ""
+  },
+  "mvInFormOthers": {
+    "value": ""
+  },
+  "moveInSeason": {
+    "value": ""
+  },
+  "budgetMin": {
+    "value": ""
+  },
+  "budgetMax": {
+    "value": ""
+  },
+  "ownResourcesMin": {
+    "value": ""
+  },
+  "ownResourcesMax": {
+    "value": ""
+  },
+  "landExistence": {
+    "value": ""
+  },
+  "areaOfLand": {
+    "value": ""
+  },
+  "locationOfLand": {
+    "value": ""
+  },
+  "siteBrowsing": {
+    "value": ""
+  },
+  "documentRequest": {
+    "value": ""
+  },
+  "informationSource": {
+    "value": ""
+  },
+  "yumePersonInCharge": {
+    "value": ""
+  },
+  "introducer": {
+    "value": ""
+  },
+  "firstOpportunity": {
+    "value": ""
+  },
+  "bestOpportunity": {
+    "value": ""
+  }
+}

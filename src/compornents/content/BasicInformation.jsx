@@ -22,7 +22,7 @@ const BasicInformation = ({ form, setForm }) => {
       };
     });
   };
-  // console.log(form);
+  console.log(form);
 
   return (
     <Grid container spacing={2}>

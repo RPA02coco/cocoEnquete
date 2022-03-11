@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import {Button} from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-const SubmitButton = ({onClick}) => {
+const SubmitButton = () => {
   return (
     <Button
-      onClick={onClick}
+      type='submit'
       variant="contained"
       startIcon={<ExitToAppIcon />}
     >
