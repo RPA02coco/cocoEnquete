@@ -1,15 +1,15 @@
 import format from 'date-fns/format';
 
 export const formInit = {
-  fullname: { label: '名前', value: '', pageNum: 1 },
-  furigana: { label: 'フリガナ', value: '', pageNum: 1 },
-  dateEntered: { label: '記入日', value: format(new Date(), 'yyyy-MM-dd HH:mm'), pageNum: 1 },
-  birthday: { label: '誕生日', value: '', pageNum: 1 },
-  postCode: { label: '郵便番号', value: '', pageNum: 1, valueError: false, errorText: '数字で入力してください。入力例:442-0888' },
-  address: { label: '住所', value: '', pageNum: 1 },
+  fullname: { label: '名前', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  furigana: { label: 'フリガナ', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  dateEntered: { label: '記入日', value: format(new Date(), 'yyyy-MM-dd HH:mm') },
+  birthday: { label: '誕生日', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  postCode: { label: '郵便番号', value: '', pageNum: 1, valueError: true, errorText: '数字で入力してください。入力例:442-0888' },
+  address: { label: '住所', value: '', pageNum: 1, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   address2: { label: '住所(建物名)', value: '', pageNum: 1 },
-  tel: { label: 'TEL', value: '', pageNum: 1, valueError: false, errorText: '数字で入力してください。入力例:090-1111-2222' },
-  mail: { label: 'MAIL', value: '', pageNum: 1, valueError: false, errorText: '英数字で入力してください。入力例:sample@mail.jp' },
+  tel: { label: 'TEL', value: '', pageNum: 1, valueError: true, errorText: '数字で入力してください。入力例:090-1111-2222' },
+  mail: { label: 'MAIL', value: '', pageNum: 1, valueError: true, errorText: '英数字で入力してください。入力例:sample@mail.jp' },
   workPlace: { label: 'ご勤務先', pageNum: 1, value: '' },
   holiday: { label: 'ご休日', pageNum: 1, value: '' },
   works: { label: 'ご職業', pageNum: 2, value: '' },

@@ -13,27 +13,29 @@ import SubmitButton from './Button/SubmitButton';
 import { Grid } from '@mui/material';
 import { formInit } from '../constantDefinition/formInit';
 import InformationGathering2 from './content/informationGathering2';
+import ErrorMessage from './Box/ErrorMessage';
+
+const disableChk = (form, chkNum) => {
+  return Object.values(form).some(({pageNum, valueError}) => pageNum === chkNum && valueError);
+};
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
-  const [pageCond, setPageCond] = useState({
-    pageNum: 1,
-    disableFlg: false,
-  });
+  const [pageCond, setPageCond] = useState({ pageNum: 1, disableFlg: false, });
   const nextVisible = !(pageCond.pageNum === 7);
   const backVisible = !(pageCond.pageNum === 1);
+  const disableflg = disableChk(form, pageCond.pageNum);
 
   const nextButtonClick = (event) => {
     event.preventDefault();
     setPageCond((prev) => {
-      console.log('nextbutton', prev);
-      return {...prev, pageNum : (prev.pageNum >= 7) ? 7 : prev.pageNum + 1};
+      return { ...prev, pageNum: (prev.pageNum >= 7) ? 7 : prev.pageNum + 1 }
     });
   };
   const backButtonClick = (event) => {
     event.preventDefault();
     setPageCond((prev) => {
-      return {...prev, pageNum : prev.pageNum - 1}
+      return { ...prev, pageNum: prev.pageNum - 1 }
     });
   };
 
@@ -51,7 +53,7 @@ const Enquete1st = () => {
         alignItems="center"
       >
         <Grid item xs={12} md={12}>
-          {pageCond.pageNum === 1 && <BasicInformation form={form} setForm={setForm} setpageCond={setPageCond} />}
+          {pageCond.pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
           {pageCond.pageNum === 2 && <Works form={form} setForm={setForm} />}
           {pageCond.pageNum === 3 && <ImportantPoint form={form} setForm={setForm} />}
           {pageCond.pageNum === 4 && <BuildingAHouse form={form} setForm={setForm} />}
@@ -60,10 +62,10 @@ const Enquete1st = () => {
           {pageCond.pageNum === 7 && <InformationGathering2 form={form} setForm={setForm} />}
         </Grid>
         <Grid item xs={4}>
-          {backVisible && <BackButton onClick={backButtonClick} />}
+          {backVisible && <BackButton onClick={backButtonClick} disableflg={disableflg} />}
         </Grid>
         <Grid item xs={4}>
-          {nextVisible && <NextButton onClick={nextButtonClick} />}
+          {nextVisible && <NextButton onClick={nextButtonClick} disableflg={disableflg} />}
           {!nextVisible && <SubmitButton onClick={nextButtonClick} />}
         </Grid>
       </Grid>
