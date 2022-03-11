@@ -24,7 +24,7 @@ const ImportantPoint = ({ form, setForm }) => {
       }
     })
   }
-  console.log(form);
+  // console.log(form);
 
   return (
     <Grid container>

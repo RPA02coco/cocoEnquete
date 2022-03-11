@@ -25,7 +25,7 @@ const InformationGathering = ({ form, setForm }) => {
       }
     })
   }
-  console.log(form);
+  // console.log(form);
 
   const searchWords = (tgtArray, words) => {
     return tgtArray.find(value => value.indexOf(words) !== -1);

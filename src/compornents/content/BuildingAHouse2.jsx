@@ -29,7 +29,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
       }
     })
   }
-  console.log(form);
+  // console.log(form);
   const landLabel = form.landExistence.value === 'あり' ? '' : '希望';
 
   return (

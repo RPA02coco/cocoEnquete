@@ -25,7 +25,7 @@ const BuildingAHouse = ({ form, setForm }) => {
       }
     })
   }
-  console.log(form);
+  // console.log(form);
 
   return (
     <>

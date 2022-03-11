@@ -14,7 +14,7 @@ const InformationGathering2 = ({ form, setForm }) => {
       }
     })
   }
-  console.log(form);
+  // console.log(form);
 
   return (
     <Grid container spacing={2}>

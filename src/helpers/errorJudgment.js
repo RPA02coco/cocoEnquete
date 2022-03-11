@@ -36,7 +36,6 @@ const errorJudgement = (name, value) => {
     case 'postCode':
       const regexPC = /^([0-9]{3}-[0-9]{4}|[0-9]{3,7})$/;
       if (!regexPC.test(chkValue)) {
-        console.log('ちがうよ!postCode', chkValue);
         isError = true;
       }
       isError = isError || blankCheck(chkValue);
@@ -44,7 +43,6 @@ const errorJudgement = (name, value) => {
     case 'tel':
       const regexTel = /^(0[5-9]0-[0-9]{4}-[0-9]{4}|0[0-9]{1,4}-[0-9]{1,4}-[0-9]{4}|\d{10,11})$/;
       if (!chkValue.match(regexTel)) {
-        console.log('ちがうよ!tel', chkValue);
         isError = true;
       }
       isError = isError || blankCheck(chkValue);
@@ -52,7 +50,6 @@ const errorJudgement = (name, value) => {
     case 'mail':
       const regexMail = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
       if (!regexMail.test(chkValue)) {
-        console.log('ちがうよ!tel', chkValue);
         isError = true;
       }
       isError = isError || blankCheck(chkValue);

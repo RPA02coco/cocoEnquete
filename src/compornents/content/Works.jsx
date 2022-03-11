@@ -43,7 +43,7 @@ const Works = ({ form, setForm }) => {
       }
     })
   }
-  console.log(form);
+  // console.log(form);
 
   return (
     <>

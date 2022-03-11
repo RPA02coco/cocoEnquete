@@ -42,6 +42,7 @@ const Enquete1st = () => {
   const submitButtonClick = (event) => {
     event.preventDefault();
     console.log('submit!!!');
+    console.log(form);
   };
 
   return (
