@@ -50,12 +50,15 @@ const Enquete1st = () => {
     console.log('JSON形式のform', jsonForm);
 
     //サーバへの送信処理
-    axios.post('http://localhost:3010/cocoEnquete', {
+    axios.post('https://cocosumo.net/nodejs/cocoEnquete-API/', {
       // JSON形式に変換したフォームデータ
       jsonForm
     })
       .then(res => {
         console.log('axios', res);
+      })
+      .catch(res => {
+        console.log(res);
       })
 
     setPageCond((prev) => {
