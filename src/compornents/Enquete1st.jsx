@@ -50,7 +50,7 @@ const Enquete1st = () => {
     console.log('JSON形式のform', jsonForm);
 
     //サーバへの送信処理
-    axios.post('http://localhost:3001/cocoEnquete', {
+    axios.post('http://localhost:3010/cocoEnquete', {
       // JSON形式に変換したフォームデータ
       jsonForm
     })
