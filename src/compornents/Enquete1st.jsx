@@ -54,48 +54,44 @@ const Enquete1st = () => {
       // JSON形式に変換したフォームデータ
       jsonForm
     })
-      .then(res => {
-        console.log('axios', res);
-      })
-      .catch(res => {
-        console.log(res);
-      })
+      .then(res => console.log('axios', res))
+      .catch(res => console.log(res));
 
     setPageCond((prev) => {
       return { ...prev, pageNum: prev.pageNum + 1 }
     });
-  };
+};
 
 
-  return (
-    <form onSubmit={submitButtonClick}>
-      <Grid
-        container spacing={2}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item xs={12} md={12}>
-          {pageCond.pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
-          {pageCond.pageNum === 2 && <Works form={form} setForm={setForm} />}
-          {pageCond.pageNum === 3 && <ImportantPoint form={form} setForm={setForm} />}
-          {pageCond.pageNum === 4 && <BuildingAHouse form={form} setForm={setForm} />}
-          {pageCond.pageNum === 5 && <BuildingAHouse2 form={form} setForm={setForm} />}
-          {pageCond.pageNum === 6 && <InformationGathering form={form} setForm={setForm} />}
-          {pageCond.pageNum === 7 && <InformationGathering2 form={form} setForm={setForm} />}
-          {pageCond.pageNum > 7 && <CompletionMessage />}
-        </Grid>
-        <Grid item xs={4}>
-          {backVisible && <BackButton onClick={backButtonClick} disableflg={disableflg} />}
-        </Grid>
-        <Grid item xs={4}>
-          {nextVisible && <NextButton onClick={nextButtonClick} disableflg={disableflg} />}
-          {submitVisible && <SubmitButton />}
-        </Grid>
+return (
+  <form onSubmit={submitButtonClick}>
+    <Grid
+      container spacing={2}
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Grid item xs={12} md={12}>
+        {pageCond.pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
+        {pageCond.pageNum === 2 && <Works form={form} setForm={setForm} />}
+        {pageCond.pageNum === 3 && <ImportantPoint form={form} setForm={setForm} />}
+        {pageCond.pageNum === 4 && <BuildingAHouse form={form} setForm={setForm} />}
+        {pageCond.pageNum === 5 && <BuildingAHouse2 form={form} setForm={setForm} />}
+        {pageCond.pageNum === 6 && <InformationGathering form={form} setForm={setForm} />}
+        {pageCond.pageNum === 7 && <InformationGathering2 form={form} setForm={setForm} />}
+        {pageCond.pageNum > 7 && <CompletionMessage />}
       </Grid>
-    </form >
+      <Grid item xs={4}>
+        {backVisible && <BackButton onClick={backButtonClick} disableflg={disableflg} />}
+      </Grid>
+      <Grid item xs={4}>
+        {nextVisible && <NextButton onClick={nextButtonClick} disableflg={disableflg} />}
+        {submitVisible && <SubmitButton />}
+      </Grid>
+    </Grid>
+  </form >
 
-  );
+);
 };
 
 Enquete1st.propTypes = {
