@@ -1,5 +1,4 @@
 import jsonFormat from '../constantDefinition/form.json'
-import format from 'date-fns/format';
 
 /**
  * フォームの内容をJSON形式に変換する。
@@ -18,8 +17,8 @@ const convertToJSON = (form) => {
       }
     } else {
       // jsonキー≠フォームキー=>最小値と最大値objを分けて格納する
-      jsonFormat[`${item}Min`].value = form[item].value.min;
-      jsonFormat[`${item}Max`].value = form[item].value.max;
+      jsonFormat[`${item}Min`].value = parseInt(form[item].value.min);
+      jsonFormat[`${item}Max`].value = parseInt(form[item].value.max);
     }
   })
   return jsonFormat;
