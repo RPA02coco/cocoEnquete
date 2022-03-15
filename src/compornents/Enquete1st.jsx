@@ -43,11 +43,9 @@ const Enquete1st = () => {
   const submitButtonClick = (event) => {
     event.preventDefault();
     console.log('submit!!!');
-    console.log(form);
 
     // フォームをJSONに変換する
     const jsonForm = convertToJSON(form);
-    console.log('JSON形式のform', jsonForm);
 
     //サーバへの送信処理
     axios.post('https://cocosumo.net/nodejs/cocoEnquete-API/', {
@@ -55,7 +53,7 @@ const Enquete1st = () => {
       jsonForm
     })
       .then(res => console.log('axios', res))
-      .catch(res => console.log(res));
+      .catch(res => console.log('axios',res));
 
     setPageCond((prev) => {
       return { ...prev, pageNum: prev.pageNum + 1 }
