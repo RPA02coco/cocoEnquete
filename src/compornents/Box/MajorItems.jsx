@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 const MajorItems = ({ Sentence }) => {
   return (
     <Box component="main"
+      p={1}
       sx={{
         flexGrow: 1
         , width: { sm: `calc(100% - 12px)` }

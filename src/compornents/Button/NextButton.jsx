@@ -3,26 +3,25 @@ import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ErrorMessage from '../Box/ErrorMessage';
 
-const NextButton = ({ onClick, disableflg }) => {
+const NextButton = ({ onClick, disabled }) => {
   return (
     <>
       <Button
-        disabled={disableflg}
+        size="large"
+        disabled={disabled}
         onClick={onClick}
-        variant="outlined"
+        variant="contained"
         startIcon={<ArrowForwardIcon />}
       >
         次へ
       </Button>
-      <br />
-      {disableflg && <ErrorMessage Sentence='入力エラーがあります。ご確認ください。' />}
     </>
   );
 };
 
 NextButton.propTypes = {
   onClick: PropTypes.func,
-  disableflg: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default NextButton;

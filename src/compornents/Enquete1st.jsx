@@ -75,16 +75,21 @@ const Enquete1st = () => {
           {pageCond.pageNum === 6 && <InformationGathering2 form={form} setForm={setForm} />}
           {pageCond.pageNum > 6 && <CompletionMessage />}
         </Grid>
-        <Grid item xs={4}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          item xs={12} md={6}>
           {submitVisible && <SubmitButton />}
         </Grid>
-        <Grid item xs={12}>
-          <BackNextButton
-            handleNext={nextButtonClick}
-            handleBack={backButtonClick}
-            activeStep={pageCond.pageNum}
-            disableflg={disableflg}
-          />
+        <Grid item xs={12} md={12}>
+          {(pageCond.pageNum < 7) &&
+            <BackNextButton
+              handleNext={nextButtonClick}
+              handleBack={backButtonClick}
+              activeStep={pageCond.pageNum}
+              disableflg={disableflg}
+            />}
         </Grid>
         <Grid item xs={12}>
 

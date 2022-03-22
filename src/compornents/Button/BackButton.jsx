@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const BackButton = ({ onClick, disableflg }) => {
+const BackButton = ({ onClick, disabled }) => {
   return (
     <Button
-      disabled={disableflg}
+      size="large"
+      disabled={disabled}
       onClick={onClick}
       variant="outlined"
       startIcon={<ArrowBackIcon />}
@@ -17,7 +18,7 @@ const BackButton = ({ onClick, disableflg }) => {
 
 BackButton.propTypes = {
   onClick: PropTypes.func,
-  disableflg: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default BackButton;

@@ -3,11 +3,14 @@ import { useTheme } from '@mui/material/styles';
 import { MobileStepper, Button, Typography } from "@mui/material"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
 import useMediaQuery from '@mui/material/useMediaQuery';
+import NextButton from './NextButton';
+import BackButton from './BackButton';
 
 const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // 画面サイズがsm以下か判定, 以上の場合はdownをupに変える
-  console.log('matches', isMobile);
+  const backButtonEnabled = (activeStep > 6) || (activeStep === 0) || (disableflg === true);
+  const nextButtonEnabled = (activeStep >= 6) || (disableflg === true);
 
   const labelProps = {};
   if (disableflg) {
@@ -31,8 +34,7 @@ const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg }) => {
         transform: isMobile ? "" : "translate(-50%, 0)",
       }}
       nextButton={
-        < Button size="small" onClick={handleNext} disabled={(activeStep === 6) || (disableflg === true)}>
-          Next
+        <NextButton onClick={handleNext} disabled={nextButtonEnabled}>
           {
             theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
@@ -40,10 +42,10 @@ const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg }) => {
               <KeyboardArrowRight />
             )
           }
-        </Button >
+        </NextButton >
       }
       backButton={
-        < Button size="small" onClick={handleBack} disabled={(activeStep === 0) || disableflg}>
+        <BackButton onClick={handleBack} disabled={backButtonEnabled}>
           {
             theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
@@ -51,8 +53,7 @@ const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg }) => {
               <KeyboardArrowLeft />
             )
           }
-          Back
-        </Button >
+        </BackButton >
       }
     />
   )
