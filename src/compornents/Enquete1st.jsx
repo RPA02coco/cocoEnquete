@@ -7,8 +7,6 @@ import ImportantPoint from './content/ImportantPoint';
 import BuildingAHouse from './content/BuildingAHouse';
 import BuildingAHouse2 from './content/BuildingAHouse2';
 import InformationGathering from './content/InformationGathering';
-import BackButton from './Button/BackButton';
-import NextButton from './Button/NextButton';
 import SubmitButton from './Button/SubmitButton';
 import { Grid } from '@mui/material';
 import { formInit } from '../constantDefinition/formInit';
@@ -16,6 +14,7 @@ import InformationGathering2 from './content/informationGathering2';
 import axios from 'axios';
 import convertToJSON from '../helpers/convertToJSON';
 import CompletionMessage from './content/CompletionMessage';
+import BackNextButton from './Button/BackNextButton';
 
 const disableChk = (form, chkNum) => {
   return Object.values(form).some(({ pageNum, valueError }) => pageNum === chkNum && valueError);
@@ -23,10 +22,8 @@ const disableChk = (form, chkNum) => {
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
-  const [pageCond, setPageCond] = useState({ pageNum: 1, disableFlg: false, });
-  const nextVisible = !(pageCond.pageNum >= 7);
-  const backVisible = !(pageCond.pageNum === 1 || pageCond.pageNum > 7);
-  const submitVisible = (pageCond.pageNum === 7);
+  const [pageCond, setPageCond] = useState({ pageNum: 0, disableFlg: false, });
+  const submitVisible = (pageCond.pageNum === 6);
   const disableflg = disableChk(form, pageCond.pageNum);
 
   const nextButtonClick = (event) => {
@@ -53,43 +50,49 @@ const Enquete1st = () => {
       jsonForm
     })
       .then(res => console.log('axios', res))
-      .catch(res => console.log('axios',res));
+      .catch(res => console.log('axios', res));
 
     setPageCond((prev) => {
       return { ...prev, pageNum: prev.pageNum + 1 }
     });
-};
+  };
 
+  return (
+    <form onSubmit={submitButtonClick}>
+      <Grid
+        container spacing={2}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={12} md={12}>
+          {pageCond.pageNum === 0 && <BasicInformation form={form} setForm={setForm} />}
+          {pageCond.pageNum === 1 && <Works form={form} setForm={setForm} />}
+          {pageCond.pageNum === 2 && <ImportantPoint form={form} setForm={setForm} />}
+          {pageCond.pageNum === 3 && <BuildingAHouse form={form} setForm={setForm} />}
+          {pageCond.pageNum === 4 && <BuildingAHouse2 form={form} setForm={setForm} />}
+          {pageCond.pageNum === 5 && <InformationGathering form={form} setForm={setForm} />}
+          {pageCond.pageNum === 6 && <InformationGathering2 form={form} setForm={setForm} />}
+          {pageCond.pageNum > 6 && <CompletionMessage />}
+        </Grid>
+        <Grid item xs={4}>
+          {submitVisible && <SubmitButton />}
+        </Grid>
+        <Grid item xs={12}>
+          <BackNextButton
+            handleNext={nextButtonClick}
+            handleBack={backButtonClick}
+            activeStep={pageCond.pageNum}
+            disableflg={disableflg}
+          />
+        </Grid>
+        <Grid item xs={12}>
 
-return (
-  <form onSubmit={submitButtonClick}>
-    <Grid
-      container spacing={2}
-      direction="row"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Grid item xs={12} md={12}>
-        {pageCond.pageNum === 1 && <BasicInformation form={form} setForm={setForm} />}
-        {pageCond.pageNum === 2 && <Works form={form} setForm={setForm} />}
-        {pageCond.pageNum === 3 && <ImportantPoint form={form} setForm={setForm} />}
-        {pageCond.pageNum === 4 && <BuildingAHouse form={form} setForm={setForm} />}
-        {pageCond.pageNum === 5 && <BuildingAHouse2 form={form} setForm={setForm} />}
-        {pageCond.pageNum === 6 && <InformationGathering form={form} setForm={setForm} />}
-        {pageCond.pageNum === 7 && <InformationGathering2 form={form} setForm={setForm} />}
-        {pageCond.pageNum > 7 && <CompletionMessage />}
+        </Grid>
       </Grid>
-      <Grid item xs={4}>
-        {backVisible && <BackButton onClick={backButtonClick} disableflg={disableflg} />}
-      </Grid>
-      <Grid item xs={4}>
-        {nextVisible && <NextButton onClick={nextButtonClick} disableflg={disableflg} />}
-        {submitVisible && <SubmitButton />}
-      </Grid>
-    </Grid>
-  </form >
+    </form >
 
-);
+  );
 };
 
 Enquete1st.propTypes = {
