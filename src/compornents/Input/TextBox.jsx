@@ -1,19 +1,38 @@
 import PropTypes from 'prop-types';
 import { TextField, InputAdornment } from '@mui/material';
 
-export const TextBox = ({ tgtName, tgtLabel, form, onChange, required }) => {
+const errorViewer = (form, tgtName) => {
+  let viewerFlg;
+  viewerFlg = form[tgtName].touch && form[tgtName].valueError && (form[tgtName].value !== "") ?
+    form[tgtName].valueError :
+    false;
+
+  return viewerFlg;
+}
+
+const errTextViewer = (form, tgtName) => {
+  let viewerText;
+  viewerText = form[tgtName].touch && form[tgtName].valueError && (form[tgtName].value !== "") ?
+    form[tgtName].errorText :
+    '';
+
+  return viewerText;
+}
+
+export const TextBox = ({ tgtName, form, onChange, required, onBlur }) => {
   return (
     <TextField fullWidth
-      label={tgtLabel}
+      label={form[tgtName].label}
       defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
       required={required}
       variant="outlined"
       name={tgtName}
-      error={form[tgtName].valueError}
-      helperText={form[tgtName].valueError && form[tgtName].errorText}
-      onChange={onChange}
+      error={errorViewer(form, tgtName)}
+      helperText={errTextViewer(form, tgtName)}
+      onInput={onChange} 
+      onBlur={onBlur}
       sx={{ backgroundColor: '#ffffff' }}
-    />
+      />
   )
 }
 
@@ -22,6 +41,7 @@ TextBox.propTypes = {
   tgtLabel: PropTypes.string,
   form: PropTypes.object,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   required: PropTypes.bool,
 };
 

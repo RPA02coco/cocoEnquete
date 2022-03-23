@@ -9,15 +9,24 @@ import nullJudge from '../../helpers/nullJudgement';
 import { TextBox } from '../Input/TextBox';
 
 const BasicInformation = ({ form, setForm }) => {
-  const changeHandler = (name) => {
-    console.log('[Change]', name, 'valueError', form[name].valueError);
+  const changeHandler = (name) => (value) => {
     if (form[name].valueError) {
-      BlurHandler(name);
+      let errFlg = false;
+      setForm((prev) => {
+        errFlg = errorJudgement(name, value);
+        return {
+          ...prev, [name]: {
+            ...prev[name],
+            touch: true,
+            value: nullJudge(form, name, value),
+            valueError: errFlg,
+          },
+        };
+      });
     }
   }
-  
+
   const BlurHandler = (name) => (value) => {
-    console.log('[Blur]', name, 'valueError', form[name].valueError, value);
     let errFlg = false;
     setForm((prev) => {
       errFlg = errorJudgement(name, value);
