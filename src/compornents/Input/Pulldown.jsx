@@ -13,6 +13,7 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form }) => {
           name={tgtName}
           label={tgtLabel}
           onChange={onChange}
+          sx={{ backgroundColor: '#ffffff' }}
         >
           {tgtArray.map((item) => {
             return <MenuItem value={item} key={`key_${tgtName}${item}`}>{item}</MenuItem>
@@ -43,6 +44,7 @@ export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
           name={tgtName}
           label={tgtLabel}
           onChange={onChange}
+          sx={{ backgroundColor: '#ffffff' }}
         >
           {Object.keys(tgtObj).map((item) => {
             return <MenuItem value={item} key={`key_${tgtName}${item}`}>{item}</MenuItem>

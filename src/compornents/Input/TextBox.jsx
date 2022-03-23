@@ -11,7 +11,9 @@ export const TextBox = ({ tgtName, tgtLabel, form, onChange, required }) => {
       name={tgtName}
       error={form[tgtName].valueError}
       helperText={form[tgtName].valueError && form[tgtName].errorText}
-      onChange={onChange} />
+      onChange={onChange}
+      sx={{ backgroundColor: '#ffffff' }}
+    />
   )
 }
 
@@ -34,6 +36,7 @@ export const TBwithUnit = ({ tgtName, tgtLabel, form, onChange, required, unit }
       error={form[tgtName].valueError}
       helperText={form[tgtName].valueError && form[tgtName].errorText}
       onChange={onChange}
+      sx={{ backgroundColor: '#ffffff' }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="start">
@@ -41,7 +44,7 @@ export const TBwithUnit = ({ tgtName, tgtLabel, form, onChange, required, unit }
           </InputAdornment>
         ),
       }}
-       />
+    />
   )
 }
 

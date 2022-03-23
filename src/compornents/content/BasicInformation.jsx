@@ -9,28 +9,38 @@ import nullJudge from '../../helpers/nullJudgement';
 import { TextBox } from '../Input/TextBox';
 
 const BasicInformation = ({ form, setForm }) => {
-  const changeHandler = (name) => (value) => {
+  const changeHandler = (name) => {
+    console.log('[Change]', name, 'valueError', form[name].valueError);
+    if (form[name].valueError) {
+      BlurHandler(name);
+    }
+  }
+  
+  const BlurHandler = (name) => (value) => {
+    console.log('[Blur]', name, 'valueError', form[name].valueError, value);
     let errFlg = false;
     setForm((prev) => {
       errFlg = errorJudgement(name, value);
       return {
         ...prev, [name]: {
           ...prev[name],
+          touch: true,
           value: nullJudge(form, name, value),
           valueError: errFlg,
         },
       };
     });
   };
-  // console.log(form);
+
+  console.log(form);
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='fullname' tgtLabel='世帯主様お名前' form={form} onChange={changeHandler('fullname')} required={true} />
+        <TextBox tgtName='fullname' form={form} onChange={changeHandler('fullname')} onBlur={BlurHandler('fullname')} required={true} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='furigana' tgtLabel='フリガナ' form={form} onChange={changeHandler('furigana')} required={true} />
+        <TextBox tgtName='furigana' form={form} onChange={changeHandler('furigana')} onBlur={BlurHandler('furigana')} required={true} />
       </Grid>
       <Grid item xs={12} md={12}>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
@@ -41,31 +51,32 @@ const BasicInformation = ({ form, setForm }) => {
             mask="____年__月__日"
             inputFormat="yyyy年MM月dd日"
             views={['year', 'month', 'day']}
-            onChange={changeHandler('birthday')}
+            onChange={BlurHandler('birthday')}
+            sx={{ backgroundColor: '#ffffff' }}
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
       </Grid>
       <Grid item xs={8} md={6}>
-        <TextBox tgtName='postCode' tgtLabel='郵便番号' form={form} onChange={changeHandler('postCode')} required={true} />
+        <TextBox tgtName='postCode' form={form} onChange={changeHandler('postCode')} onBlur={BlurHandler('postCode')} required={true} />
       </Grid>
       <Grid item xs={12} md={12}>
-        <TextBox tgtName='address' tgtLabel='住所' form={form} onChange={changeHandler('address')} required={true} />
+        <TextBox tgtName='address' form={form} onChange={changeHandler('address')} onBlur={BlurHandler('address')} required={true} />
       </Grid>
       <Grid item xs={12} md={12}>
-        <TextBox tgtName='address2' tgtLabel='住所(建物名)' form={form} onChange={changeHandler('address2')} required={false} />
+        <TextBox tgtName='address2' form={form} onChange={changeHandler('address2')} onBlur={BlurHandler('address2')} required={false} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='tel' tgtLabel='TEL' form={form} onChange={changeHandler('tel')} required={true} />
+        <TextBox tgtName='tel' form={form} onChange={changeHandler('tel')} onBlur={BlurHandler('tel')} required={true} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='mail' tgtLabel='MAIL' form={form} onChange={changeHandler('mail')} required={true} />
+        <TextBox tgtName='mail' form={form} onChange={changeHandler('mail')} onBlur={BlurHandler('mail')} required={true} />
       </Grid>
       <Grid item xs={12} md={8}>
-        <TextBox tgtName='workPlace' tgtLabel='ご勤務先' form={form} onChange={changeHandler('workPlace')} required={false} />
+        <TextBox tgtName='workPlace' form={form} onChange={changeHandler('workPlace')} onBlur={BlurHandler('workPlace')} required={false} />
       </Grid>
       <Grid item xs={12} md={4}>
-        <TextBox tgtName='holiday' tgtLabel='ご休日' form={form} onChange={changeHandler('holiday')} required={false} />
+        <TextBox tgtName='holiday' form={form} onChange={changeHandler('holiday')} onBlur={BlurHandler('holiday')} required={false} />
       </Grid>
     </Grid>
   );

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ErrorMessage from '../Box/ErrorMessage';
 
 const NextButton = ({ onClick, disabled }) => {
   return (
