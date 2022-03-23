@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { TextField, InputAdornment } from '@mui/material';
 
-const errorViewer = (form, tgtName) => {
+export const errorViewer = (form, tgtName) => {
   let viewerFlg;
   viewerFlg = form[tgtName].touch && form[tgtName].valueError && (form[tgtName].value !== "") ?
     form[tgtName].valueError :

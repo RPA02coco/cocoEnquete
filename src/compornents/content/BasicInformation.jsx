@@ -6,11 +6,11 @@ import { ja } from 'date-fns/locale';
 import { Grid, TextField } from '@mui/material';
 import errorJudgement from '../../helpers/errorJudgment';
 import nullJudge from '../../helpers/nullJudgement';
-import { TextBox } from '../Input/TextBox';
+import { TextBox, errorViewer } from '../Input/TextBox';
 
 const BasicInformation = ({ form, setForm }) => {
   const changeHandler = (name) => (value) => {
-    if (form[name].valueError) {
+    if (errorViewer(form, name)) {
       let errFlg = false;
       setForm((prev) => {
         errFlg = errorJudgement(name, value);
@@ -41,7 +41,7 @@ const BasicInformation = ({ form, setForm }) => {
     });
   };
 
-  console.log(form);
+  // console.log(form);
 
   return (
     <Grid container spacing={2}>
