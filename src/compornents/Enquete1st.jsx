@@ -27,9 +27,15 @@ const Enquete1st = () => {
   const disableflg = disableChk(form, pageCond.pageNum);
 
   const nextButtonClick = (event) => {
-    setPageCond((prev) => {
-      return { ...prev, pageNum: prev.pageNum + 1 }
-    });
+    // エラーがあればエラー内容を表示&フォーカスする
+    if (disableflg) {
+      console.log("エラー時の処理を追加する");
+    } else {
+      // エラーが無ければページ遷移する
+      setPageCond((prev) => {
+        return { ...prev, pageNum: prev.pageNum + 1 }
+      });
+    }
   };
   const backButtonClick = (event) => {
     setPageCond((prev) => {
