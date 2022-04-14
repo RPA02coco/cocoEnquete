@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BasicInformation from './content/BasicInformation';
 import Works from './content/Works';
 import ImportantPoint from './content/ImportantPoint';
@@ -20,29 +20,50 @@ const disableChk = (form, chkNum) => {
   return Object.values(form).some(({ pageNum, valueError }) => pageNum === chkNum && valueError);
 };
 
+const viewDisableChk = (form, chkNum) => {
+  return Object.values(form).some(({ pageNum, nextClick }) => pageNum === chkNum && nextClick);
+}
+
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
   const [pageCond, setPageCond] = useState({ pageNum: 0, disableFlg: false, });
   const submitVisible = (pageCond.pageNum === 6);
   const disableflg = disableChk(form, pageCond.pageNum);
+  const viewDisableflg = viewDisableChk(form, pageCond.pageNum);
 
   const nextButtonClick = (event) => {
-    // エラーがあればエラー内容を表示&フォーカスする
-    if (disableflg) {
-      console.log("エラー時の処理を追加する");
-    } else {
-      // エラーが無ければページ遷移する
-      setPageCond((prev) => {
-        return { ...prev, pageNum: prev.pageNum + 1 }
-      });
-    }
+    const plusNum = disableflg ? 0 : 1;
+    nextClickFlg(form, pageCond.pageNum);
+    // エラーが無ければページ遷移する
+    setPageCond((prev) => {
+      return { ...prev, pageNum: prev.pageNum + plusNum }
+    });
   };
+
   const backButtonClick = (event) => {
     setPageCond((prev) => {
       return { ...prev, pageNum: prev.pageNum - 1 }
     });
   };
 
+  const nextClickFlg = (form, chkNum) => {
+    /* let newform = {}; */
+
+    setForm((prev) => {
+      let newform = Object.keys(form).reduce((accu, curr) => {
+        /* console.log(accu); */
+        if (prev[curr].pageNum === chkNum) {
+          return { ...accu, [curr]: { ...prev[curr], nextClick: true } };
+        }
+        return { ...accu, [curr]: prev[curr] };
+      }, {})
+      return newform;
+      /* return Object.keys(form).forEach(item => {
+              newform = { ...form, [item]: { ...form[item], nextClick: true } };
+            }) */
+    })
+  }
+  
   const submitButtonClick = (event) => {
     event.preventDefault();
     console.log('submit!!!');
@@ -62,6 +83,8 @@ const Enquete1st = () => {
       return { ...prev, pageNum: prev.pageNum + 1 }
     });
   };
+
+  console.log('form内容：', form);
 
   return (
     <form onSubmit={submitButtonClick}>
@@ -94,11 +117,11 @@ const Enquete1st = () => {
               handleNext={nextButtonClick}
               handleBack={backButtonClick}
               activeStep={pageCond.pageNum}
-              disableflg={disableflg}
+              disableflg={viewDisableflg}
             />}
         </Grid>
         <Grid item xs={12}>
-
+          {/*  */}
         </Grid>
       </Grid>
     </form >

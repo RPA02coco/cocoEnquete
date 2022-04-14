@@ -9,8 +9,8 @@ import BackButton from './BackButton';
 const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // 画面サイズがsm以下か判定, 以上の場合はdownをupに変える
-  const backButtonEnabled = (activeStep > 6) || (activeStep === 0) // || (disableflg === true);
-  const nextButtonEnabled = (activeStep >= 6) // || (disableflg === true);
+  const backButtonEnabled = (activeStep > 6) || (activeStep === 0) || (disableflg === true);
+  const nextButtonEnabled = (activeStep >= 6) || (disableflg === true);
 
   const labelProps = {};
   if (disableflg) {

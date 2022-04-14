@@ -17,7 +17,6 @@ const BasicInformation = ({ form, setForm }) => {
         return {
           ...prev, [name]: {
             ...prev[name],
-            touch: true,
             value: nullJudge(form, name, value),
             valueError: errFlg,
           },
@@ -33,7 +32,6 @@ const BasicInformation = ({ form, setForm }) => {
       return {
         ...prev, [name]: {
           ...prev[name],
-          touch: true,
           value: nullJudge(form, name, value),
           valueError: errFlg,
         },

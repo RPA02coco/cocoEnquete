@@ -1,15 +1,15 @@
 import format from 'date-fns/format';
 
 export const formInit = {
-  fullname: { label: '【必須】世帯主様お名前', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
-  furigana: { label: '【必須】フリガナ', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  fullname: { label: '【必須】世帯主様お名前', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  furigana: { label: '【必須】フリガナ', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   dateEntered: { label: '記入日', value: format(new Date(), "yyyy-MM-dd'T'HH:mm:00'Z'") },
-  birthday: { label: '誕生日', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
-  postCode: { label: '【必須】郵便番号', value: '', pageNum: 0, touch: false, valueError: true, errorText: '数字で入力してください。入力例:442-0888' },
-  address: { label: '【必須】住所', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  birthday: { label: '誕生日', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  postCode: { label: '【必須】郵便番号', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '数字で入力してください。入力例:442-0888' },
+  address: { label: '【必須】住所', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   address2: { label: '住所(建物名)', value: '', pageNum: 0 },
-  tel: { label: '【必須】TEL', value: '', pageNum: 0, touch: false, valueError: true, errorText: '数字で入力してください。入力例:090-1111-2222' },
-  mail: { label: '【必須】MAIL', value: '', pageNum: 0, touch: false, valueError: true, errorText: '英数字で入力してください。入力例:sample@mail.jp' },
+  tel: { label: '【必須】TEL', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '数字で入力してください。入力例:090-1111-2222' },
+  mail: { label: '【必須】MAIL', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '英数字で入力してください。入力例:sample@mail.jp' },
   workPlace: { label: 'ご勤務先', pageNum: 0, value: '' },
   holiday: { label: 'ご休日', pageNum: 0, value: '' },
   works: { label: 'ご職業', pageNum: 1, value: '' },

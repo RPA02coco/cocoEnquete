@@ -3,7 +3,7 @@ import { TextField, InputAdornment } from '@mui/material';
 
 export const errorViewer = (form, tgtName) => {
   let viewerFlg;
-  viewerFlg = form[tgtName].touch && form[tgtName].valueError && (form[tgtName].value !== "") ?
+  viewerFlg = form[tgtName].valueError && (form[tgtName].value !== "") ?
     form[tgtName].valueError :
     false;
 
@@ -12,7 +12,7 @@ export const errorViewer = (form, tgtName) => {
 
 const errTextViewer = (form, tgtName) => {
   let viewerText;
-  viewerText = form[tgtName].touch && form[tgtName].valueError && (form[tgtName].value !== "") ?
+  viewerText = form[tgtName].valueError && (form[tgtName].value !== "") ?
     form[tgtName].errorText :
     '';
 
