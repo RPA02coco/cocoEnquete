@@ -63,6 +63,7 @@ const BasicInformation = ({ form, setForm }) => {
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
           <DatePicker className='inputdates'
             label="生年月日"
+            id='birthday'
             value={form.birthday.value}
             defaultValue={form.birthday.value === '' ? '' : form.birthday.value}
             mask="____年__月__日"

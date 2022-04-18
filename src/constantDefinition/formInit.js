@@ -4,7 +4,7 @@ export const formInit = {
   fullname: { label: '【必須】世帯主様お名前', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   furigana: { label: '【必須】フリガナ', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   dateEntered: { label: '記入日', value: format(new Date(), "yyyy-MM-dd'T'HH:mm:00'Z'") },
-  birthday: { label: '誕生日', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  birthday: { label: '【必須】誕生日', value: format(new Date(), "yyyy-MM-dd'T'HH:mm:00'Z'"), pageNum: 0, nextClick: false, valueError: false, errorText: '必須項目です。ご記入をお願いします。' },
   postCode: { label: '【必須】郵便番号', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '数字で入力してください。入力例:442-0888' },
   address: { label: '【必須】住所', value: '', pageNum: 0, nextClick: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   address2: { label: '住所(建物名)', value: '', pageNum: 0 },
