@@ -36,7 +36,7 @@ const BasicInformation = ({ form, setForm }) => {
       errFlg = errorJudgement(name, value);
       if (errFlg) {
         // nameの箇所にフォーカスする
-        console.log('フォーカス処理:errFlg', document.getElementById(name));
+        // console.log('フォーカス処理:errFlg', document.getElementById(name));
         document.getElementById(name).focus({ preventScroll: false });
       }
       return {

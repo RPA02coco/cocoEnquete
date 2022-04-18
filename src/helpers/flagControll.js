@@ -10,7 +10,7 @@ export const disableID = (form, chkNum) => {
     if (form[keylist[i]].pageNum === chkNum) {
       if (form[keylist[i]].valueError) {
         errName = keylist[i];
-        console.log('errName::', errName);
+        // console.log('errName::', errName);
         break;
       }
     }

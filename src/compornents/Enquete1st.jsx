@@ -30,7 +30,7 @@ const Enquete1st = () => {
 
     if (disableflg) {
       // nameの箇所にフォーカスする
-      console.log('フォーカス処理:errFlg');
+      // console.log('フォーカス処理:errFlg');
       document.getElementById(disableID(form, pageCond.pageNum)).focus({preventScroll:false});
     }
     // エラーが無ければページ遷移する
