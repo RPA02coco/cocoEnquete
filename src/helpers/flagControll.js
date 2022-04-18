@@ -7,9 +7,12 @@ export const disableID = (form, chkNum) => {
   let errName = '';
   const keylist = Object.keys(form);
   for (let i = 0; i < keylist.length; i++) {
-    if (form.keylist(i).pageNum === chkNum && form.keylist(i).valueError) {
-      errName = keylist(i);
-      break;
+    if (form[keylist[i]].pageNum === chkNum) {
+      if (form[keylist[i]].valueError) {
+        errName = keylist[i];
+        console.log('errName::', errName);
+        break;
+      }
     }
   }
   return errName;
