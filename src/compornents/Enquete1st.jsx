@@ -15,21 +15,14 @@ import axios from 'axios';
 import convertToJSON from '../helpers/convertToJSON';
 import CompletionMessage from './content/CompletionMessage';
 import BackNextButton from './Button/BackNextButton';
-
-const disableChk = (form, chkNum) => {
-  return Object.values(form).some(({ pageNum, valueError }) => pageNum === chkNum && valueError);
-};
-
-const viewDisableChk = (form, chkNum) => {
-  return Object.values(form).some(({ pageNum, nextClick }) => pageNum === chkNum && nextClick);
-}
+import { disableChk, viewDisableChk } from '../helpers/flagControll';
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
   const [pageCond, setPageCond] = useState({ pageNum: 0, disableFlg: false, });
   const submitVisible = (pageCond.pageNum === 6);
   const disableflg = disableChk(form, pageCond.pageNum);
-  const viewDisableflg = viewDisableChk(form, pageCond.pageNum);
+  const viewDisableflg = viewDisableChk(form, pageCond.pageNum) && disableflg;
 
   const nextButtonClick = (event) => {
     const plusNum = disableflg ? 0 : 1;
@@ -118,6 +111,7 @@ const Enquete1st = () => {
               handleBack={backButtonClick}
               activeStep={pageCond.pageNum}
               disableflg={viewDisableflg}
+              form={form}
             />}
         </Grid>
         <Grid item xs={12}>

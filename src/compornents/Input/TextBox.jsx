@@ -3,18 +3,25 @@ import { TextField, InputAdornment } from '@mui/material';
 
 export const errorViewer = (form, tgtName) => {
   let viewerFlg;
-  viewerFlg = form[tgtName].valueError && (form[tgtName].value !== "") ?
+  if (form[tgtName].nextClick) {
+    viewerFlg = form[tgtName].valueError && form[tgtName].valueError;
+  } else {
+    viewerFlg = form[tgtName].valueError && (form[tgtName].value !== "") ?
     form[tgtName].valueError :
     false;
-
+  }
   return viewerFlg;
 }
 
 const errTextViewer = (form, tgtName) => {
   let viewerText;
-  viewerText = form[tgtName].valueError && (form[tgtName].value !== "") ?
+  if (form[tgtName].nextClick) {
+    viewerText = form[tgtName].valueError && form[tgtName].errorText;
+  } else {
+    viewerText = form[tgtName].valueError && (form[tgtName].value !== "") ?
     form[tgtName].errorText :
     '';
+  }
 
   return viewerText;
 }
@@ -29,10 +36,10 @@ export const TextBox = ({ tgtName, form, onChange, required, onBlur }) => {
       name={tgtName}
       error={errorViewer(form, tgtName)}
       helperText={errTextViewer(form, tgtName)}
-      onInput={onChange} 
+      onInput={onChange}
       onBlur={onBlur}
       sx={{ backgroundColor: '#ffffff' }}
-      />
+    />
   )
 }
 
