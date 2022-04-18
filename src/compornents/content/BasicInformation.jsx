@@ -54,10 +54,10 @@ const BasicInformation = ({ form, setForm }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='fullname' form={form} onChange={changeHandler('fullname')} onBlur={BlurHandler('fullname')} required={true} />
+        <TextBox tgtName='fullname' tgtLabel={form.fullname.label} form={form} onChange={changeHandler('fullname')} onBlur={BlurHandler('fullname')} required={true} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='furigana' form={form} onChange={changeHandler('furigana')} onBlur={BlurHandler('furigana')} required={true} />
+        <TextBox tgtName='furigana' tgtLabel={form.furigana.label} form={form} onChange={changeHandler('furigana')} onBlur={BlurHandler('furigana')} required={true} />
       </Grid>
       <Grid item xs={12} md={12}>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
@@ -75,25 +75,25 @@ const BasicInformation = ({ form, setForm }) => {
         </LocalizationProvider>
       </Grid>
       <Grid item xs={8} md={6}>
-        <TextBox tgtName='postCode' form={form} onChange={changeHandler('postCode')} onBlur={BlurHandler('postCode')} required={true} />
+        <TextBox tgtName='postCode' tgtLabel={form.postCode.label} form={form} onChange={changeHandler('postCode')} onBlur={BlurHandler('postCode')} required={true} />
       </Grid>
       <Grid item xs={12} md={12}>
-        <TextBox tgtName='address' form={form} onChange={changeHandler('address')} onBlur={BlurHandler('address')} required={true} />
+        <TextBox tgtName='address' tgtLabel={form.address.label} form={form} onChange={changeHandler('address')} onBlur={BlurHandler('address')} required={true} />
       </Grid>
       <Grid item xs={12} md={12}>
-        <TextBox tgtName='address2' form={form} onChange={changeHandler('address2')} onBlur={BlurHandler('address2')} required={false} />
+        <TextBox tgtName='address2' tgtLabel={form.address2.label} form={form} onChange={changeHandler('address2')} onBlur={BlurHandler('address2')} required={false} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='tel' form={form} onChange={changeHandler('tel')} onBlur={BlurHandler('tel')} required={true} />
+        <TextBox tgtName='tel' tgtLabel={form.tel.label} form={form} onChange={changeHandler('tel')} onBlur={BlurHandler('tel')} required={true} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='mail' form={form} onChange={changeHandler('mail')} onBlur={BlurHandler('mail')} required={true} />
+        <TextBox tgtName='mail' tgtLabel={form.mail.label} form={form} onChange={changeHandler('mail')} onBlur={BlurHandler('mail')} required={true} />
       </Grid>
       <Grid item xs={12} md={8}>
-        <TextBox tgtName='workPlace' form={form} onChange={changeHandler('workPlace')} onBlur={BlurHandler('workPlace')} required={false} />
+        <TextBox tgtName='workPlace' tgtLabel={form.workPlace.label} form={form} onChange={changeHandler('workPlace')} onBlur={BlurHandler('workPlace')} required={false} />
       </Grid>
       <Grid item xs={12} md={4}>
-        <TextBox tgtName='holiday' form={form} onChange={changeHandler('holiday')} onBlur={BlurHandler('holiday')} required={false} />
+        <TextBox tgtName='holiday' tgtLabel={form.holiday.label} form={form} onChange={changeHandler('holiday')} onBlur={BlurHandler('holiday')} required={false} />
       </Grid>
     </Grid>
   );

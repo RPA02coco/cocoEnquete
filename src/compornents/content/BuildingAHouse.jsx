@@ -50,7 +50,7 @@ const BuildingAHouse = ({ form, setForm }) => {
         <Grid item xs={12} md={12}>
           <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='入居形態' onChange={TextRadioChange} />
           {form.moveInForm.value.includes('その他') &&
-            <TextBox tgtName='mvInFormOthers' tgtLabel='その他 詳細' form={form} onChange={TextRadioChange} required={false} />}
+            <TextBox tgtName='mvInFormOthers' tgtLabel='入居形態詳細' form={form} onChange={TextRadioChange} required={false} />}
         </Grid>
       </Grid >
     </>

@@ -43,7 +43,7 @@ const InformationGathering = ({ form, setForm }) => {
       <Grid container spacing={2}>
         <Grid item xs={12} ms={12}>
           {searchWords(form.informationSource.value, '夢のおてつだい') &&
-            <TextBox tgtName='yumePersonInCharge' tgtLabel='担当者の名前' form={form} onChange={textChange} required={false} />}
+            <TextBox tgtName='yumePersonInCharge' tgtLabel='夢のおてつだい 担当者名' form={form} onChange={textChange} required={false} />}
         </Grid>
         <Grid item xs={12} ms={12}>
           {searchWords(form.informationSource.value, '知人') &&

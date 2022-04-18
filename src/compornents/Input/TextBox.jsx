@@ -26,10 +26,10 @@ const errTextViewer = (form, tgtName) => {
   return viewerText;
 }
 
-export const TextBox = ({ tgtName, form, onChange, required, onBlur }) => {
+export const TextBox = ({ tgtName, tgtLabel, form, onChange, required, onBlur }) => {
   return (
     <TextField fullWidth
-      label={form[tgtName].label}
+      label={tgtLabel}
       defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
       required={required}
       variant="outlined"
