@@ -15,18 +15,24 @@ import axios from 'axios';
 import convertToJSON from '../helpers/convertToJSON';
 import CompletionMessage from './content/CompletionMessage';
 import BackNextButton from './Button/BackNextButton';
-import { disableChk, viewDisableChk } from '../helpers/flagControll';
+import { disableChk, disableID, viewDisableChk } from '../helpers/flagControll';
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
   const [pageCond, setPageCond] = useState({ pageNum: 0, disableFlg: false, });
   const submitVisible = (pageCond.pageNum === 6);
   const disableflg = disableChk(form, pageCond.pageNum);
-  const viewDisableflg = viewDisableChk(form, pageCond.pageNum) && disableflg;
+  const viewDisableflg = viewDisableChk(form, pageCond.pageNum);
 
   const nextButtonClick = (event) => {
     const plusNum = disableflg ? 0 : 1;
     nextClickFlg(form, pageCond.pageNum);
+
+    if (disableflg) {
+      // nameの箇所にフォーカスする
+      console.log('フォーカス処理:errFlg');
+      document.getElementById(disableID).focus({preventScroll:false});
+    }
     // エラーが無ければページ遷移する
     setPageCond((prev) => {
       return { ...prev, pageNum: prev.pageNum + plusNum }
@@ -40,8 +46,6 @@ const Enquete1st = () => {
   };
 
   const nextClickFlg = (form, chkNum) => {
-    /* let newform = {}; */
-
     setForm((prev) => {
       let newform = Object.keys(form).reduce((accu, curr) => {
         /* console.log(accu); */
@@ -51,9 +55,6 @@ const Enquete1st = () => {
         return { ...accu, [curr]: prev[curr] };
       }, {})
       return newform;
-      /* return Object.keys(form).forEach(item => {
-              newform = { ...form, [item]: { ...form[item], nextClick: true } };
-            }) */
     })
   }
   
@@ -77,7 +78,7 @@ const Enquete1st = () => {
     });
   };
 
-  console.log('form内容：', form);
+  // console.log('form内容：', form);
 
   return (
     <form onSubmit={submitButtonClick}>

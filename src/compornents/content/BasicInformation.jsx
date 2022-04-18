@@ -13,7 +13,12 @@ const BasicInformation = ({ form, setForm }) => {
     if (errorViewer(form, name)) {
       let errFlg = false;
       setForm((prev) => {
-        errFlg = errorJudgement(name, value);
+        errFlg = errorJudgement(name, value);      
+        /* if (errFlg) {
+          // nameの箇所にフォーカスする
+          console.log('フォーカス処理:errFlg', document.getElementById(name));
+          document.getElementById(name).focus();
+        } */
         return {
           ...prev, [name]: {
             ...prev[name],
@@ -29,6 +34,11 @@ const BasicInformation = ({ form, setForm }) => {
     let errFlg = false;
     setForm((prev) => {
       errFlg = errorJudgement(name, value);
+      if (errFlg) {
+        // nameの箇所にフォーカスする
+        console.log('フォーカス処理:errFlg', document.getElementById(name));
+        document.getElementById(name).focus({preventScroll:false});
+      }
       return {
         ...prev, [name]: {
           ...prev[name],

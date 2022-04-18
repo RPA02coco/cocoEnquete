@@ -34,6 +34,7 @@ export const TextBox = ({ tgtName, form, onChange, required, onBlur }) => {
       required={required}
       variant="outlined"
       name={tgtName}
+      id={tgtName}
       error={errorViewer(form, tgtName)}
       helperText={errTextViewer(form, tgtName)}
       onInput={onChange}
