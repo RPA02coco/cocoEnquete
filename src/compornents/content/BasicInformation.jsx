@@ -13,7 +13,7 @@ const BasicInformation = ({ form, setForm }) => {
     if (errorViewer(form, name)) {
       let errFlg = false;
       setForm((prev) => {
-        errFlg = errorJudgement(name, value);      
+        errFlg = errorJudgement(name, value);
         /* if (errFlg) {
           // nameの箇所にフォーカスする
           console.log('フォーカス処理:errFlg', document.getElementById(name));
@@ -37,7 +37,7 @@ const BasicInformation = ({ form, setForm }) => {
       if (errFlg) {
         // nameの箇所にフォーカスする
         console.log('フォーカス処理:errFlg', document.getElementById(name));
-        document.getElementById(name).focus({preventScroll:false});
+        document.getElementById(name).focus({ preventScroll: false });
       }
       return {
         ...prev, [name]: {
@@ -62,7 +62,7 @@ const BasicInformation = ({ form, setForm }) => {
       <Grid item xs={12} md={12}>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
           <DatePicker className='inputdates'
-            label="生年月日"
+            label="【必須】生年月日"
             id='birthday'
             value={form.birthday.value}
             defaultValue={form.birthday.value === '' ? '' : form.birthday.value}
