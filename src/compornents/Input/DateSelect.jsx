@@ -19,7 +19,6 @@ const DateContent = ({ form, tgtName, onChange }) => {
         views={['year', 'month', 'day']}
         onChange={onChange}
         variant="outlined"
-        
         renderInput={(params) => <TextField {...params}
           helperText={errTextViewer(form, tgtName)}
           sx={{ backgroundColor: '#ffffff' }}
