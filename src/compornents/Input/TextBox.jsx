@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { TextField, InputAdornment } from '@mui/material';
+import { AttentionSeeker } from 'react-awesome-reveal';
 
 export const errorViewer = (form, tgtName) => {
   let viewerFlg;
@@ -7,8 +8,8 @@ export const errorViewer = (form, tgtName) => {
     viewerFlg = form[tgtName].valueError && form[tgtName].valueError;
   } else {
     viewerFlg = form[tgtName].valueError && (form[tgtName].value !== "") ?
-    form[tgtName].valueError :
-    false;
+      form[tgtName].valueError :
+      false;
   }
   return viewerFlg;
 }
@@ -19,29 +20,50 @@ const errTextViewer = (form, tgtName) => {
     viewerText = form[tgtName].valueError && form[tgtName].errorText;
   } else {
     viewerText = form[tgtName].valueError && (form[tgtName].value !== "") ?
-    form[tgtName].errorText :
-    '';
+      form[tgtName].errorText :
+      '';
   }
 
   return viewerText;
 }
 
 export const TextBox = ({ tgtName, tgtLabel, form, onChange, required, onBlur }) => {
-  return (
-    <TextField fullWidth
-      label={tgtLabel}
-      defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
-      required={required}
-      variant="outlined"
-      name={tgtName}
-      id={tgtName}
-      error={errorViewer(form, tgtName)}
-      helperText={errTextViewer(form, tgtName)}
-      onInput={onChange}
-      onBlur={onBlur}
-      sx={{ backgroundColor: '#ffffff' }}
-    />
-  )
+  // console.log(tgtName, ' TextBox条件：', required && (form[tgtName].valueError && form[tgtName].nextClick));
+  if (required && (form[tgtName].valueError && form[tgtName].nextClick)) {
+    return (
+      <AttentionSeeker effect='shake'>
+        <TextField fullWidth
+          label={tgtLabel}
+          defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
+          required={required}
+          variant="outlined"
+          name={tgtName}
+          id={tgtName}
+          error={errorViewer(form, tgtName)}
+          helperText={errTextViewer(form, tgtName)}
+          onInput={onChange}
+          onBlur={onBlur}
+          sx={{ backgroundColor: '#ffffff' }}
+        />
+      </AttentionSeeker>
+    )
+  } else {
+    return (
+      <TextField fullWidth
+        label={tgtLabel}
+        defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
+        required={required}
+        variant="outlined"
+        name={tgtName}
+        id={tgtName}
+        error={errorViewer(form, tgtName)}
+        helperText={errTextViewer(form, tgtName)}
+        onInput={onChange}
+        onBlur={onBlur}
+        sx={{ backgroundColor: '#ffffff' }}
+      />
+    )
+  }
 }
 
 TextBox.propTypes = {
@@ -54,26 +76,51 @@ TextBox.propTypes = {
 };
 
 export const TBwithUnit = ({ tgtName, tgtLabel, form, onChange, required, unit }) => {
-  return (
-    <TextField fullWidth
-      label={tgtLabel}
-      defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
-      required={required}
-      variant="outlined"
-      name={tgtName}
-      error={form[tgtName].valueError}
-      helperText={form[tgtName].valueError && form[tgtName].errorText}
-      onChange={onChange}
-      sx={{ backgroundColor: '#ffffff' }}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="start">
-            {unit}
-          </InputAdornment>
-        ),
-      }}
-    />
-  )
+  if (required && (form[tgtName].valueError && form[tgtName].nextClick)) {
+    return (
+      <AttentionSeeker effect='shake'>
+        <TextField fullWidth
+          label={tgtLabel}
+          defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
+          required={required}
+          variant="outlined"
+          name={tgtName}
+          error={form[tgtName].valueError}
+          helperText={form[tgtName].valueError && form[tgtName].errorText}
+          onChange={onChange}
+          sx={{ backgroundColor: '#ffffff' }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start">
+                {unit}
+              </InputAdornment>
+            ),
+          }}
+        />
+      </AttentionSeeker>
+    )
+  } else {
+    return (
+      <TextField fullWidth
+        label={tgtLabel}
+        defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
+        required={required}
+        variant="outlined"
+        name={tgtName}
+        error={form[tgtName].valueError}
+        helperText={form[tgtName].valueError && form[tgtName].errorText}
+        onChange={onChange}
+        sx={{ backgroundColor: '#ffffff' }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              {unit}
+            </InputAdornment>
+          ),
+        }}
+      />
+    )
+  }
 }
 
 TBwithUnit.propTypes = {

@@ -27,13 +27,10 @@ const Enquete1st = () => {
   const nextButtonClick = (event) => {
     const plusNum = disableflg ? 0 : 1;
     nextClickFlg(form, pageCond.pageNum);
-
     if (disableflg) {
-      // nameの箇所にフォーカスする
-      // console.log('フォーカス処理:errFlg');
-      document.getElementById(disableID(form, pageCond.pageNum)).focus({preventScroll:false});
+      // document.getElementById(disableID(form, pageCond.pageNum)).focus({ preventScroll: false });
+      document.getElementById(disableID(form, pageCond.pageNum)).scrollIntoView();
     }
-    // エラーが無ければページ遷移する
     setPageCond((prev) => {
       return { ...prev, pageNum: prev.pageNum + plusNum }
     });
@@ -57,7 +54,7 @@ const Enquete1st = () => {
       return newform;
     })
   }
-  
+
   const submitButtonClick = (event) => {
     event.preventDefault();
     console.log('submit!!!');

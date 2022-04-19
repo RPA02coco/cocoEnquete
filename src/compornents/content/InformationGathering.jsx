@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
-import { informationSourceLists } from '../../constantDefinition/constantDefinition';
+import { informationSourceLists, informationSourceLists2, informationSourceLists3 } from '../../constantDefinition/constantDefinition';
 import CheckBox from '../Input/CheckBox';
 import SubItems from '../Box/SubItems';
 import { TextBox, TBwithUnit } from '../Input/TextBox';
@@ -46,8 +46,10 @@ const InformationGathering = ({ form, setForm }) => {
             <TextBox tgtName='yumePersonInCharge' tgtLabel='夢のおてつだい 担当者名' form={form} onChange={textChange} required={false} />}
         </Grid>
         <Grid item xs={12} ms={12}>
+          <CheckBox tgtName='informationSource' tgtArray={informationSourceLists2} onChange={checkboxChange} form={form} />
           {searchWords(form.informationSource.value, '知人') &&
             <TBwithUnit tgtName='introducer' tgtLabel='ご紹介者様' form={form} onChange={textChange} required={false} unit='様' />}
+          <CheckBox tgtName='informationSource' tgtArray={informationSourceLists3} onChange={checkboxChange} form={form} />
         </Grid>
       </Grid>
     </>

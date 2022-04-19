@@ -89,6 +89,11 @@ export const documentRequestLists = [
   'はい', 'いいえ'
 ]
 
+/**
+ * '10.知人・ご友人からのご紹介',
+ * '11.該当なし',
+ * 上記2項目は別途実装
+ */
 export const informationSourceLists = [
   '1.当社ホームページ',
   '2.Facebook',
@@ -98,7 +103,12 @@ export const informationSourceLists = [
   '6.SUUMO(ネット・雑誌)',
   '7.スマイル',
   '8.工事看板',
-  '9.ハウスドゥ！(夢のおてつだい)からのご紹介',
-  '10.知人・ご友人からのご紹介',
-  '11.該当なし',
+  '9.ハウスドゥ！(夢のおてつだい)からのご紹介'
+]
+
+export const informationSourceLists2 = [
+  '10.知人・ご友人からのご紹介'
+]
+export const informationSourceLists3 = [
+  '11.該当なし'
 ]
