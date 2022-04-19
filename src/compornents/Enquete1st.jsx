@@ -28,7 +28,6 @@ const Enquete1st = () => {
     const plusNum = disableflg ? 0 : 1;
     nextClickFlg(form, pageCond.pageNum);
     if (disableflg) {
-      // document.getElementById(disableID(form, pageCond.pageNum)).focus({ preventScroll: false });
       document.getElementById(disableID(form, pageCond.pageNum)).scrollIntoView();
     }
     setPageCond((prev) => {
