@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import DatePicker from '@mui/lab/DatePicker';
-import { ja } from 'date-fns/locale';
-import { Grid, TextField } from '@mui/material';
+import { Grid } from '@mui/material';
 import errorJudgement from '../../helpers/errorJudgment';
 import nullJudge from '../../helpers/nullJudgement';
 import { TextBox, errorViewer } from '../Input/TextBox';
+import DateSelect from '../Input/DateSelect';
 
 const BasicInformation = ({ form, setForm }) => {
   const changeHandler = (name) => (value) => {
@@ -50,20 +47,7 @@ const BasicInformation = ({ form, setForm }) => {
         <TextBox tgtName='furigana' tgtLabel={form.furigana.label} form={form} onChange={changeHandler('furigana')} onBlur={BlurHandler('furigana')} required={true} />
       </Grid>
       <Grid item xs={12} md={12}>
-        <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
-          <DatePicker className='inputdates'
-            label="【必須】生年月日"
-            id='birthday'
-            value={form.birthday.value}
-            defaultValue={form.birthday.value === '' ? '' : form.birthday.value}
-            mask="____年__月__日"
-            inputFormat="yyyy年MM月dd日"
-            views={['year', 'month', 'day']}
-            onChange={BlurHandler('birthday')}
-            sx={{ backgroundColor: '#ffffff' }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
+        <DateSelect form={form} tgtName='birthday' onChange={BlurHandler('birthday')} />
       </Grid>
       <Grid item xs={8} md={6}>
         <TextBox tgtName='postCode' tgtLabel={form.postCode.label} form={form} onChange={changeHandler('postCode')} onBlur={BlurHandler('postCode')} required={true} />

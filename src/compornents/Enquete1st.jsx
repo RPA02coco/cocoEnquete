@@ -44,7 +44,6 @@ const Enquete1st = () => {
   const nextClickFlg = (form, chkNum) => {
     setForm((prev) => {
       let newform = Object.keys(form).reduce((accu, curr) => {
-        /* console.log(accu); */
         if (prev[curr].pageNum === chkNum) {
           return { ...accu, [curr]: { ...prev[curr], nextClick: true } };
         }

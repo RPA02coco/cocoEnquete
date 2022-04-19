@@ -10,7 +10,6 @@ export const disableID = (form, chkNum) => {
     if (form[keylist[i]].pageNum === chkNum) {
       if (form[keylist[i]].valueError) {
         errName = keylist[i];
-        // console.log('errName::', errName);
         break;
       }
     }
@@ -18,6 +17,12 @@ export const disableID = (form, chkNum) => {
   return errName;
 }
 
+/**
+ * 次へのボタンを無効にはしないことになったため、コメントアウト
+ * @param {*} form 
+ * @param {*} chkNum 
+ * @returns 
+ */
 export const viewDisableChk = (form, chkNum) => {
   return Object.values(form).some(({ pageNum, nextClick, valueError }) => pageNum === chkNum && nextClick && valueError);
 }
