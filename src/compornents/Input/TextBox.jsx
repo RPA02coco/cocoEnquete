@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { TextField, InputAdornment } from '@mui/material';
-import { AttentionSeeker } from 'react-awesome-reveal';
+import './TextBox.css';
 
 export const errorViewer = (form, tgtName) => {
   let viewerFlg;
-  if (form[tgtName].nextClick) {
+  if (form[tgtName].touch) {
     viewerFlg = form[tgtName].valueError;
   } else {
     viewerFlg = form[tgtName].valueError && (form[tgtName].value !== "") ? form[tgtName].valueError : false;
@@ -14,7 +14,7 @@ export const errorViewer = (form, tgtName) => {
 
 export const errTextViewer = (form, tgtName) => {
   let viewerText;
-  if (form[tgtName].nextClick) {
+  if (form[tgtName].touch) {
     viewerText = form[tgtName].valueError && form[tgtName].errorText;
   } else {
     viewerText = form[tgtName].valueError && (form[tgtName].value !== "") ? form[tgtName].errorText : '';
@@ -24,6 +24,7 @@ export const errTextViewer = (form, tgtName) => {
 }
 
 const TextBoxContent = ({ tgtName, tgtLabel, form, onChange, required, onBlur }) => {
+  const errflg = form[tgtName].valueError && form[tgtName].touch;
   return (
     <TextField fullWidth
       label={tgtLabel}
@@ -32,8 +33,8 @@ const TextBoxContent = ({ tgtName, tgtLabel, form, onChange, required, onBlur })
       variant="outlined"
       name={tgtName}
       id={tgtName}
-      error={errorViewer(form, tgtName)}
-      helperText={errTextViewer(form, tgtName)}
+      error={errflg}
+      helperText={errflg ? form[tgtName].errorText : ''}
       onInput={onChange}
       onBlur={onBlur}
       sx={{ backgroundColor: '#ffffff' }}
@@ -51,29 +52,15 @@ TextBoxContent.propTypes = {
 };
 
 export const TextBox = ({ tgtName, tgtLabel, form, onChange, required, onBlur }) => {
-  if (required && (form[tgtName].valueError && form[tgtName].nextClick)) {
-    return (
-      <AttentionSeeker effect='shake'>
-        <TextBoxContent
-          tgtName={tgtName}
-          tgtLabel={tgtLabel}
-          form={form}
-          onChange={onChange}
-          required={required}
-          onBlur={onBlur} />
-      </AttentionSeeker>
-    )
-  } else {
-    return (
-      <TextBoxContent
-        tgtName={tgtName}
-        tgtLabel={tgtLabel}
-        form={form}
-        onChange={onChange}
-        required={required}
-        onBlur={onBlur} />
-    )
-  }
+  return (
+    <TextBoxContent
+      tgtName={tgtName}
+      tgtLabel={tgtLabel}
+      form={form}
+      onChange={onChange}
+      required={required}
+      onBlur={onBlur} />
+  )
 }
 
 TextBox.propTypes = {

@@ -2,16 +2,14 @@ import PropTypes from 'prop-types';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { ja } from 'date-fns/locale';
 import { DatePicker, LocalizationProvider } from "@mui/lab"
-import { Grid, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { errorViewer, errTextViewer } from './TextBox';
-import { AttentionSeeker } from 'react-awesome-reveal';
 
 const DateContent = ({ form, tgtName, onChange }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
       <DatePicker className='inputdates'
         label={form[tgtName].label}
-        id={tgtName}
         value={form[tgtName].value}
         defaultValue={form[tgtName].value === '' ? '' : form[tgtName].value}
         mask="____年__月__日"
@@ -20,6 +18,8 @@ const DateContent = ({ form, tgtName, onChange }) => {
         onChange={onChange}
         variant="outlined"
         renderInput={(params) => <TextField {...params}
+          name={tgtName}
+          id={tgtName}
           helperText={errTextViewer(form, tgtName)}
           sx={{ backgroundColor: '#ffffff' }}
           error={errorViewer(form, tgtName)} />}
@@ -35,15 +35,7 @@ DateContent.propTypes = {
 };
 
 const DateSelect = ({ form, tgtName, onChange }) => {
-  if (form[tgtName].valueError && form[tgtName].nextClick) {
-    return (
-      <AttentionSeeker effect='shake'>
-        <DateContent form={form} tgtName={tgtName} onChange={onChange} />
-      </AttentionSeeker>
-    )
-  } else {
-    return <DateContent form={form} tgtName={tgtName} onChange={onChange} />
-  }
+  return <DateContent form={form} tgtName={tgtName} onChange={onChange} />
 }
 
 DateSelect.propTypes = {

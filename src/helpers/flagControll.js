@@ -24,5 +24,5 @@ export const disableID = (form, chkNum) => {
  * @returns 
  */
 export const viewDisableChk = (form, chkNum) => {
-  return Object.values(form).some(({ pageNum, nextClick, valueError }) => pageNum === chkNum && nextClick && valueError);
+  return Object.values(form).some(({ pageNum, touch, valueError }) => pageNum === chkNum && touch && valueError);
 }

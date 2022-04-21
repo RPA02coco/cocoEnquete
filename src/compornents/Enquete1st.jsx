@@ -26,8 +26,23 @@ const Enquete1st = () => {
 
   const nextButtonClick = (event) => {
     const plusNum = disableflg ? 0 : 1;
-    nextClickFlg(form, pageCond.pageNum);
+    touchFlg(form, pageCond.pageNum);
     if (disableflg) {
+      // このページのエラーになっているフィールドを取得
+      Object.keys(form).reduce((accu, curr) => {
+        if (form[curr].pageNum === pageCond.pageNum && form[curr].valueError === true) {
+          return accu.concat(curr);
+        }
+        return accu;
+      }, []).forEach((item)=>{
+        // エラーのフィールドのclass名に'shakes'を追加
+        document.querySelector(`[name="${item}"]`).closest('.MuiFormControl-root').classList.add('shakes');
+        setTimeout(()=>{
+          // 1000ms後、エラーのフィールドのclass名から'shakes'を削除
+          document.querySelector(`[name="${item}"]`).closest('.MuiFormControl-root').classList.remove('shakes')
+        }, 1000)
+      });
+      
       document.getElementById(disableID(form, pageCond.pageNum)).scrollIntoView();
     }
     setPageCond((prev) => {
@@ -41,11 +56,11 @@ const Enquete1st = () => {
     });
   };
 
-  const nextClickFlg = (form, chkNum) => {
+  const touchFlg = (form, chkNum) => {
     setForm((prev) => {
       let newform = Object.keys(form).reduce((accu, curr) => {
         if (prev[curr].pageNum === chkNum) {
-          return { ...accu, [curr]: { ...prev[curr], nextClick: true } };
+          return { ...accu, [curr]: { ...prev[curr], touch: true } };
         }
         return { ...accu, [curr]: prev[curr] };
       }, {})

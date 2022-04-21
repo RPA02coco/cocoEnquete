@@ -31,6 +31,7 @@ const BasicInformation = ({ form, setForm }) => {
           ...prev[name],
           value: nullJudge(form, name, value),
           valueError: errFlg,
+          touch: true,
         },
       };
     });

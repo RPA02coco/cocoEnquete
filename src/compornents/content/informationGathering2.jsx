@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
-import { informationSourceLists } from '../../constantDefinition/constantDefinition';
+import { informationSourceLists, informationSourceLists2, informationSourceLists3 }
+       from '../../constantDefinition/constantDefinition';
 import { Pulldown } from '../Input/Pulldown';
 import { handleChangePulldwnStr } from '../../helpers/setValues';
 
@@ -14,6 +15,8 @@ const InformationGathering2 = ({ form, setForm }) => {
       }
     })
   }
+
+  const newArray = informationSourceLists.concat(informationSourceLists2.concat(informationSourceLists3));
   // console.log(form);
 
   return (
@@ -23,12 +26,12 @@ const InformationGathering2 = ({ form, setForm }) => {
       </Grid>
       <Grid item xs={12} ms={12}>
         <Pulldown
-          tgtName='firstOpportunity' tgtArray={informationSourceLists} onChange={pulldownChange} form={form}
+          tgtName='firstOpportunity' tgtArray={newArray} onChange={pulldownChange} form={form}
           tgtLabel='当社のことを知るきっかけとなった一番最初の情報源' />
       </Grid>
       <Grid item xs={12} ms={12}>
         <Pulldown
-          tgtName='bestOpportunity' tgtArray={informationSourceLists} onChange={pulldownChange} form={form}
+          tgtName='bestOpportunity' tgtArray={newArray} onChange={pulldownChange} form={form}
           tgtLabel='本日のご来場の決め手となった情報源' />
       </Grid>
     </Grid>

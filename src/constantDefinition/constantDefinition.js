@@ -46,7 +46,7 @@ export const currentHomeLists = [
 ];
 
 export const moveInNumLists = [
-  '1人', '2人', '3人', '4人', '5人', '6人', '7人'
+  '1人', '2人', '3人', '4人', '5人', '6人', '7人以上'
 ]
 
 export const moveInFormLists = [
