@@ -47,13 +47,13 @@ const errorJudgement = (name, value) => {
       }
       isError = isError || blankCheck(chkValue);
       break;
-    case 'mail':
+    /* case 'mail':
       const regexMail = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
       if (!regexMail.test(chkValue)) {
         isError = true;
       }
       isError = isError || blankCheck(chkValue);
-      break;
+      break; */
     default:
       isError = false;
       break;

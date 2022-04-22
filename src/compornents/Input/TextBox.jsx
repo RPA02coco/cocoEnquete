@@ -25,17 +25,18 @@ export const errTextViewer = (form, tgtName) => {
 
 const TextBoxContent = ({ tgtName, tgtLabel, form, onChange, required, onBlur }) => {
   const errflg = form[tgtName].valueError && form[tgtName].touch;
+  // console.log('form[tgtName].value',form[tgtName].value, form);
   return (
     <TextField fullWidth
       label={tgtLabel}
-      defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
+      value={form[tgtName].value}
       required={required}
       variant="outlined"
       name={tgtName}
       id={tgtName}
       error={errflg}
       helperText={errflg ? form[tgtName].errorText : ''}
-      onInput={onChange}
+      onChange={onChange}
       onBlur={onBlur}
       sx={{ backgroundColor: '#ffffff' }}
     />

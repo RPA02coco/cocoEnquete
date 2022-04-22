@@ -4,10 +4,29 @@ import errorJudgement from '../../helpers/errorJudgment';
 import nullJudge from '../../helpers/nullJudgement';
 import { TextBox, errorViewer } from '../Input/TextBox';
 import DateSelect from '../Input/DateSelect';
+import historykana from 'historykana';
+import { useEffect, useState } from 'react';
+
 
 const BasicInformation = ({ form, setForm }) => {
+  const [inputHistories, setInputHistories] = useState([]);
+
+  console.log('furigana', form.furigana.value);
+  useEffect(() => {
+    console.log("発火", form.furigana.value);
+  }, [form.furigana.touch]);
+
   const changeHandler = (name) => (value) => {
+    if (name === 'fullname') {
+      // console.log('text::', value.target.value);
+      setInputHistories((prev) => {
+        return [...prev, value.target.value]
+      })
+      // console.log('inputHistories', inputHistories);
+      // console.log('ふりがな::', historykana(inputHistories));
+    }
     if (errorViewer(form, name)) {
+      // console.log('change error更新');
       let errFlg = false;
       setForm((prev) => {
         errFlg = errorJudgement(name, value);
@@ -19,13 +38,48 @@ const BasicInformation = ({ form, setForm }) => {
           },
         };
       });
+    } else {
+      // console.log('change 更新');
+      setForm((prev) => {
+        if (name === 'fullname') {
+          // console.log('blur fullname更新');
+          const setFurigana = historykana(inputHistories);
+
+          // console.log('setFurigana', setFurigana);
+          const output = {
+            ...prev,
+            [name]: {
+              ...prev[name],
+              value: nullJudge(form, name, value),
+              valueError: errorJudgement(name, value),
+            },
+            ['furigana']: {
+              ...prev['furigana'],
+              value: setFurigana,
+              valueError: errorJudgement('furigana', setFurigana),
+            },
+          }
+          // console.log('output', output);
+          return output;
+        } else {
+          // console.log('blur else更新');
+          const errFlg = errorJudgement(name, value);
+          return {
+            ...prev, [name]: {
+              ...prev[name],
+              value: nullJudge(form, name, value),
+              valueError: errFlg,
+            },
+          };
+        }
+      });
     }
   }
 
   const BlurHandler = (name) => (value) => {
-    let errFlg = false;
     setForm((prev) => {
-      errFlg = errorJudgement(name, value);
+      // console.log('blur else更新');
+      const errFlg = errorJudgement(name, value);
       return {
         ...prev, [name]: {
           ...prev[name],
@@ -35,9 +89,11 @@ const BasicInformation = ({ form, setForm }) => {
         },
       };
     });
+
+    setInputHistories([]);
   };
 
-  // console.log(form);
+  console.log(form, inputHistories);
 
   return (
     <Grid container spacing={2}>
@@ -63,7 +119,7 @@ const BasicInformation = ({ form, setForm }) => {
         <TextBox tgtName='tel' tgtLabel={form.tel.label} form={form} onChange={changeHandler('tel')} onBlur={BlurHandler('tel')} required={true} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextBox tgtName='mail' tgtLabel={form.mail.label} form={form} onChange={changeHandler('mail')} onBlur={BlurHandler('mail')} required={true} />
+        <TextBox tgtName='mail' tgtLabel={form.mail.label} form={form} onChange={changeHandler('mail')} onBlur={BlurHandler('mail')} required={false} />
       </Grid>
       <Grid item xs={12} md={8}>
         <TextBox tgtName='workPlace' tgtLabel={form.workPlace.label} form={form} onChange={changeHandler('workPlace')} onBlur={BlurHandler('workPlace')} required={false} />
