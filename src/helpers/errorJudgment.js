@@ -11,6 +11,15 @@ const blankCheck = (chkVal) => {
 }
 
 /**
+ * 引数(chkVal)配列が空かどうか判定する処理：必須入力項目用
+ * @param {string} chkVal : ブランクチェックする対象の値
+ * @return {boolean} :エラー判定フラグ(true=エラー, false=notエラー)
+ */
+const blankCheckArray = (chkVal) => {
+  return chkVal.length === 0 ? true : false;
+}
+
+/**
  * BasicInfomationの入力時に、エラー判定を行う関数
  * @param {string} name : 入力中のinput名
  * @param {object} value : 入力値
@@ -30,9 +39,15 @@ const errorJudgement = (name, value) => {
     case 'furigana':
     case 'birthday':
     case 'address':
+    case 'moveInNum':
+    case 'moveInForm':
       isError = blankCheck(chkValue);
       break;
-    
+
+    case 'visitPurpose':
+      isError = blankCheckArray(chkValue);
+      break;
+
     case 'postCode':
       const regexPC = /^([0-9]{3}-[0-9]{4}|[0-9]{3,7})$/;
       if (!regexPC.test(chkValue)) {

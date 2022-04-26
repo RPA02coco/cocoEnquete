@@ -39,7 +39,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
           <MajorItems Sentence='家づくりのご計画について教えてください' />
         </Grid>
         <Grid item xs={12} md={12}>
-          <RadioButton tgtName='moveInSeason' tgtArray={moveInSeasonLists} form={form} tgtLabel='入居希望時期' onChange={textRadioChange} />
+          <RadioButton tgtName='moveInSeason' tgtArray={moveInSeasonLists} form={form} tgtLabel='入居希望時期' onChange={textRadioChange} required={false} />
         </Grid>
       </Grid>
       <Grid container spacing={2}>
@@ -52,7 +52,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
       </Grid>
       <Grid container>
         <Grid item xs={12} md={12}>
-          <RadioButton tgtName='landExistence' tgtArray={landExistenceLists} form={form} tgtLabel='建物用土地の有無' onChange={textRadioChange} />
+          <RadioButton tgtName='landExistence' tgtArray={landExistenceLists} form={form} tgtLabel='建物用土地の有無' onChange={textRadioChange} required={false} />
         </Grid>
       </Grid>
       <Grid container spacing={2}>
@@ -74,6 +74,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
             form={form}
             tgtLabel='当社のホームページをご覧になったことはありますか？'
             onChange={textRadioChange}
+            required={false} 
           />
         </Grid>
         <Grid item xs={12} md={12}>
@@ -83,6 +84,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
             form={form}
             tgtLabel='当社に資料請求をしていただいたことはありますか？'
             onChange={textRadioChange}
+            required={false} 
           />
         </Grid>
       </Grid>

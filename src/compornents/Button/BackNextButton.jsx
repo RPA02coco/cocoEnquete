@@ -6,11 +6,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import NextButton from './NextButton';
 import BackButton from './BackButton';
 
-const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg, form }) => {
+const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg, form, totalPageNum }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // 画面サイズがsm以下か判定, 以上の場合はdownをupに変える
-  const backButtonDisabled = (activeStep > 6) || (activeStep === 0) /* || (disableflg === true) */;
-  const nextButtonDisabled = (activeStep >= 6) /* || (disableflg === true) */;
+  const backButtonDisabled = (activeStep > totalPageNum) || (activeStep === 0) /* || (disableflg === true) */;
+  const nextButtonDisabled = (activeStep >= totalPageNum) /* || (disableflg === true) */;
 
   const labelProps = {};
   if (disableflg) {
@@ -25,7 +25,7 @@ const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg, form }
   return (
     <MobileStepper
       variant="dots"
-      steps={7}
+      steps={totalPageNum + 1}
       position="bottom"
       activeStep={activeStep}
       sx={{
@@ -70,6 +70,7 @@ BackNextButton.propTypes = {
   activeStep: PropTypes.number,
   disableflg: PropTypes.bool,
   form: PropTypes.object,
+  totalPageNum: PropTypes.number,
 };
 
 export default BackNextButton;

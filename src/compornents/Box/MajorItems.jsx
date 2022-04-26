@@ -8,7 +8,8 @@ const MajorItems = ({ Sentence }) => {
       sx={{
         flexGrow: 1
         , width: { sm: `calc(100% - 12px)` }
-        , backgroundColor: '#9acd32'
+        , backgroundColor: '#1976d2'
+        , color: "white"
       }}
     >
       {Sentence}

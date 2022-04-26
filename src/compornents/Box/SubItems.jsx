@@ -8,8 +8,8 @@ const SubItems = ({ Sentence }) => {
       sx={{
         flexGrow: 1
         , width: { sm: `calc(100% - 12px)` }
-        , backgroundColor: '#e1eebe'
-        , color: 'black'
+        , backgroundColor: '#beddee'
+        , color: '#1976d2'
       }}
     >
       {Sentence}

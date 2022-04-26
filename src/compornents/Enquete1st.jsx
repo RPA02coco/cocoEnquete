@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import BasicInformation from './content/BasicInformation';
 import Works from './content/Works';
 import ImportantPoint from './content/ImportantPoint';
@@ -16,17 +16,20 @@ import convertToJSON from '../helpers/convertToJSON';
 import CompletionMessage from './content/CompletionMessage';
 import BackNextButton from './Button/BackNextButton';
 import { disableChk, disableID, viewDisableChk } from '../helpers/flagControll';
+import PrivacyPolicy from './content/PrivacyPolicy';
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
   const [pageCond, setPageCond] = useState({ pageNum: 0, disableFlg: false, });
-  const submitVisible = (pageCond.pageNum === 6);
+  const totalPageNum = 7;
+  const submitVisible = (pageCond.pageNum === totalPageNum);
   const disableflg = disableChk(form, pageCond.pageNum);
   const viewDisableflg = viewDisableChk(form, pageCond.pageNum);
 
   const nextButtonClick = (event) => {
     const plusNum = disableflg ? 0 : 1;
     touchFlg(form, pageCond.pageNum);
+    console.log(pageCond.pageNum + 1, 'ページ目、エラーチェック::', disableflg);
     if (disableflg) {
       // このページのエラーになっているフィールドを取得
       Object.keys(form).reduce((accu, curr) => {
@@ -34,15 +37,16 @@ const Enquete1st = () => {
           return accu.concat(curr);
         }
         return accu;
-      }, []).forEach((item)=>{
+      }, []).forEach((item) => {
+        console.log('item', item);
         // エラーのフィールドのclass名に'shakes'を追加
         document.querySelector(`[name="${item}"]`).closest('.MuiFormControl-root').classList.add('shakes');
-        setTimeout(()=>{
+        setTimeout(() => {
           // 1000ms後、エラーのフィールドのclass名から'shakes'を削除
           document.querySelector(`[name="${item}"]`).closest('.MuiFormControl-root').classList.remove('shakes')
         }, 1000)
       });
-      
+
       document.getElementById(disableID(form, pageCond.pageNum)).scrollIntoView();
     }
     setPageCond((prev) => {
@@ -88,7 +92,7 @@ const Enquete1st = () => {
     });
   };
 
-  // console.log('form内容：', form);
+  console.log('form内容：', form);
 
   return (
     <form onSubmit={submitButtonClick}>
@@ -106,6 +110,7 @@ const Enquete1st = () => {
           {pageCond.pageNum === 4 && <BuildingAHouse2 form={form} setForm={setForm} />}
           {pageCond.pageNum === 5 && <InformationGathering form={form} setForm={setForm} />}
           {pageCond.pageNum === 6 && <InformationGathering2 form={form} setForm={setForm} />}
+          {pageCond.pageNum === 8 && <PrivacyPolicy />}
           {pageCond.pageNum > 6 && <CompletionMessage />}
         </Grid>
         <Grid
@@ -116,13 +121,14 @@ const Enquete1st = () => {
           {submitVisible && <SubmitButton />}
         </Grid>
         <Grid item xs={12} md={12}>
-          {(pageCond.pageNum < 7) &&
+          {(pageCond.pageNum < totalPageNum + 1) &&
             <BackNextButton
               handleNext={nextButtonClick}
               handleBack={backButtonClick}
               activeStep={pageCond.pageNum}
               disableflg={viewDisableflg}
               form={form}
+              totalPageNum={totalPageNum}
             />}
         </Grid>
         <Grid item xs={12}>

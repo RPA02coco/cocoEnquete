@@ -1,27 +1,38 @@
 import PropTypes from 'prop-types';
-import { Grid } from '@mui/material';
+import { FormLabel, Grid, RadioGroup } from '@mui/material';
 import MajorItems from '../Box/MajorItems';
 import { currentHomeLists, moveInFormLists, moveInNumLists } from '../../constantDefinition/constantDefinition';
 import { handleChangePulldwnStr, handleChangeText } from '../../helpers/setValues';
 import RadioButton from '../Input/RadioButton';
 import { TBwithUnit, TextBox } from '../Input/TextBox';
 import { Pulldown } from '../Input/Pulldown';
+import errorJudgement from '../../helpers/errorJudgment';
 
 const BuildingAHouse = ({ form, setForm }) => {
   const TextRadioChange = (e) => {
+    const value = handleChangeText(e);
     setForm((prev) => {
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e) },
+        [e.target.name]: {
+          ...prev[e.target.name],
+          value: value,
+          valueError: errorJudgement(e.target.name, value),
+        },
       }
     })
   }
 
   const PulldownChange = (e) => {
     setForm((prev) => {
+      const value = handleChangePulldwnStr(e);
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangePulldwnStr(e) },
+        [e.target.name]: {
+          ...prev[e.target.name],
+          value: value,
+          valueError: errorJudgement(e.target.name, value),
+        },
       }
     })
   }
@@ -36,7 +47,7 @@ const BuildingAHouse = ({ form, setForm }) => {
       </Grid>
       <Grid container>
         <Grid item xs={12} md={12}>
-          <RadioButton tgtName='currentHome' tgtArray={currentHomeLists} form={form} tgtLabel='現在のお住まい' onChange={TextRadioChange} />
+          <RadioButton tgtName='currentHome' tgtArray={currentHomeLists} form={form} tgtLabel='現在のお住まい' onChange={TextRadioChange} required={false} />
         </Grid>
       </Grid>
       <Grid container spacing={2}>
@@ -45,10 +56,18 @@ const BuildingAHouse = ({ form, setForm }) => {
             <TBwithUnit tgtName='rentPrice' tgtLabel='賃貸 家賃の月額' form={form} onChange={TextRadioChange} required={false} unit='万円/月' />}
         </Grid>
         <Grid item xs={12} md={6}>
-          <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='入居予定人数' onChange={PulldownChange} form={form} />
+          <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='【必須】入居予定人数' onChange={PulldownChange} form={form} required={true} />
         </Grid>
         <Grid item xs={12} md={12}>
-          <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='入居形態' onChange={TextRadioChange} />
+          <FormLabel id="moveInForm">【必須】入居予定人数</FormLabel>
+          <RadioGroup
+            aria-labelledby="moveInForm"
+            defaultValue=""
+            name="moveInForm-group"
+          >
+            <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='【必須】入居形態' onChange={TextRadioChange} required={true} />
+
+          </RadioGroup>
           {form.moveInForm.value.includes('その他') &&
             <TextBox tgtName='mvInFormOthers' tgtLabel='入居形態詳細' form={form} onChange={TextRadioChange} required={false} />}
         </Grid>

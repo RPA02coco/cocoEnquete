@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Grid, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import SubItems from '../Box/SubItems';
 
-const RadioButton = ({ tgtName, tgtArray, form, tgtLabel, onChange }) => {
+const RadioButton = ({ tgtName, tgtArray, form, tgtLabel, onChange, required }) => {
   return (
     <Grid container spacing={0}>
       <Grid item xs={12} md={12}>
@@ -27,6 +27,7 @@ const RadioButton = ({ tgtName, tgtArray, form, tgtLabel, onChange }) => {
                     onChange={onChange}
                     value={item}
                     name={tgtName}
+                    required={required}
                   />}
                   label={item} />
               </Grid>
@@ -44,6 +45,7 @@ RadioButton.propTypes = {
   form: PropTypes.object,
   tgtLabel: PropTypes.string,
   onChange: PropTypes.func,
+  required: PropTypes.bool,
 };
 
 export default RadioButton;

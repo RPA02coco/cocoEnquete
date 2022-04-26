@@ -31,7 +31,7 @@ const ImportantPoint = ({ form, setForm }) => {
       <Grid item xs={12} md={12}>
         <MajorItems Sentence='家づくりで重要視するものはどれですか？※複数回答可' />
       </Grid>
-      <CheckBox tgtName='importantPoint' tgtArray={importantPointLists} onChange={checkboxChange} form={form} />
+      <CheckBox tgtName='importantPoint' tgtArray={importantPointLists} onChange={checkboxChange} form={form} required={false} />
       <Grid item xs={12} md={12}>
         {form.importantPoint.value.includes('その他') &&
           <TextBox tgtName='impPointOthers' tgtLabel='その他詳細' form={form} onChange={textChange} required={false} />}
