@@ -20,9 +20,10 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form, required
           onChange={onChange}
           sx={{ backgroundColor: '#ffffff' }}
           required={required}
+          native={true}
         >
           {tgtArray.map((item) => {
-            return <MenuItem value={item} key={`key_${tgtName}${item}`}>{item}</MenuItem>
+            return <option value={item} key={`key_${tgtName}${item}`}>{item}</option>
           })}
         </Select>
       </FormControl>

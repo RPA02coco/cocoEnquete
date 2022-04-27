@@ -30,7 +30,7 @@ const Enquete1st = () => {
   const nextButtonClick = (event) => {
     const plusNum = disableflg ? 0 : 1;
     touchFlg(form, pageCond.pageNum);
-    console.log(pageCond.pageNum + 1, 'ページ目、エラーチェック::', disableflg);
+    // console.log(pageCond.pageNum + 1, 'ページ目、エラーチェック::', disableflg);
     if (disableflg) {
       // このページのエラーになっているフィールドを取得
       Object.keys(form).reduce((accu, curr) => {
@@ -39,7 +39,7 @@ const Enquete1st = () => {
         }
         return accu;
       }, []).forEach((item) => {
-        console.log('item', item);
+        // console.log('item', item);
         // エラーのフィールドのclass名に'shakes'を追加
         document.querySelector(`[name="${item}"]`).closest('.MuiFormControl-root').classList.add('shakes');
         setTimeout(() => {

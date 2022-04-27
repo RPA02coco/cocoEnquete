@@ -11,10 +11,10 @@ import { useEffect, useState } from 'react';
 const BasicInformation = ({ form, setForm }) => {
   const [inputHistories, setInputHistories] = useState([]);
 
-  console.log('furigana', form.furigana.value);
-  useEffect(() => {
+  // console.log('furigana', form.furigana.value);
+/*   useEffect(() => {
     console.log("発火", form.furigana.value);
-  }, [form.furigana.touch]);
+  }, [form.furigana.touch]); */
 
   const changeHandler = (name) => (value) => {
     if (name === 'fullname') {
@@ -93,7 +93,7 @@ const BasicInformation = ({ form, setForm }) => {
     setInputHistories([]);
   };
 
-  console.log(form, inputHistories);
+  // console.log(form, inputHistories);
 
   return (
     <Grid container spacing={2}>
