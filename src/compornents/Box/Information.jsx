@@ -9,7 +9,7 @@ const Information = ({ Sentence }) => {
         flexGrow: 1,
         width: { sm: `calc(100% - 12px)` },
         color: "#666666",
-        fontSize: '18px'
+        fontSize: '16px'
       }}
     >
       {Sentence}
