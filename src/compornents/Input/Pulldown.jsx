@@ -61,9 +61,10 @@ export const PulldownObj = ({ tgtName, tgtObj, tgtLabel, onChange, form }) => {
           label={tgtLabel}
           onChange={onChange}
           sx={{ backgroundColor: '#ffffff' }}
+          native={true}
         >
           {Object.keys(tgtObj).map((item) => {
-            return <MenuItem value={item} key={`key_${tgtName}${item}`}>{item}</MenuItem>
+            return <option value={item} key={`key_${tgtName}${item}`}>{item}</option>
           })}
         </Select>
       </FormControl>
