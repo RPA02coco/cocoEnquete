@@ -1,18 +1,27 @@
 import PropTypes from 'prop-types';
-import { Grid, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
-import SubItems from '../Box/SubItems';
+import { Grid, FormLabel, RadioGroup, FormControlLabel, Radio, FormHelperText } from '@mui/material';
 
 const RadioButton = ({ tgtName, tgtArray, form, tgtLabel, onChange, required }) => {
+  const errflg = form[tgtName].valueError && form[tgtName].touch;
   return (
-    <Grid container spacing={0}>
-      <Grid item xs={12} md={12}>
-        <FormLabel id={`${tgtName}-radio-buttons-group-label`}>
-          <SubItems Sentence={tgtLabel} />
-        </FormLabel>
-      </Grid>
+    <div className='MuiFormControl-root'>
+      <FormLabel
+        id={tgtName}
+        error={errflg ? true : false}
+      >
+        {tgtLabel}
+      </FormLabel>
+      {errflg ?
+        <FormHelperText
+          sx={{ color: '#d32f2f' }}>
+          {form[tgtName].errorText}
+        </FormHelperText>
+        :
+        ''
+      }
       <Grid item xs={12} md={12}>
         <RadioGroup
-          aria-labelledby={`${tgtName}-radio-buttons-group-label`}
+          aria-labelledby={tgtName}
           defaultValue={tgtArray[0]}
           row={true}
           name={`${tgtName}-radio-buttons-group`}
@@ -35,7 +44,8 @@ const RadioButton = ({ tgtName, tgtArray, form, tgtLabel, onChange, required }) 
           })}
         </RadioGroup>
       </Grid>
-    </Grid>
+      {/* </Grid> */}
+    </div >
   )
 }
 

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
-import MajorItems from '../Box/MajorItems';
+import Question from '../Box/Question';
 import { importantPointLists } from '../../constantDefinition/constantDefinition';
 import { handleChangeCheckbox, handleChangeText } from '../../helpers/setValues';
 import { TextBox } from '../Input/TextBox';
@@ -29,7 +29,7 @@ const ImportantPoint = ({ form, setForm }) => {
   return (
     <Grid container>
       <Grid item xs={12} md={12}>
-        <MajorItems Sentence='家づくりで重要視するものはどれですか？※複数回答可' />
+        <Question Sentence='家づくりで重要視するものはどれですか？※複数回答可' />
       </Grid>
       <CheckBox tgtName='importantPoint' tgtArray={importantPointLists} onChange={checkboxChange} form={form} required={false} />
       <Grid item xs={12} md={12}>

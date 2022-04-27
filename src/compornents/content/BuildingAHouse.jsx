@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { FormLabel, Grid, RadioGroup } from '@mui/material';
-import MajorItems from '../Box/MajorItems';
-import { currentHomeLists, moveInFormLists, moveInNumLists } from '../../constantDefinition/constantDefinition';
+import Question from '../Box/Question';
+import { currentHomeLists, moveInFormLists, moveInNumLists, moveInSeasonLists } from '../../constantDefinition/constantDefinition';
 import { handleChangePulldwnStr, handleChangeText } from '../../helpers/setValues';
 import RadioButton from '../Input/RadioButton';
 import { TBwithUnit, TextBox } from '../Input/TextBox';
@@ -36,13 +36,22 @@ const BuildingAHouse = ({ form, setForm }) => {
       }
     })
   }
+  
+  const textRadioChange = (e) => {
+    setForm((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e) },
+      }
+    })
+  }
   // console.log(form);
 
   return (
     <>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
-          <MajorItems Sentence='家づくりのご計画について教えてください' />
+          <Question Sentence='家づくりのご計画について教えてください' />
         </Grid>
       </Grid>
       <Grid container>
@@ -59,17 +68,18 @@ const BuildingAHouse = ({ form, setForm }) => {
           <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='【必須】入居予定人数' onChange={PulldownChange} form={form} required={true} />
         </Grid>
         <Grid item xs={12} md={12}>
-          <FormLabel id="moveInForm">【必須】入居予定人数</FormLabel>
           <RadioGroup
             aria-labelledby="moveInForm"
             defaultValue=""
             name="moveInForm-group"
           >
             <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='【必須】入居形態' onChange={TextRadioChange} required={true} />
-
           </RadioGroup>
           {form.moveInForm.value.includes('その他') &&
             <TextBox tgtName='mvInFormOthers' tgtLabel='入居形態詳細' form={form} onChange={TextRadioChange} required={false} />}
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <RadioButton tgtName='moveInSeason' tgtArray={moveInSeasonLists} form={form} tgtLabel='入居希望時期' onChange={textRadioChange} required={false} />
         </Grid>
       </Grid >
     </>

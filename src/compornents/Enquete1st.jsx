@@ -8,7 +8,7 @@ import BuildingAHouse from './content/BuildingAHouse';
 import BuildingAHouse2 from './content/BuildingAHouse2';
 import InformationGathering from './content/InformationGathering';
 import SubmitButton from './Button/SubmitButton';
-import { Grid } from '@mui/material';
+import { Checkbox, Grid } from '@mui/material';
 import { formInit } from '../constantDefinition/formInit';
 import InformationGathering2 from './content/informationGathering2';
 import axios from 'axios';
@@ -17,6 +17,7 @@ import CompletionMessage from './content/CompletionMessage';
 import BackNextButton from './Button/BackNextButton';
 import { disableChk, disableID, viewDisableChk } from '../helpers/flagControll';
 import PrivacyPolicy from './content/PrivacyPolicy';
+import CheckBox from './Input/CheckBox';
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
@@ -110,7 +111,6 @@ const Enquete1st = () => {
           {pageCond.pageNum === 4 && <BuildingAHouse2 form={form} setForm={setForm} />}
           {pageCond.pageNum === 5 && <InformationGathering form={form} setForm={setForm} />}
           {pageCond.pageNum === 6 && <InformationGathering2 form={form} setForm={setForm} />}
-          {pageCond.pageNum === 7 && <PrivacyPolicy />}
           {pageCond.pageNum > 7 && <CompletionMessage />}
         </Grid>
         <Grid
@@ -118,6 +118,7 @@ const Enquete1st = () => {
           justifyContent="center"
           alignItems="center"
           item xs={12} md={6}>
+          {submitVisible && <PrivacyPolicy />}
           {submitVisible && <SubmitButton />}
         </Grid>
         <Grid item xs={12} md={12}>

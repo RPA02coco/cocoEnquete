@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
-import MajorItems from '../Box/MajorItems';
 import {
-  budgetLists, landExistenceLists, moveInSeasonLists, ownResourcesLists,
+  budgetLists, landExistenceLists, ownResourcesLists,
   documentRequestLists, siteBrowsingLists
 } from '../../constantDefinition/constantDefinition';
 import { handleChangeText, handleChangePulldwnObj } from '../../helpers/setValues';
 import RadioButton from '../Input/RadioButton';
 import { TBwithUnit, TextBox } from '../Input/TextBox';
 import { PulldownObj } from '../Input/Pulldown';
+import Question from '../Box/Question';
 
 const BuildingAHouse2 = ({ form, setForm }) => {
   const textRadioChange = (e) => {
@@ -36,10 +36,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
     <>
       <Grid container>
         <Grid item xs={12} md={12}>
-          <MajorItems Sentence='家づくりのご計画について教えてください' />
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <RadioButton tgtName='moveInSeason' tgtArray={moveInSeasonLists} form={form} tgtLabel='入居希望時期' onChange={textRadioChange} required={false} />
+          <Question Sentence='家づくりのご計画について教えてください' />
         </Grid>
       </Grid>
       <Grid container spacing={2}>
@@ -63,7 +60,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
           <TextBox tgtName='locationOfLand' tgtLabel={`${landLabel}所在地`} form={form} onChange={textRadioChange} required={false} />
         </Grid>
         <Grid item xs={12} md={12}>
-          <MajorItems Sentence='情報収集について教えてください' />
+          <Question Sentence='情報収集について教えてください' />
         </Grid>
       </Grid>
       <Grid container>

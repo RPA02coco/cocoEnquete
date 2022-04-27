@@ -5,7 +5,10 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form, required
   const errflg = form[tgtName].valueError && form[tgtName].touch;
   return (
     <Grid item xs={12} md={12}>
-      <FormControl fullWidth>
+      <FormControl
+       fullWidth
+       error={errflg ? true : false}
+       >
         <InputLabel id={`${tgtName}-label`}>{tgtLabel}</InputLabel>
         <Select
           labelId={`${tgtName}-label`}
@@ -25,7 +28,7 @@ export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form, required
       </FormControl>
       {errflg ?
         <FormHelperText
-          sx={{ color: 'red' }}>
+          sx={{ color: '#d32f2f' }}>
           {form[tgtName].errorText}
         </FormHelperText>
         :

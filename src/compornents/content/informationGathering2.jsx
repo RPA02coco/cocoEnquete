@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
-import MajorItems from '../Box/MajorItems';
-import { informationSourceLists, informationSourceLists2, informationSourceLists3 }
-       from '../../constantDefinition/constantDefinition';
 import { Pulldown } from '../Input/Pulldown';
 import { handleChangePulldwnStr } from '../../helpers/setValues';
+import Question from '../Box/Question';
 
 const InformationGathering2 = ({ form, setForm }) => {
   const pulldownChange = (e) => {
@@ -16,13 +14,17 @@ const InformationGathering2 = ({ form, setForm }) => {
     })
   }
 
-  const newArray = informationSourceLists.concat(informationSourceLists2.concat(informationSourceLists3));
+  const newArray = form.informationSource.value.length < 1 ?
+    ['該当なし']
+    :
+    form.informationSource.value;
+    
   // console.log(form);
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={12}>
-        <MajorItems Sentence='情報収集について教えてください' />
+        <Question Sentence='情報収集について教えてください' />
       </Grid>
       <Grid item xs={12} ms={12}>
         <Pulldown

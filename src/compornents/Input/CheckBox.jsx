@@ -1,10 +1,24 @@
 import PropTypes from 'prop-types';
-import { Grid, FormControlLabel, Checkbox } from '@mui/material';
+import { Grid, FormControlLabel, Checkbox, FormLabel, FormHelperText } from '@mui/material';
 
-const CheckBox = ({ tgtName, tgtArray, onChange, form, required }) => {
-  console.log('checkbox required::', tgtName, required);
+const CheckBox = ({ tgtName, tgtLabel, tgtArray, onChange, form, required }) => {
+  const errflg = form[tgtName].valueError && form[tgtName].touch;
   return (
-    <>
+    <div className='MuiFormControl-root'>
+      <FormLabel
+        id={tgtName}
+        error={errflg ? true : false}
+      >
+        {tgtLabel}
+      </FormLabel>
+      {errflg ?
+        <FormHelperText
+          sx={{ color: '#d32f2f' }}>
+          {form[tgtName].errorText}
+        </FormHelperText>
+        :
+        ''
+      }
       {
         tgtArray.map((item, index) => {
           return (
@@ -23,12 +37,13 @@ const CheckBox = ({ tgtName, tgtArray, onChange, form, required }) => {
           );
         })
       }
-    </>
+    </div>
   )
 }
 
 CheckBox.propTypes = {
   tgtName: PropTypes.string,
+  tgtLabel: PropTypes.string,
   tgtArray: PropTypes.array,
   form: PropTypes.object,
   onChange: PropTypes.func,

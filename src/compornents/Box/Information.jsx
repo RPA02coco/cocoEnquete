@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 
-const MajorItems = ({ Sentence }) => {
+const Information = ({ Sentence }) => {
   return (
     <Box component="main"
       p={1}
       sx={{
-        flexGrow: 1
-        , width: { sm: `calc(100% - 12px)` }
-        , backgroundColor: '#1976d2'
-        , color: "white"
+        flexGrow: 1,
+        width: { sm: `calc(100% - 12px)` },
+        color: "#666666",
+        fontSize: '18px'
       }}
     >
       {Sentence}
@@ -17,8 +17,8 @@ const MajorItems = ({ Sentence }) => {
   )
 }
 
-MajorItems.propTypes = {
+Information.propTypes = {
   Sentence: PropTypes.string,
 };
 
-export default MajorItems;
+export default Information;

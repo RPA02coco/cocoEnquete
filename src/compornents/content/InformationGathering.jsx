@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
-import MajorItems from '../Box/MajorItems';
 import { informationSourceLists, informationSourceLists2, informationSourceLists3 } from '../../constantDefinition/constantDefinition';
 import CheckBox from '../Input/CheckBox';
-import SubItems from '../Box/SubItems';
 import { TextBox, TBwithUnit } from '../Input/TextBox';
 import { handleChangeText, handleChangeCheckbox } from '../../helpers/setValues';
+import Question from '../Box/Question';
 
 const InformationGathering = ({ form, setForm }) => {
   const textChange = (e) => {
@@ -35,9 +34,9 @@ const InformationGathering = ({ form, setForm }) => {
     <>
       <Grid container>
         <Grid item xs={12} md={12}>
-          <MajorItems Sentence='情報収集について教えてください' />
+          <Question Sentence='情報収集について教えてください' />
         </Grid>
-        <SubItems Sentence='当社の情報を収集する際に利用した情報源は何ですか？ ※複数回答可' />
+        <Question Sentence='当社の情報を収集する際に利用した情報源は何ですか？ ※複数回答可' />
         <CheckBox tgtName='informationSource' tgtArray={informationSourceLists} onChange={checkboxChange} form={form} required={false} />
       </Grid>
       <Grid container spacing={2}>
