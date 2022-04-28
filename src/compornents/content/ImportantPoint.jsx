@@ -20,7 +20,7 @@ const ImportantPoint = ({ form, setForm }) => {
     setForm((prev) => {
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangeCheckbox(e, prev)}
+        [e.target.name]: { ...prev[e.target.name], value: handleChangeCheckbox(e, prev) }
       }
     })
   }
@@ -34,7 +34,15 @@ const ImportantPoint = ({ form, setForm }) => {
       <CheckBox tgtName='importantPoint' tgtArray={importantPointLists} onChange={checkboxChange} form={form} required={false} />
       <Grid item xs={12} md={12}>
         {form.importantPoint.value.includes('その他') &&
-          <TextBox tgtName='impPointOthers' tgtLabel='その他詳細' form={form} onChange={textChange} required={false} />}
+          <TextBox
+            tgtName='impPointOthers'
+            tgtLabel='その他詳細'
+            form={form}
+            onChange={textChange}
+            required={false}
+            type='text'
+            placeholder=''
+          />}
       </Grid>
     </Grid>
   )

@@ -12,15 +12,33 @@ const BuildingAHouse = ({ form, setForm }) => {
   const TextRadioChange = (e) => {
     const value = handleChangeText(e);
     setForm((prev) => {
-      return {
-        ...prev,
-        [e.target.name]: {
-          ...prev[e.target.name],
-          value: value,
-          valueError: errorJudgement(e.target.name, value),
-        },
+      let newForm = {};
+      if (e.target.name === 'moveInForm' && (prev.moveInForm.value.includes('その他') === false && e.target.value === 'その他')) {
+        newForm = {
+          ...prev,
+          [e.target.name]: {
+            ...prev[e.target.name],
+            value: value,
+            valueError: errorJudgement(e.target.name, value),
+          },
+          ['mvInFormOthers']: {
+            ...prev['mvInFormOthers'],
+            value: prev.mvInFormOthers.value,
+            valueError: errorJudgement('mvInFormOthers', prev.mvInFormOthers.value)
+          },
+        }
+      } else {
+        newForm = {
+          ...prev,
+          [e.target.name]: {
+            ...prev[e.target.name],
+            value: value,
+            valueError: errorJudgement(e.target.name, value),
+          },
+        }
       }
-    })
+      return newForm;
+    });
   }
 
   const PulldownChange = (e) => {
@@ -36,7 +54,7 @@ const BuildingAHouse = ({ form, setForm }) => {
       }
     })
   }
-  
+
   const textRadioChange = (e) => {
     setForm((prev) => {
       return {
@@ -62,21 +80,32 @@ const BuildingAHouse = ({ form, setForm }) => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
           {form.currentHome.value.includes('賃貸') &&
-            <TBwithUnit tgtName='rentPrice' tgtLabel='賃貸 家賃の月額' form={form} onChange={TextRadioChange} required={false} unit='万円/月' />}
+            <TBwithUnit
+              tgtName='rentPrice'
+              tgtLabel='賃貸 家賃の月額'
+              form={form}
+              onChange={TextRadioChange}
+              required={false}
+              unit='万円/月'
+              type='text'
+              placeholder=''
+            />}
         </Grid>
         <Grid item xs={12} md={6}>
           <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='【必須】入居予定人数' onChange={PulldownChange} form={form} required={true} />
         </Grid>
         <Grid item xs={12} md={12}>
-          <RadioGroup
-            aria-labelledby="moveInForm"
-            defaultValue=""
-            name="moveInForm-group"
-          >
-            <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='【必須】入居形態' onChange={TextRadioChange} required={true} />
-          </RadioGroup>
+          <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='【必須】入居形態' onChange={TextRadioChange} required={true} />
           {form.moveInForm.value.includes('その他') &&
-            <TextBox tgtName='mvInFormOthers' tgtLabel='入居形態詳細' form={form} onChange={TextRadioChange} required={false} />}
+            <TextBox
+              tgtName='mvInFormOthers'
+              tgtLabel='入居形態詳細'
+              form={form}
+              onChange={TextRadioChange}
+              required={form.moveInForm.value.includes('その他') ? true : false}
+              type='text'
+              placeholder=''
+            />}
         </Grid>
         <Grid item xs={12} md={12}>
           <RadioButton tgtName='moveInSeason' tgtArray={moveInSeasonLists} form={form} tgtLabel='入居希望時期' onChange={textRadioChange} required={false} />

@@ -23,9 +23,8 @@ export const errTextViewer = (form, tgtName) => {
   return viewerText;
 }
 
-const TextBoxContent = ({ tgtName, tgtLabel, form, onChange, required, onBlur }) => {
+export const TextBox = ({ tgtName, tgtLabel, form, type, placeholder, onChange, required, onBlur }) => {
   const errflg = form[tgtName].valueError && form[tgtName].touch;
-  // console.log('form[tgtName].value',form[tgtName].value, form);
   return (
     <TextField fullWidth
       label={tgtLabel}
@@ -35,6 +34,8 @@ const TextBoxContent = ({ tgtName, tgtLabel, form, onChange, required, onBlur })
       name={tgtName}
       id={tgtName}
       error={errflg}
+      type={type}
+      placeholder={placeholder}
       helperText={errflg ? form[tgtName].errorText : ''}
       onChange={onChange}
       onBlur={onBlur}
@@ -43,43 +44,26 @@ const TextBoxContent = ({ tgtName, tgtLabel, form, onChange, required, onBlur })
   )
 }
 
-TextBoxContent.propTypes = {
-  tgtName: PropTypes.string,
-  tgtLabel: PropTypes.string,
-  form: PropTypes.object,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  required: PropTypes.bool,
-};
-
-export const TextBox = ({ tgtName, tgtLabel, form, onChange, required, onBlur }) => {
-  return (
-    <TextBoxContent
-      tgtName={tgtName}
-      tgtLabel={tgtLabel}
-      form={form}
-      onChange={onChange}
-      required={required}
-      onBlur={onBlur} />
-  )
-}
-
 TextBox.propTypes = {
   tgtName: PropTypes.string,
   tgtLabel: PropTypes.string,
   form: PropTypes.object,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   required: PropTypes.bool,
 };
 
-export const TBwithUnit = ({ tgtName, tgtLabel, form, onChange, required, unit }) => {
+export const TBwithUnit = ({ tgtName, tgtLabel, form, type, placeholder, onChange, required, unit }) => {
   return (
     <TextField fullWidth
       label={tgtLabel}
       defaultValue={form[tgtName].value === undefined ? '' : form[tgtName].value}
       required={required}
       variant="outlined"
+      type={type}
+      placeholder={placeholder}
       name={tgtName}
       error={form[tgtName].valueError}
       helperText={form[tgtName].valueError && form[tgtName].errorText}
@@ -100,6 +84,8 @@ TBwithUnit.propTypes = {
   tgtName: PropTypes.string,
   tgtLabel: PropTypes.string,
   form: PropTypes.object,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   unit: PropTypes.string,

@@ -19,7 +19,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
       }
     })
   }
-  
+
   const pulldownObjChange = (e) => {
     const tgtArray = e.target.name === 'budget' ? budgetLists : ownResourcesLists;
     setForm((prev) => {
@@ -34,36 +34,45 @@ const BuildingAHouse2 = ({ form, setForm }) => {
 
   return (
     <>
-      <Grid container>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
           <Question Sentence='家づくりのご計画について教えてください' />
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <PulldownObj tgtName='budget' tgtObj={budgetLists} form={form} tgtLabel='建物予算' onChange={pulldownObjChange} />
         </Grid>
         <Grid item xs={12} md={6}>
           <PulldownObj tgtName='ownResources' tgtObj={ownResourcesLists} form={form} tgtLabel='自己資金' onChange={pulldownObjChange} />
         </Grid>
-      </Grid>
-      <Grid container>
         <Grid item xs={12} md={12}>
           <RadioButton tgtName='landExistence' tgtArray={landExistenceLists} form={form} tgtLabel='建物用土地の有無' onChange={textRadioChange} required={false} />
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
-          <TBwithUnit tgtName='areaOfLand' tgtLabel={`${landLabel}面積`} form={form} onChange={textRadioChange} required={false} unit='坪' />
+          <TBwithUnit
+            tgtName='areaOfLand'
+            tgtLabel={`${landLabel}面積`}
+            form={form}
+            onChange={textRadioChange}
+            required={false}
+            unit='坪'
+            type='number'
+            placeholder=''
+          />
         </Grid>
         <Grid item xs={12} md={8}>
-          <TextBox tgtName='locationOfLand' tgtLabel={`${landLabel}所在地`} form={form} onChange={textRadioChange} required={false} />
+          <TextBox
+            tgtName='locationOfLand'
+            tgtLabel={`${landLabel}所在地`}
+            form={form}
+            onChange={textRadioChange}
+            required={false}
+            type='text'
+            placeholder='愛知県豊田市元宮町'
+          />
         </Grid>
         <Grid item xs={12} md={12}>
           <Question Sentence='情報収集について教えてください' />
         </Grid>
-      </Grid>
-      <Grid container>
         <Grid item xs={12} md={12}>
           <RadioButton
             tgtName='siteBrowsing'
@@ -71,7 +80,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
             form={form}
             tgtLabel='当社のホームページをご覧になったことはありますか？'
             onChange={textRadioChange}
-            required={false} 
+            required={false}
           />
         </Grid>
         <Grid item xs={12} md={12}>
@@ -81,7 +90,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
             form={form}
             tgtLabel='当社に資料請求をしていただいたことはありますか？'
             onChange={textRadioChange}
-            required={false} 
+            required={false}
           />
         </Grid>
       </Grid>

@@ -42,12 +42,29 @@ const InformationGathering = ({ form, setForm }) => {
       <Grid container spacing={2}>
         <Grid item xs={12} ms={12}>
           {searchWords(form.informationSource.value, '夢のおてつだい') &&
-            <TextBox tgtName='yumePersonInCharge' tgtLabel='夢のおてつだい 担当者名' form={form} onChange={textChange} required={false} />}
+            <TextBox
+              tgtName='yumePersonInCharge'
+              tgtLabel='夢のおてつだい 担当者名'
+              form={form}
+              onChange={textChange}
+              required={false}
+              type='text'
+              placeholder='山田　太郎'
+            />}
         </Grid>
         <Grid item xs={12} ms={12}>
           <CheckBox tgtName='informationSource' tgtArray={informationSourceLists2} onChange={checkboxChange} form={form} required={false} />
           {searchWords(form.informationSource.value, '知人') &&
-            <TBwithUnit tgtName='introducer' tgtLabel='ご紹介者様' form={form} onChange={textChange} required={false} unit='様' />}
+            <TBwithUnit
+              tgtName='introducer'
+              tgtLabel='ご紹介者様'
+              form={form}
+              onChange={textChange}
+              required={false}
+              unit='様'
+              type='text'
+              placeholder='山田　太郎'
+            />}
           <CheckBox tgtName='informationSource' tgtArray={informationSourceLists3} onChange={checkboxChange} form={form} required={false} />
         </Grid>
       </Grid>

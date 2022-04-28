@@ -3,7 +3,6 @@ import { Select, Grid, FormControl, InputLabel, MenuItem, FormHelperText } from 
 
 export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form, required }) => {
   const errflg = form[tgtName].valueError && form[tgtName].touch;
-  console.log('form[tgtName]?.value', form[tgtName].value);
   return (
     <Grid item xs={12} md={12}>
       <FormControl

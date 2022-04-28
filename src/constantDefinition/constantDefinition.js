@@ -6,7 +6,7 @@ export const workLists = [
 
 // const annualIncomeLists = Object.keys(AIobjLists);
 export const incomeLists = {
-  '選択してください': {min: '-1', max: '-1'},
+  '選択してください': {min: '', max: ''},
   '～300万円': { min: '1', max: '300' },
   '～400万円': { min: '301', max: '400' },
   '～500万円': { min: '401', max: '500' },
@@ -59,7 +59,7 @@ export const moveInSeasonLists = [
 ]
 
 export const budgetLists = {
-  '選択してください': {min: '-1', max: '-1'},
+  '選択してください': {min: '', max: ''},
   '1,499万円以下': { min: '1', max: '1499' },
   '1,500～1,999万円': { min: '1500', max: '1999' },
   '2,000～2,499万円': { min: '2000', max: '2499' },
@@ -70,7 +70,7 @@ export const budgetLists = {
 }
 
 export const ownResourcesLists = {
-  '選択してください': {min: '-1', max: '-1'},
+  '選択してください': {min: '', max: ''},
   '～100万円': { min: '1', max: '100' },
   '～200万円': { min: '101', max: '200' },
   '～500万円': { min: '201', max: '500' },

@@ -8,7 +8,7 @@ import BuildingAHouse from './content/BuildingAHouse';
 import BuildingAHouse2 from './content/BuildingAHouse2';
 import InformationGathering from './content/InformationGathering';
 import SubmitButton from './Button/SubmitButton';
-import { Checkbox, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { formInit } from '../constantDefinition/formInit';
 import InformationGathering2 from './content/informationGathering2';
 import axios from 'axios';
@@ -17,7 +17,6 @@ import CompletionMessage from './content/CompletionMessage';
 import BackNextButton from './Button/BackNextButton';
 import { disableChk, disableID, viewDisableChk } from '../helpers/flagControll';
 import PrivacyPolicy from './content/PrivacyPolicy';
-import CheckBox from './Input/CheckBox';
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
@@ -30,7 +29,6 @@ const Enquete1st = () => {
   const nextButtonClick = (event) => {
     const plusNum = disableflg ? 0 : 1;
     touchFlg(form, pageCond.pageNum);
-    // console.log(pageCond.pageNum + 1, 'ページ目、エラーチェック::', disableflg);
     if (disableflg) {
       // このページのエラーになっているフィールドを取得
       Object.keys(form).reduce((accu, curr) => {
@@ -39,7 +37,6 @@ const Enquete1st = () => {
         }
         return accu;
       }, []).forEach((item) => {
-        // console.log('item', item);
         // エラーのフィールドのclass名に'shakes'を追加
         document.querySelector(`[name="${item}"]`).closest('.MuiFormControl-root').classList.add('shakes');
         setTimeout(() => {

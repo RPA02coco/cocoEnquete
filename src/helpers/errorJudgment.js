@@ -43,6 +43,8 @@ const errorJudgement = (name, value) => {
     case 'address':
     case 'moveInNum':
     case 'moveInForm':
+    case 'vstPrpsOthers':
+    case 'mvInFormOthers':
       isError = blankCheck(chkValue);
       break;
 

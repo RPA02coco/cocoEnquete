@@ -19,7 +19,7 @@ export const handleChangePulldwnStr = (e) => {
 }
 
 export const handleChangePulldwnObj = (e, tgtArray) => {
-  return e.target.value === '選択してください' ? { min: '', max: '' } : tgtArray[e.target.value]
+  return tgtArray[e.target.value]
   /* prev[name].value = tgtArray[e.target.innerText];
   return {
     ...prev,
