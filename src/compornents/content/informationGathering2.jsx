@@ -16,9 +16,8 @@ const InformationGathering2 = ({ form, setForm }) => {
 
   const newArray = form.informationSource.value.length < 1 ?
     ['該当なし']
-    :
-    form.informationSource.value;
-    
+    : ['選択してください'].concat(form.informationSource.value);
+
   // console.log(form);
 
   return (

@@ -7,7 +7,9 @@ import replaced from './replaced';
  * @return {boolean} :エラー判定フラグ(true=エラー, false=notエラー)
  */
 const blankCheck = (chkVal) => {
-  return chkVal === '' ? true : false;
+  return chkVal === '' ? true
+    : chkVal === '選択してください' ? true
+      : false;
 }
 
 /**

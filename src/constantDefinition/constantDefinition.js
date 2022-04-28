@@ -1,11 +1,12 @@
 export const workLists = [
-  '会社員', '会社役員', '契約社員', '公務員・団体職員', '経営者', '商工自営',
+  '選択してください', '会社員', '会社役員', '契約社員', '公務員・団体職員', '経営者', '商工自営',
   '医師', '弁護士', '会計士・税理士', '弁理士', 'アルバイト・パート', '主婦・主夫',
   '学生', '無職', 'その他',
 ];
 
 // const annualIncomeLists = Object.keys(AIobjLists);
 export const incomeLists = {
+  '選択してください': {min: '-1', max: '-1'},
   '～300万円': { min: '1', max: '300' },
   '～400万円': { min: '301', max: '400' },
   '～500万円': { min: '401', max: '500' },
@@ -46,7 +47,7 @@ export const currentHomeLists = [
 ];
 
 export const moveInNumLists = [
-  '1人', '2人', '3人', '4人', '5人', '6人', '7人以上'
+  '選択してください', '1人', '2人', '3人', '4人', '5人', '6人', '7人以上'
 ]
 
 export const moveInFormLists = [
@@ -58,6 +59,7 @@ export const moveInSeasonLists = [
 ]
 
 export const budgetLists = {
+  '選択してください': {min: '-1', max: '-1'},
   '1,499万円以下': { min: '1', max: '1499' },
   '1,500～1,999万円': { min: '1500', max: '1999' },
   '2,000～2,499万円': { min: '2000', max: '2499' },
@@ -68,6 +70,7 @@ export const budgetLists = {
 }
 
 export const ownResourcesLists = {
+  '選択してください': {min: '-1', max: '-1'},
   '～100万円': { min: '1', max: '100' },
   '～200万円': { min: '101', max: '200' },
   '～500万円': { min: '201', max: '500' },
