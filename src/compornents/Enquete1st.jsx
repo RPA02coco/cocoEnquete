@@ -90,7 +90,7 @@ const Enquete1st = () => {
     });
   };
 
-  console.log('form内容：', form);
+  // console.log('form内容：', form);
 
   return (
     <form onSubmit={submitButtonClick}>

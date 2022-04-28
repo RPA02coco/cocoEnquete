@@ -5,8 +5,12 @@ import { LocalizationProvider, MobileDatePicker } from "@mui/lab"
 import { TextField } from '@mui/material';
 import { errorViewer, errTextViewer } from './TextBox';
 import { subYears } from 'date-fns'
+import { useState } from 'react';
 
 const DateContent = ({ form, tgtName, onChange }) => {
+
+  const [defaultDate, setDefaultDate] = useState(); // 生年月日の初期選択年の設定用
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
       <MobileDatePicker
@@ -14,9 +18,16 @@ const DateContent = ({ form, tgtName, onChange }) => {
         disableFuture
         orientation="portrait"
         label={form[tgtName].label}
-        value={form[tgtName].value}
+        value={defaultDate ?? form[tgtName].value}
         minDate={subYears(new Date(), 130)}
         maxDate={subYears(new Date(), 17)}
+        onOpen={() => {
+          // 40歳程度の人の誕生日を初期で選択する
+          form[tgtName].value === '' ? setDefaultDate(subYears(new Date(), 40)) : form[tgtName].value;
+        }}
+        onClose={() => {
+          setDefaultDate(undefined);
+        }}
         openTo="year"
         mask="____年__月__日"
         inputFormat="yyyy年MM月dd日"
@@ -24,12 +35,14 @@ const DateContent = ({ form, tgtName, onChange }) => {
         views={['year', 'month', 'day']}
         onChange={onChange}
         variant="outlined"
-        renderInput={(params) => <TextField {...params}
+        renderInput={(params) => <
+          TextField {...params}
           name={tgtName}
           id={tgtName}
           helperText={errTextViewer(form, tgtName)}
           sx={{ backgroundColor: '#ffffff' }}
-          error={errorViewer(form, tgtName)} />}
+          error={errorViewer(form, tgtName)}
+        />}
       />
     </LocalizationProvider>
   )
