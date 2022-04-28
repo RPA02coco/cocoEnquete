@@ -87,7 +87,7 @@ const BuildingAHouse = ({ form, setForm }) => {
               onChange={TextRadioChange}
               required={false}
               unit='万円/月'
-              type='text'
+              type='number'
               placeholder=''
             />}
         </Grid>
