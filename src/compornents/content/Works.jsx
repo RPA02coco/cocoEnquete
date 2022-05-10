@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FormLabel, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { workLists, incomeLists, visitPurposeLists } from '../../constantDefinition/constantDefinition';
 import { handleChangeCheckbox, handleChangePulldwnObj, handleChangePulldwnStr, handleChangeText } from '../../helpers/setValues';
 import { Pulldown, PulldownObj } from '../Input/Pulldown';

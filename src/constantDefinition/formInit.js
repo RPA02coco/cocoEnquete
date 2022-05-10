@@ -2,7 +2,7 @@ import format from 'date-fns/format';
 
 export const formInit = {
   dateEntered: { label: 'ご記入日', value: format(new Date(), "yyyy-MM-dd'T'HH:mm:00'Z'") },
-  fullname: { label: '【必須】世帯主様お名前', value: '山田 太郎', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
+  fullname: { label: '【必須】世帯主様お名前', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   furigana: { label: '【必須】氏名ふりがな', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   birthday: { label: '【必須】生年月日', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   postCode: { label: '【必須】郵便番号', value: '', pageNum: 0, touch: false, valueError: true, errorText: '数字で入力してください。例:442-0888' },
