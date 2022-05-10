@@ -17,11 +17,12 @@ import CompletionMessage from './content/CompletionMessage';
 import BackNextButton from './Button/BackNextButton';
 import { disableChk, disableID, viewDisableChk } from '../helpers/flagControll';
 import PrivacyPolicy from './content/PrivacyPolicy';
+import PreviewScreen from './content/PreviewScreen';
 
 const Enquete1st = () => {
   const [form, setForm] = useState(formInit);
   const [pageCond, setPageCond] = useState({ pageNum: 0, disableFlg: false, });
-  const totalPageNum = 7;
+  const totalPageNum = 8;
   const submitVisible = (pageCond.pageNum === totalPageNum);
   const disableflg = disableChk(form, pageCond.pageNum);
   const viewDisableflg = viewDisableChk(form, pageCond.pageNum);
@@ -108,7 +109,9 @@ const Enquete1st = () => {
           {pageCond.pageNum === 4 && <BuildingAHouse2 form={form} setForm={setForm} />}
           {pageCond.pageNum === 5 && <InformationGathering form={form} setForm={setForm} />}
           {pageCond.pageNum === 6 && <InformationGathering2 form={form} setForm={setForm} />}
-          {pageCond.pageNum > 7 && <CompletionMessage />}
+          {pageCond.pageNum === 7 && <PrivacyPolicy />}
+          {pageCond.pageNum === 8 && <PreviewScreen form={form} />}
+          {pageCond.pageNum > totalPageNum && <CompletionMessage />}
         </Grid>
         <Grid
           container
