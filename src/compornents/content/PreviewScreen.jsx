@@ -1,15 +1,31 @@
 import { Grid } from '@mui/material';
 import PropTypes from 'prop-types';
-import format from 'date-fns/format';
+import { budgetLists, incomeLists, ownResourcesLists } from '../../constantDefinition/constantDefinition';
 
 const PreviewScreen = ({ form }) => {
   const newObj = (
     Object.keys(form).reduce((accu, curr) => {
-      let newLabel = form[curr].label;
+      const newLabel = form[curr].label;
       let newValue = [];
+
       if (curr === 'annualIncome' || curr === 'budget' || curr === 'ownResources') {
         // objから選択肢を表示する処理
-        newLabel = form[curr].label;
+        const arrayName = curr === 'annualIncome' ?
+          incomeLists : curr === 'budget' ?
+            budgetLists : ownResourcesLists;
+
+        const keyList = Object.keys(arrayName)
+        for (let index = 0; index < keyList.length; index++) {
+          console.log('form[curr].value.max', form[curr].value.max);
+          if (form[curr].value.max === arrayName[keyList[index]].max) {
+            newValue = keyList[index] === '選択してください' ?
+              newValue.concat('') : newValue.concat(keyList[index]);
+            break;
+          }
+        }
+        console.log('objのvalue::', newValue);
+        accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
+
       } else if (
         curr === 'vstPrpsOthers'
         || curr === 'impPointOthers'
@@ -27,15 +43,13 @@ const PreviewScreen = ({ form }) => {
         newDate = newDate.replace('T', '日 ');
         newDate = newDate.replace(':', '時');
         newDate = newDate.replace(':00Z', '分');
+        newDate = newDate.indexOf('日') === -1 ? newDate + '日' : newDate;
         newValue = newValue.concat(newDate);
 
-        const addObj = { [curr]: { label: newLabel, value: newValue } }
-        accu = { ...accu, ...addObj }
+        accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
       } else {
-        newLabel = form[curr].label;
         newValue = newValue.concat(form[curr].value);
-        const addObj = { [curr]: { label: newLabel, value: newValue } }
-        accu = { ...accu, ...addObj }
+        accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
       }
       return accu;
     }, {})
@@ -81,8 +95,18 @@ const PreviewScreen = ({ form }) => {
               }}
               key={`content_${item}`}
             >
-              {newObj[item].value.map((val) => {
-                return val === '' ? '記入無し' : val;
+              {console.log('newObj[item].value ::', newObj[item].value)}
+              {newObj[item].value.map((val, idx) => {
+                if (idx > 0) {
+                  return (
+                    <>
+                      <br />
+                      {val}
+                    </>
+                  )
+                } else {
+                  return (val === '' ? ' ' : val);
+                }
               })}
             </Grid>
           </>
