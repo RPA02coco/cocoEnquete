@@ -73,7 +73,7 @@ const BasicInformation = ({ form, setForm }) => {
       };
     });
 
-    setInputHistories([]);
+    // setInputHistories([]);
   };
 
   // console.log(form, inputHistories);
@@ -101,7 +101,7 @@ const BasicInformation = ({ form, setForm }) => {
           onBlur={BlurHandler('furigana')}
           required={true}
           type='text'
-          placeholder='ヤマダ　タロウ'
+          placeholder='やまだ　たろう'
         />
       </Grid>
       <Grid item xs={12} md={12}>
