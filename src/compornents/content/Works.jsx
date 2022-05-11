@@ -43,12 +43,18 @@ const Works = ({ form, setForm }) => {
             },
           }
         } else {
+          const newValue2 = handleChangeCheckbox(e, prev);
           newForm = {
             ...prev,
             [e.target.name]: {
               ...prev[e.target.name],
-              value: handleChangeCheckbox(e, prev),
-              valueError: errorJudgement(e.target.name, handleChangeCheckbox(e, prev))
+              value: newValue2,
+              valueError: errorJudgement(e.target.name, newValue2)
+            },
+            ['vstPrpsOthers']: {
+              ...prev['vstPrpsOthers'],
+              value: prev.vstPrpsOthers.value,
+              valueError: false
             },
           }
         }

@@ -1,60 +1,9 @@
 import { Grid } from '@mui/material';
 import PropTypes from 'prop-types';
-import { budgetLists, incomeLists, ownResourcesLists } from '../../constantDefinition/constantDefinition';
+import makePreviewScreenObj from '../../helpers/makePreviewScreenObj';
 
 const PreviewScreen = ({ form }) => {
-  const newObj = (
-    Object.keys(form).reduce((accu, curr) => {
-      const newLabel = form[curr].label;
-      let newValue = [];
-
-      if (curr === 'annualIncome' || curr === 'budget' || curr === 'ownResources') {
-        // objから選択肢を表示する処理
-        const arrayName = curr === 'annualIncome' ?
-          incomeLists : curr === 'budget' ?
-            budgetLists : ownResourcesLists;
-
-        const keyList = Object.keys(arrayName)
-        for (let index = 0; index < keyList.length; index++) {
-          console.log('form[curr].value.max', form[curr].value.max);
-          if (form[curr].value.max === arrayName[keyList[index]].max) {
-            newValue = keyList[index] === '選択してください' ?
-              newValue.concat('') : newValue.concat(keyList[index]);
-            break;
-          }
-        }
-        console.log('objのvalue::', newValue);
-        accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
-
-      } else if (
-        curr === 'vstPrpsOthers'
-        || curr === 'impPointOthers'
-        || curr === 'rentPrice'
-        || curr === 'mvInFormOthers'
-        || curr === 'yumePersonInCharge'
-        || curr === 'introducer'
-      ) {
-        // その他の詳細な内容を表示するかどうかを判断する
-
-      } else if (curr === 'dateEntered' || curr === 'birthday') {
-        // 日時の置換処理
-        let newDate = form[curr].value.replace('-', '年');
-        newDate = newDate.replace('-', '月');
-        newDate = newDate.replace('T', '日 ');
-        newDate = newDate.replace(':', '時');
-        newDate = newDate.replace(':00Z', '分');
-        newDate = newDate.indexOf('日') === -1 ? newDate + '日' : newDate;
-        newValue = newValue.concat(newDate);
-
-        accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
-      } else {
-        newValue = newValue.concat(form[curr].value);
-        accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
-      }
-      return accu;
-    }, {})
-  )
-
+  const newObj = makePreviewScreenObj(form);
   console.log('プレビュー中間地点', newObj);
 
   return (
@@ -95,12 +44,11 @@ const PreviewScreen = ({ form }) => {
               }}
               key={`content_${item}`}
             >
-              {console.log('newObj[item].value ::', newObj[item].value)}
               {newObj[item].value.map((val, idx) => {
                 if (idx > 0) {
                   return (
                     <>
-                      <br />
+                      <br key={`br_${item}`} />
                       {val}
                     </>
                   )
