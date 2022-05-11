@@ -13,14 +13,14 @@ const makePreviewScreenObj = (form) => {
 
       const keyList = Object.keys(arrayName)
       for (let index = 0; index < keyList.length; index++) {
-        console.log('form[curr].value.max', form[curr].value.max);
+        // console.log('form[curr].value.max', form[curr].value.max);
         if (form[curr].value.max === arrayName[keyList[index]].max) {
           newValue = keyList[index] === '選択してください' ?
             newValue.concat('') : newValue.concat(keyList[index]);
           break;
         }
       }
-      console.log('objのvalue::', newValue);
+      // console.log('objのvalue::', newValue);
       accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
 
     } else if (
@@ -34,6 +34,7 @@ const makePreviewScreenObj = (form) => {
       // その他の詳細な内容を表示するかどうかを判断する
       let keyName = '';
       let searchName = '';
+      let unit = '';
       if (curr === 'vstPrpsOthers') {
         keyName = 'visitPurpose';
         searchName = 'その他';
@@ -43,6 +44,7 @@ const makePreviewScreenObj = (form) => {
       } else if (curr === 'rentPrice') {
         keyName = 'currentHome';
         searchName = '賃貸';
+        unit = ' 万円/月';
       } else if (curr === 'mvInFormOthers') {
         keyName = 'moveInForm';
         searchName = 'その他';
@@ -52,12 +54,13 @@ const makePreviewScreenObj = (form) => {
       } else if (curr === 'introducer') {
         keyName = 'informationSource';
         searchName = '10.知人・ご友人からのご紹介';
+        unit = ' 様';
       }
 
-      console.log('keyName= ', keyName, '::', form[keyName], '　確認中');
+      // console.log('keyName= ', keyName, '::', form[keyName], '　確認中');
       if (form[keyName].value.includes(searchName)) {
-        console.log(keyName, '　にて、対象処理を検出');
-        newValue = newValue.concat(form[curr].value);
+        // console.log(keyName, '　にて、対象処理を検出');
+        newValue = newValue.concat(form[curr].value + unit);
         accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
       }
 
@@ -71,6 +74,10 @@ const makePreviewScreenObj = (form) => {
       newDate = newDate.indexOf('日') === -1 ? newDate + '日' : newDate;
       newValue = newValue.concat(newDate);
 
+      accu = (curr === 'birthday') ? { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
+        : { ...accu };
+    } else if (curr === 'areaOfLand') {
+      newValue = newValue.concat(form[curr].value + ' 坪');
       accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
     } else {
       newValue = newValue.concat(form[curr].value);

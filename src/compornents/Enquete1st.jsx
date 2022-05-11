@@ -109,8 +109,7 @@ const Enquete1st = () => {
           {pageCond.pageNum === 4 && <BuildingAHouse2 form={form} setForm={setForm} />}
           {pageCond.pageNum === 5 && <InformationGathering form={form} setForm={setForm} />}
           {pageCond.pageNum === 6 && <InformationGathering2 form={form} setForm={setForm} />}
-          {pageCond.pageNum === 7 && <PrivacyPolicy />}
-          {pageCond.pageNum === 8 && <PreviewScreen form={form} />}
+          {pageCond.pageNum === 7 && <PreviewScreen form={form} />}
           {pageCond.pageNum > totalPageNum && <CompletionMessage />}
         </Grid>
         <Grid

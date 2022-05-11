@@ -1,66 +1,65 @@
-import { Grid } from '@mui/material';
+import { Divider, Grid, Stack, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import makePreviewScreenObj from '../../helpers/makePreviewScreenObj';
 
 const PreviewScreen = ({ form }) => {
   const newObj = makePreviewScreenObj(form);
-  console.log('プレビュー中間地点', newObj);
+  // console.log('プレビュー中間地点', newObj);
 
   return (
-    <Grid container spacing={2} key={'chk_main'}>
-      <Grid item xs={12} md={12}
-        sx={{
-          flexGrow: 1,
-          width: { sm: `calc(100% - 16px)` },
-          color: '#000000',
-          fontSize: '20px',
-          textAlign: 'center'
-        }}
-        key={`label_title`}
-      >
-        ご記入内容の確認
-      </Grid>
+    <Stack
+      direction="column"
+      justifyContent="flex-start"
+      alignItems="flex-start"
+      spacing={2}
+      key={`labelTitle`}
+    >
+      ご記入内容の確認
+      <br />
       {Object.keys(newObj).map((item) => {
         /* console.log('item::', item); */
         return (
-          <>
-            <Grid item xs={5} md={4}
-              sx={{
-                flexGrow: 1,
-                width: { sm: `calc(100% - 16px)` },
-                color: '#666666',
-                fontSize: '14px',
-              }}
-              key={`label_${item}`}
+          <Stack
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            key={`listsValues_${item}`}
+          >
+            <Stack
+              direction="row"
+              justifyContent="space-around"
+              alignItems="flex-end"
+              spacing={1}
+              key={`labelGroup_${item}`}
             >
-              {form[item].label}
-            </Grid>
-            <Grid item xs={7} md={8}
-              sx={{
-                flexGrow: 1,
-                width: { sm: `calc(100% - 16px)` },
-                color: '#000000',
-                fontSize: '16px',
-              }}
-              key={`content_${item}`}
-            >
-              {newObj[item].value.map((val, idx) => {
-                if (idx > 0) {
-                  return (
-                    <>
-                      <br key={`br_${item}`} />
-                      {val}
-                    </>
-                  )
-                } else {
-                  return (val === '' ? ' ' : val);
-                }
-              })}
-            </Grid>
-          </>
+              <Typography
+                variant='caption'
+                sx={{ color: 'gray' }}
+                key={`label_${item}`}>
+                {form[item].label.replace('【必須】', '') + ' '}
+              </Typography>
+              {(form[item].label.indexOf('【必須】') !== -1) &&
+                <Typography
+                  variant='caption'
+                  sx={{
+                    borderRadius: '5px',
+                    padding: '1px',
+                    backgroundColor: 'red',
+                    color: 'white'
+                  }}
+                  key={`label_${item}_required`}>
+                  必須
+                </Typography>}
+            </Stack>
+
+            {newObj[item].value.map((val) => {
+              const newVal = (val === '' ? ' ' : val);
+              return <Typography key={`${item}_${val}`}>{newVal}</Typography>;
+            })}
+          </Stack>
         )
       })}
-    </Grid>
+    </Stack>
   )
 }
 
