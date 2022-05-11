@@ -60,10 +60,16 @@ const makePreviewScreenObj = (form) => {
       // console.log('keyName= ', keyName, '::', form[keyName], '　確認中');
       if (form[keyName].value.includes(searchName)) {
         // console.log(keyName, '　にて、対象処理を検出');
+        unit = form[curr].value === '' ? '' : unit;
         newValue = newValue.concat(form[curr].value + unit);
         accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
       }
 
+    } else if (curr === 'visitPurpose' || curr === 'importantPoint' || curr === 'informationSource') {
+      // formに配列で保存されている項目の処置
+      const addVal = form[curr].value.length === 0 ? '' : form[curr].value;
+      newValue = newValue.concat(addVal);
+      accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
     } else if (curr === 'dateEntered' || curr === 'birthday') {
       // 日時の置換処理
       let newDate = form[curr].value.replace('-', '年');
@@ -77,7 +83,7 @@ const makePreviewScreenObj = (form) => {
       accu = (curr === 'birthday') ? { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
         : { ...accu };
     } else if (curr === 'areaOfLand') {
-      newValue = newValue.concat(form[curr].value + ' 坪');
+      newValue = form[curr].value === '' ? newValue.concat('') : newValue.concat(form[curr].value + ' 坪');
       accu = { ...accu, ...{ [curr]: { label: newLabel, value: newValue } } }
     } else {
       newValue = newValue.concat(form[curr].value);

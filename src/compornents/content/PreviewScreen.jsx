@@ -53,7 +53,7 @@ const PreviewScreen = ({ form }) => {
             </Stack>
 
             {newObj[item].value.map((val) => {
-              const newVal = (val === '' ? ' ' : val);
+              const newVal = (val === '' ? '未回答' : val);
               return <Typography key={`${item}_${val}`}>{newVal}</Typography>;
             })}
           </Stack>
