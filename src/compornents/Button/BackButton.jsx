@@ -10,6 +10,9 @@ const BackButton = ({ onClick, disabled }) => {
       onClick={onClick}
       variant="outlined"
       startIcon={<ArrowBackIcon />}
+      sx={{
+        backgroundColor: 'white',
+      }}
     >
       戻る
     </Button>

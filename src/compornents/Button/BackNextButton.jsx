@@ -32,6 +32,7 @@ const BackNextButton = ({ handleNext, handleBack, activeStep, disableflg, form, 
         maxWidth: 600,
         left: isMobile ? "" : "50%",
         transform: isMobile ? "" : "translate(-50%, 0)",
+        backgroundColor: 'rgba(255,255,255,0.5)',
       }}
       nextButton={
         <NextButton
