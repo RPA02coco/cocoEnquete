@@ -4,18 +4,17 @@ import errorJudgement from '../../helpers/errorJudgment';
 import nullJudge from '../../helpers/nullJudgement';
 import { TextBox, errorViewer } from '../Input/TextBox';
 import DateSelect from '../Input/DateSelect';
-import historykana from 'historykana';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import * as AutoKana from 'vanilla-autokana';
 
+let autokana = '';
 
 const BasicInformation = ({ form, setForm }) => {
-  const [inputHistories, setInputHistories] = useState([]);
+  useEffect(() => {
+    autokana = AutoKana.bind('#fullname', '#furigana');
+  }, [])
+
   const changeHandler = (name) => (value) => {
-    if (name === 'fullname') {
-      setInputHistories((prev) => {
-        return [...prev, value.target.value]
-      })
-    }
     if (errorViewer(form, name)) {
       let errFlg = false;
       setForm((prev) => {
@@ -31,7 +30,8 @@ const BasicInformation = ({ form, setForm }) => {
     } else {
       setForm((prev) => {
         if (name === 'fullname') {
-          const setFurigana = historykana(inputHistories);
+          const furigana = autokana.getFurigana();
+          console.log('ふりがな(取得)', furigana);
           const output = {
             ...prev,
             [name]: {
@@ -41,8 +41,8 @@ const BasicInformation = ({ form, setForm }) => {
             },
             ['furigana']: {
               ...prev['furigana'],
-              value: setFurigana,
-              valueError: errorJudgement('furigana', setFurigana),
+              value: furigana,
+              valueError: errorJudgement('furigana', furigana),
             },
           }
           return output;
@@ -72,11 +72,10 @@ const BasicInformation = ({ form, setForm }) => {
         },
       };
     });
-
-    // setInputHistories([]);
   };
 
-  // console.log(form, inputHistories);
+  console.log(form);
+  console.log('ふりがな', autokana);
 
   return (
     <Grid container spacing={2}>
