@@ -31,7 +31,7 @@ const BasicInformation = ({ form, setForm }) => {
       setForm((prev) => {
         if (name === 'fullname') {
           const furigana = autokana.getFurigana();
-          console.log('ふりがな(取得)', furigana);
+          // console.log('ふりがな(取得)', furigana);
           const output = {
             ...prev,
             [name]: {
