@@ -63,6 +63,7 @@ const InformationGathering = ({ form, setForm }) => {
               required={false}
               unit='様'
               type='text'
+              inputmode='text'
               placeholder='山田　太郎'
             />}
           <CheckBox tgtName='informationSource' tgtArray={informationSourceLists3} onChange={checkboxChange} form={form} required={false} />

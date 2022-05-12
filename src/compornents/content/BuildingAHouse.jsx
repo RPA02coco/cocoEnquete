@@ -88,6 +88,7 @@ const BuildingAHouse = ({ form, setForm }) => {
               required={false}
               unit='万円/月'
               type='number'
+              inputmode='decimal'
               placeholder=''
             />}
         </Grid>

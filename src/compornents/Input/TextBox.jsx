@@ -55,7 +55,7 @@ TextBox.propTypes = {
   required: PropTypes.bool,
 };
 
-export const TBwithUnit = ({ tgtName, tgtLabel, form, type, placeholder, onChange, required, unit }) => {
+export const TBwithUnit = ({ tgtName, tgtLabel, form, type, inputmode, placeholder, onChange, required, unit }) => {
   return (
     <TextField fullWidth
       label={tgtLabel}
@@ -63,6 +63,7 @@ export const TBwithUnit = ({ tgtName, tgtLabel, form, type, placeholder, onChang
       required={required}
       variant="outlined"
       type={type}
+      inputmode={imputmode}
       placeholder={placeholder}
       name={tgtName}
       error={form[tgtName].valueError}
@@ -85,6 +86,7 @@ TBwithUnit.propTypes = {
   tgtLabel: PropTypes.string,
   form: PropTypes.object,
   type: PropTypes.string,
+  inputmode: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,

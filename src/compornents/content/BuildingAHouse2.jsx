@@ -56,6 +56,7 @@ const BuildingAHouse2 = ({ form, setForm }) => {
             required={false}
             unit='坪'
             type='number'
+            inputmode='decimal'
             placeholder=''
           />
         </Grid>
