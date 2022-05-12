@@ -63,7 +63,7 @@ export const TBwithUnit = ({ tgtName, tgtLabel, form, type, inputmode, placehold
       required={required}
       variant="outlined"
       type={type}
-      inputMode={inputmode}
+      inputProps={{ inputMode: inputmode, pattern: inputmode === 'decimal' ? '[0-9]*' : '' }}
       placeholder={placeholder}
       name={tgtName}
       error={form[tgtName].valueError}
