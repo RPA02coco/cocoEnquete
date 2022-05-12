@@ -74,8 +74,8 @@ const BasicInformation = ({ form, setForm }) => {
     });
   };
 
-  console.log(form);
-  console.log('ふりがな', autokana);
+  // console.log(form);
+  // console.log('ふりがな', autokana);
 
   return (
     <Grid container spacing={2}>
