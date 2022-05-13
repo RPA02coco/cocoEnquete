@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
-import { fontSize } from '@mui/system';
 
 const Question = ({ Sentence }) => {
   return (

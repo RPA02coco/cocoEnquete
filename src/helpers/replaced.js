@@ -1,6 +1,4 @@
 const replaced = (val) => {
-  console.log('test');
-
   return (
     val.replace(/[０-９．]/g, (str) => {
       return String.fromCharCode(str.charCodeAt(0) - 65248);

@@ -1,4 +1,4 @@
-import { Divider, Grid, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import makePreviewScreenObj from '../../helpers/makePreviewScreenObj';
 

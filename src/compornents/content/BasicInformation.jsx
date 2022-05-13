@@ -16,7 +16,6 @@ const BasicInformation = ({ form, setForm }) => {
   }, [])
 
   const changeHandler = (name) => (value) => {
-    console.log('errorViewer', errorViewer(form, name), value.target.value);
     if (errorViewer(form, name)) {
       let errFlg = false;
       setForm((prev) => {
@@ -67,7 +66,6 @@ const BasicInformation = ({ form, setForm }) => {
     setForm((prev) => {
       let newVal = nullJudge(form, name, value);
       newVal = (name === 'tel' || name === 'postCode') ? replaced(newVal) : newVal;
-      console.log('newVal', newVal);
       const errFlg = errorJudgement(name, newVal);
 
       return {
