@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import replaced from './replaced';
 
 /**
  * 引数(chkVal)が空かどうか判定する処理：必須入力項目用
@@ -33,7 +32,7 @@ const errorJudgement = (name, value) => {
   if (value === null) {
     chkValue = '';
   } else {
-    chkValue = value.target ? replaced(value.target.value) : value;
+    chkValue = value.target ? value.target.value : value;
   }
 
   switch (name) {

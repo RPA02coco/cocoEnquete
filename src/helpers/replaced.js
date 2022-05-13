@@ -1,7 +1,9 @@
-const replaced = (rawValue) => {
+const replaced = (val) => {
+  console.log('test');
+
   return (
-    rawValue.replace(/[０-９．]/g, (s) => {
-      return String.fromCharCode(s.charCodeAt(0) - 65248);
+    val.replace(/[０-９．]/g, (str) => {
+      return String.fromCharCode(str.charCodeAt(0) - 65248);
     })
       .replace(/[-－﹣−‐⁃‑‒–—﹘―⎯⏤ーｰ─━]/g, '-')
   )

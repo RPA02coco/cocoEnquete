@@ -6,6 +6,7 @@ import { TextBox, errorViewer } from '../Input/TextBox';
 import DateSelect from '../Input/DateSelect';
 import { useEffect } from 'react';
 import * as AutoKana from 'vanilla-autokana';
+import replaced from '../../helpers/replaced';
 
 let autokana = '';
 
@@ -15,6 +16,7 @@ const BasicInformation = ({ form, setForm }) => {
   }, [])
 
   const changeHandler = (name) => (value) => {
+    console.log('errorViewer', errorViewer(form, name), value.target.value);
     if (errorViewer(form, name)) {
       let errFlg = false;
       setForm((prev) => {
@@ -47,11 +49,12 @@ const BasicInformation = ({ form, setForm }) => {
           }
           return output;
         } else {
-          const errFlg = errorJudgement(name, value);
+          const val = nullJudge(form, name, value);
+          const errFlg = errorJudgement(name, val);
           return {
             ...prev, [name]: {
               ...prev[name],
-              value: nullJudge(form, name, value),
+              value: val,
               valueError: errFlg,
             },
           };
@@ -62,11 +65,15 @@ const BasicInformation = ({ form, setForm }) => {
 
   const BlurHandler = (name) => (value) => {
     setForm((prev) => {
-      const errFlg = errorJudgement(name, value);
+      let newVal = nullJudge(form, name, value);
+      newVal = (name === 'tel' || name === 'postCode') ? replaced(newVal) : newVal;
+      console.log('newVal', newVal);
+      const errFlg = errorJudgement(name, newVal);
+
       return {
         ...prev, [name]: {
           ...prev[name],
-          value: nullJudge(form, name, value),
+          value: newVal,
           valueError: errFlg,
           touch: true,
         },

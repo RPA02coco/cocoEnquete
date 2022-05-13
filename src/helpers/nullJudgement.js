@@ -1,16 +1,17 @@
-import replaced from '../helpers/replaced';
 import format from 'date-fns/format';
 
-const nullJudge = (form, rawName, rawValue) => {
+const nullJudge = (form, name, val) => {
   let returnValue;
-  if (rawValue === null) {
-    returnValue = form[rawName].value;
+  if (val === null) {
+    returnValue = form[name].value;
   } else {
-    if (rawValue.target) {
-      returnValue = replaced(rawValue.target.value);
+    if (val.target) {
+      // 日付データ以外
+      returnValue = val.target.value;
     } else {
-      if (!isNaN(Date.parse(rawValue))) {
-        returnValue = format(rawValue, 'yyyy-MM-dd');
+      // 日付データ
+      if (!isNaN(Date.parse(val))) {
+        returnValue = format(val, 'yyyy-MM-dd');
       } else {
         returnValue = '';
       }
