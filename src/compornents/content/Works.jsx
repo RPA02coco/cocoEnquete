@@ -26,39 +26,26 @@ const Works = ({ form, setForm }) => {
   const CheckBoxChange = (e) => {
     setForm((prev) => {
       if (e.target.name === 'visitPurpose') {
-        let newForm = {};
-        if (prev.visitPurpose.value.includes('その他') === false && e.target.value === 'その他') {
-          const newValue1 = handleChangeCheckbox(e, prev);
-          newForm = {
-            ...prev,
-            [e.target.name]: {
-              ...prev[e.target.name],
-              value: newValue1,
-              valueError: errorJudgement(e.target.name, newValue1)
-            },
-            ['vstPrpsOthers']: {
-              ...prev['vstPrpsOthers'],
-              value: prev.vstPrpsOthers.value,
-              valueError: errorJudgement('vstPrpsOthers', prev.vstPrpsOthers.value)
-            },
-          }
-        } else {
-          const newValue2 = handleChangeCheckbox(e, prev);
-          newForm = {
-            ...prev,
-            [e.target.name]: {
-              ...prev[e.target.name],
-              value: newValue2,
-              valueError: errorJudgement(e.target.name, newValue2)
-            },
-            ['vstPrpsOthers']: {
-              ...prev['vstPrpsOthers'],
-              value: prev.vstPrpsOthers.value,
-              valueError: false
-            },
-          }
+        let errorValue = false;
+        if ((!prev.visitPurpose.value.includes('その他') && e.target.value === 'その他')
+          || ((prev.visitPurpose.value.includes('その他')) && e.target.value !== 'その他')) {
+          // その他が選択された時 もしくは　その他が選択されているとき
+          errorValue = errorJudgement('vstPrpsOthers', prev.vstPrpsOthers.value);
         }
-        return newForm;
+        const newValue1 = handleChangeCheckbox(e, prev);
+        return {
+          ...prev,
+          [e.target.name]: {
+            ...prev[e.target.name],
+            value: newValue1,
+            valueError: errorJudgement(e.target.name, newValue1)
+          },
+          ['vstPrpsOthers']: {
+            ...prev['vstPrpsOthers'],
+            value: prev.vstPrpsOthers.value,
+            valueError: errorValue,
+          },
+        }
       }
     })
   }

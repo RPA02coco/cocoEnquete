@@ -9,43 +9,30 @@ import { Pulldown } from '../Input/Pulldown';
 import errorJudgement from '../../helpers/errorJudgment';
 
 const BuildingAHouse = ({ form, setForm }) => {
-  const TextRadioChange = (e) => {
+  const RadioChange = (e) => {
     const value = handleChangeText(e);
     setForm((prev) => {
-      let newForm = {};
+      let errorValue = false;
       if (e.target.name === 'moveInForm'
-        && (prev.moveInForm.value.includes('その他') === false
-          && e.target.value === 'その他')) {
-            // 「入居形態」で「その他」が押されたタイミングの処理
-        newForm = {
-          ...prev,
-          [e.target.name]: {
-            ...prev[e.target.name],
-            value: value,
-            valueError: errorJudgement(e.target.name, value),
-          },
-          ['mvInFormOthers']: {
-            ...prev['mvInFormOthers'],
-            value: prev.mvInFormOthers.value,
-            valueError: errorJudgement('mvInFormOthers', prev.mvInFormOthers.value)
-          },
-        }
-      } else {
-        newForm = {
-          ...prev,
-          [e.target.name]: {
-            ...prev[e.target.name],
-            value: value,
-            valueError: errorJudgement(e.target.name, value),
-          },
-          ['mvInFormOthers']: {
-            ...prev['mvInFormOthers'],
-            value: prev.mvInFormOthers.value,
-            valueError: false,
-          },
-        }
+        && (!prev.moveInForm.value.includes('その他') && e.target.value === 'その他')
+        || (prev.moveInForm.value.includes('その他') && e.target.value !== 'その他')) {
+        // 「入居形態」で、「その他」が押されたタイミングもしくは「その他」が選択されているとき
+        errorValue = errorJudgement('mvInFormOthers', prev.mvInFormOthers.value);
       }
-      return newForm;
+
+      return {
+        ...prev,
+        [e.target.name]: {
+          ...prev[e.target.name],
+          value: value,
+          valueError: errorJudgement(e.target.name, value),
+        },
+        ['mvInFormOthers']: {
+          ...prev['mvInFormOthers'],
+          value: prev.mvInFormOthers.value,
+          valueError: errorValue,
+        },
+      }
     });
   }
 
@@ -63,14 +50,20 @@ const BuildingAHouse = ({ form, setForm }) => {
     })
   }
 
-  const textRadioChange = (e) => {
+  const TextChange = (e) => {
     setForm((prev) => {
+      const value = handleChangeText(e);
       return {
         ...prev,
-        [e.target.name]: { ...prev[e.target.name], value: handleChangeText(e) },
+        [e.target.name]:{
+          ...prev[e.target.name],
+          value: value, 
+          valueError: errorJudgement(e.target.name, value),
+        }
       }
     })
   }
+
   // console.log(form);
 
   return (
@@ -82,7 +75,14 @@ const BuildingAHouse = ({ form, setForm }) => {
       </Grid>
       <Grid container>
         <Grid item xs={12} md={12}>
-          <RadioButton tgtName='currentHome' tgtArray={currentHomeLists} form={form} tgtLabel='現在のお住まい' onChange={TextRadioChange} required={false} />
+          <RadioButton
+            tgtName='currentHome'
+            tgtArray={currentHomeLists}
+            form={form}
+            tgtLabel='現在のお住まい'
+            onChange={RadioChange}
+            required={false}
+          />
         </Grid>
       </Grid>
       <Grid container spacing={2}>
@@ -92,7 +92,7 @@ const BuildingAHouse = ({ form, setForm }) => {
               tgtName='rentPrice'
               tgtLabel='賃貸 家賃の月額'
               form={form}
-              onChange={TextRadioChange}
+              onChange={TextChange}
               required={false}
               unit='万円/月'
               type='number'
@@ -102,23 +102,43 @@ const BuildingAHouse = ({ form, setForm }) => {
         </Grid>
         <Grid item md={6}></Grid>
         <Grid item xs={12} md={6}>
-          <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='【必須】入居予定人数' onChange={PulldownChange} form={form} required={true} />
+          <Pulldown tgtName='moveInNum'
+            tgtArray={moveInNumLists}
+            tgtLabel='【必須】入居予定人数'
+            onChange={PulldownChange}
+            form={form}
+            required={true}
+          />
         </Grid>
         <Grid item xs={12} md={12}>
-          <RadioButton tgtName='moveInForm' tgtArray={moveInFormLists} form={form} tgtLabel='【必須】入居形態' onChange={TextRadioChange} required={true} />
+          <RadioButton
+            tgtName='moveInForm'
+            tgtArray={moveInFormLists}
+            form={form}
+            tgtLabel='【必須】入居形態'
+            onChange={RadioChange}
+            required={true}
+          />
           {form.moveInForm.value.includes('その他') &&
             <TextBox
               tgtName='mvInFormOthers'
               tgtLabel='入居形態詳細'
               form={form}
-              onChange={TextRadioChange}
+              onChange={TextChange}
               required={form.moveInForm.value.includes('その他') ? true : false}
               type='text'
               placeholder=''
             />}
         </Grid>
         <Grid item xs={12} md={12}>
-          <RadioButton tgtName='moveInSeason' tgtArray={moveInSeasonLists} form={form} tgtLabel='入居希望時期' onChange={textRadioChange} required={false} />
+          <RadioButton
+           tgtName='moveInSeason'
+            tgtArray={moveInSeasonLists}
+             form={form} 
+             tgtLabel='入居希望時期'
+              onChange={RadioChange} 
+              required={false}
+               />
         </Grid>
       </Grid >
     </>

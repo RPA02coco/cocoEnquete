@@ -25,12 +25,12 @@ const InformationGathering2 = ({ form, setForm }) => {
       <Grid item xs={12} md={12}>
         <Question Sentence='情報収集について教えてください' />
       </Grid>
-      <Grid item xs={12} ms={12}>
+      <Grid item xs={12} md={12}>
         <Pulldown
           tgtName='firstOpportunity' tgtArray={newArray} onChange={pulldownChange} form={form}
           tgtLabel='当社のことを知るきっかけとなった一番最初の情報源' required={false} />
       </Grid>
-      <Grid item xs={12} ms={12}>
+      <Grid item xs={12} md={12}>
         <Pulldown
           tgtName='bestOpportunity' tgtArray={newArray} onChange={pulldownChange} form={form}
           tgtLabel='本日のご来場の決め手となった情報源' required={false} />

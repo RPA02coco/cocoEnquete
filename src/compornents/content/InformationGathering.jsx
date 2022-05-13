@@ -37,36 +37,62 @@ const InformationGathering = ({ form, setForm }) => {
           <Question Sentence='情報収集について教えてください' />
         </Grid>
         <Question Sentence='当社の情報を収集する際に利用した情報源は何ですか？ ※複数回答可' />
-        <CheckBox tgtName='informationSource' tgtArray={informationSourceLists} onChange={checkboxChange} form={form} required={false} />
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={12} ms={12}>
-          {searchWords(form.informationSource.value, '夢のおてつだい') &&
-            <TextBox
-              tgtName='yumePersonInCharge'
-              tgtLabel='夢のおてつだい 担当者名'
-              form={form}
-              onChange={textChange}
-              required={false}
-              type='text'
-              placeholder='山田　太郎'
-            />}
+        <CheckBox
+          tgtName='informationSource'
+          tgtArray={informationSourceLists}
+          onChange={checkboxChange}
+          form={form}
+          required={false}
+        />
+        {searchWords(form.informationSource.value, '夢のおてつだい') &&
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <TextBox
+                tgtName='yumePersonInCharge'
+                tgtLabel='夢のおてつだい 担当者名'
+                form={form}
+                onChange={textChange}
+                required={false}
+                type='text'
+                placeholder='山田　太郎'
+              />
+            </Grid>
+          </Grid>
+        }
+        <Grid item xs={12} md={12}>
+          <CheckBox
+            tgtName='informationSource'
+            tgtArray={informationSourceLists2}
+            onChange={checkboxChange}
+            form={form}
+            required={false}
+          />
         </Grid>
-        <Grid item xs={12} ms={12}>
-          <CheckBox tgtName='informationSource' tgtArray={informationSourceLists2} onChange={checkboxChange} form={form} required={false} />
-          {searchWords(form.informationSource.value, '知人') &&
-            <TBwithUnit
-              tgtName='introducer'
-              tgtLabel='ご紹介者様'
-              form={form}
-              onChange={textChange}
-              required={false}
-              unit='様'
-              type='text'
-              inputmode='text'
-              placeholder='山田　太郎'
-            />}
-          <CheckBox tgtName='informationSource' tgtArray={informationSourceLists3} onChange={checkboxChange} form={form} required={false} />
+        {searchWords(form.informationSource.value, '知人') &&
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <TBwithUnit
+                tgtName='introducer'
+                tgtLabel='ご紹介者様'
+                form={form}
+                onChange={textChange}
+                required={false}
+                unit='様'
+                type='text'
+                inputmode='text'
+                placeholder='山田　太郎'
+              />
+            </Grid>
+          </Grid>
+        }
+        <Grid item xs={12} md={6}>
+          <CheckBox
+            tgtName='informationSource'
+            tgtArray={informationSourceLists3}
+            onChange={checkboxChange}
+            form={form}
+            required={false}
+          />
         </Grid>
       </Grid>
     </>
