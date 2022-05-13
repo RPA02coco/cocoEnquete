@@ -4,21 +4,23 @@ import { Grid, FormControlLabel, Checkbox, FormLabel, FormHelperText } from '@mu
 const CheckBox = ({ tgtName, tgtLabel, tgtArray, onChange, form, required }) => {
   const errflg = form[tgtName].valueError && form[tgtName].touch;
   return (
-    <div className='MuiFormControl-root'>
-      <FormLabel
-        id={tgtName}
-        error={errflg ? true : false}
-      >
-        {tgtLabel}
-      </FormLabel>
-      {errflg ?
-        <FormHelperText
-          sx={{ color: '#d32f2f' }}>
-          {form[tgtName].errorText}
-        </FormHelperText>
-        :
-        ''
-      }
+    <Grid container className='MuiFormControl-root'>
+      <Grid item xs={12} md={12} key={`key_${tgtName}_label`}>
+        <FormLabel
+          id={tgtName}
+          error={errflg ? true : false}
+        >
+          {tgtLabel}
+        </FormLabel>
+        {errflg ?
+          <FormHelperText
+            sx={{ color: '#d32f2f' }}>
+            {form[tgtName].errorText}
+          </FormHelperText>
+          :
+          ''
+        }
+      </Grid>
       {
         tgtArray.map((item, index) => {
           return (
@@ -37,7 +39,7 @@ const CheckBox = ({ tgtName, tgtLabel, tgtArray, onChange, form, required }) => 
           );
         })
       }
-    </div>
+    </Grid>
   )
 }
 

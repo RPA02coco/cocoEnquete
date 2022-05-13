@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Select, Grid, FormControl, InputLabel, MenuItem, FormHelperText } from '@mui/material';
+import { Select, Grid, FormControl, InputLabel, FormHelperText } from '@mui/material';
 
 export const Pulldown = ({ tgtName, tgtArray, tgtLabel, onChange, form, required }) => {
   const errflg = form[tgtName].valueError && form[tgtName].touch;

@@ -13,7 +13,10 @@ const BuildingAHouse = ({ form, setForm }) => {
     const value = handleChangeText(e);
     setForm((prev) => {
       let newForm = {};
-      if (e.target.name === 'moveInForm' && (prev.moveInForm.value.includes('その他') === false && e.target.value === 'その他')) {
+      if (e.target.name === 'moveInForm'
+        && (prev.moveInForm.value.includes('その他') === false
+          && e.target.value === 'その他')) {
+            // 「入居形態」で「その他」が押されたタイミングの処理
         newForm = {
           ...prev,
           [e.target.name]: {
@@ -34,6 +37,11 @@ const BuildingAHouse = ({ form, setForm }) => {
             ...prev[e.target.name],
             value: value,
             valueError: errorJudgement(e.target.name, value),
+          },
+          ['mvInFormOthers']: {
+            ...prev['mvInFormOthers'],
+            value: prev.mvInFormOthers.value,
+            valueError: false,
           },
         }
       }
@@ -78,7 +86,7 @@ const BuildingAHouse = ({ form, setForm }) => {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={6}>
           {form.currentHome.value.includes('賃貸') &&
             <TBwithUnit
               tgtName='rentPrice'
@@ -92,6 +100,7 @@ const BuildingAHouse = ({ form, setForm }) => {
               placeholder=''
             />}
         </Grid>
+        <Grid item md={6}></Grid>
         <Grid item xs={12} md={6}>
           <Pulldown tgtName='moveInNum' tgtArray={moveInNumLists} tgtLabel='【必須】入居予定人数' onChange={PulldownChange} form={form} required={true} />
         </Grid>
