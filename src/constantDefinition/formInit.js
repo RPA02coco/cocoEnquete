@@ -1,7 +1,8 @@
 import format from 'date-fns/format';
+import { subHours } from 'date-fns';
 
 export const formInit = {
-  dateEntered: { label: 'ご記入日', value: format(new Date(), "yyyy-MM-dd'T'HH:mm:00'Z'") },
+  dateEntered: { label: 'ご記入日', value: format(subHours(new Date(), 9), "yyyy-MM-dd'T'HH:mm:00'Z'") },
   fullname: { label: '【必須】世帯主様お名前', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   furigana: { label: '【必須】氏名ふりがな', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
   birthday: { label: '【必須】生年月日', value: '', pageNum: 0, touch: false, valueError: true, errorText: '必須項目です。ご記入をお願いします。' },
